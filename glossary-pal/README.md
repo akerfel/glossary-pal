@@ -1,4 +1,4 @@
-# app
+# glossary-pal
 
 ## Project setup
 ```
