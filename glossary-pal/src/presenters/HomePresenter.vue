@@ -1,6 +1,6 @@
 // Presenter.vue
 <script>
-import HomeView from "./HomeView.vue"
+import HomeView from "../views/HomeView.vue"
 export default {
   // In order to access the View 
   // in the Template

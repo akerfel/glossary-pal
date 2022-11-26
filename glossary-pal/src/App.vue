@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import HomePresenter from './components/HomePresenter.vue'
+import HomePresenter from './presenters/HomePresenter.vue'
 
 export default {
   name: 'App',
@@ -22,5 +22,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: black;
 }
 </style>
