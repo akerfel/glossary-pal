@@ -29,5 +29,7 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background-color: rgb(227, 107, 107);
+  width: 100vw;
+  height: 100vh;
 }
 </style>
