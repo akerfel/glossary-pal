@@ -1,4 +1,3 @@
-<!-- View.vue -->
 <script>
 export default {
    props: {
@@ -8,7 +7,6 @@ export default {
 };
 </script>
 
-<!-- Include HTML here -->
 <template>
   <p class="greeting">{{ greeting }}</p>
   <p class="greeting">{{ word }}</p>
