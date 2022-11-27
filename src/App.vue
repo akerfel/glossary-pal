@@ -28,6 +28,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: rgb(162, 162, 162);
+  background-color: rgb(227, 107, 107);
 }
 </style>

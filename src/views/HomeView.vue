@@ -4,7 +4,13 @@ export default {
 
   methods: {
     clickedReviewListACB(listName) {
-        console.log("listName clicked: " + listName)
+        console.log("review list: " + listName)
+    },
+    clickedEditListACB(listName) {
+        console.log("edit list: " + listName)
+    },
+    clickedDeleteListACB(listName) {
+        console.log("delete list: " + listName)
     },
   }
 };
@@ -13,15 +19,31 @@ export default {
 <template>
   <p class="title">{{ "Review a list"}}</p>
   <div v-for="wordList in wordLists" v-bind:key="wordList">
-    <div>
-      <button
-        class="listNameButton"
-        @click="clickedReviewListACB(wordList.name)">
-          <div>
-            <p>{{wordList.name}}</p> 
-            <p class="wordsLanguages">{{wordList.lang1}} to {{wordList.lang2}} </p> 
-          </div>
-      </button>
+    <div class="reviewListSection">
+
+      <div>
+        <p>{{wordList.name}}</p> 
+        <p class="wordsLanguages">{{wordList.lang1}} to {{wordList.lang2}} </p> 
+      </div>
+
+      <div>
+        <button
+          class="reviewListButton"
+          @click="clickedReviewListACB(wordList.name)">
+          Review
+        </button>
+        <button
+          class="editListButton"
+          @click="clickedEditListACB(wordList.name)">
+          Edit
+        </button>
+        <button
+          class="deleteListButton"
+          @click="clickedDeleteListACB(wordList.name)">
+          Delete
+        </button>
+      </div>
+
     </div>
   </div>
 
@@ -34,9 +56,11 @@ export default {
 .title {
   color: rgb(0, 0, 0);
   font-weight: bold;
+  font-size: 24px;
 }
 
-.listNameButton {
+.reviewListSection {
+  margin:5px auto;
   color: rgb(0, 255, 13);
   font-weight: bold;
   background-color: #4CAF50;
@@ -47,13 +71,23 @@ export default {
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  margin: 4px 2px;
-  cursor: pointer;
   width: 200px
 }
 
+.reviewListButton {
+}
+
+.editListButton {
+  
+}
+
+.deleteListButton {
+  
+}
+
+
 .wordsLanguages{
-  font-size: 10px;
-  color: rgb(193, 193, 193);
+  font-size: 12px;
+  color: rgb(70, 70, 70);
 }
 </style>
