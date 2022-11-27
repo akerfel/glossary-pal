@@ -1,13 +1,22 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HomePresenter/>
+  <HomePresenter :word="word"/>
 </template>
 
 <script>
 import HomePresenter from './presenters/HomePresenter.vue'
-
+import GlossaryModel from './GlossaryModel.js'
 export default {
   name: 'App',
+  data() { return {
+                model: {},
+                word: {},
+            };
+    },
+    created() {
+      this.model = new GlossaryModel("some text")
+      this.word = this.model.word
+    },
   components: {
     HomePresenter
   }

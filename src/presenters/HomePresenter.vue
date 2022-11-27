@@ -10,13 +10,13 @@ export default {
       greeting: "Hello World!",
     };
   },
+  props: {
+    word: String
+  }
 };
 </script>
 
 <template>
-  <HomeView :greeting="greeting"/>
+  <HomeView :greeting="greeting"
+            :word="word"/>
 </template>
-
-// Presenter shouldn’t have 
-// style tag
-<style></style>
