@@ -21,28 +21,26 @@ export default {
   <div v-for="wordList in wordLists" v-bind:key="wordList">
     <div class="reviewListSection">
 
-      <div>
-        <p>{{wordList.name}}</p> 
-        <p class="wordsLanguages">{{wordList.lang1}} to {{wordList.lang2}} </p> 
-      </div>
-
-      <div>
-        <button
-          class="reviewListButton"
-          @click="clickedReviewListACB(wordList.name)">
-          Review
-        </button>
-        <button
-          class="editListButton"
-          @click="clickedEditListACB(wordList.name)">
-          Edit
-        </button>
-        <button
-          class="deleteListButton"
-          @click="clickedDeleteListACB(wordList.name)">
-          Delete
-        </button>
-      </div>
+        <span class="wordListName">{{wordList.name}}</span> 
+        <span class="wordsLanguages">{{wordList.lang1}} to {{wordList.lang2}} </span> 
+  
+        <span class="wordListButtons">
+          <button
+            class="reviewListButton"
+            @click="clickedReviewListACB(wordList.name)">
+            Review
+          </button>
+          <button
+            class="editListButton"
+            @click="clickedEditListACB(wordList.name)">
+            Edit
+          </button>
+          <button
+            class="deleteListButton"
+            @click="clickedDeleteListACB(wordList.name)">
+            Delete
+          </button>
+        </span>
 
     </div>
   </div>
@@ -58,7 +56,6 @@ export default {
   font-weight: bold;
   font-size: 24px;
 }
-
 .reviewListSection {
   margin:5px auto;
   color: rgb(0, 255, 13);
@@ -67,13 +64,26 @@ export default {
   border: none;
   color: white;
   padding: 15px 32px;
-  text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  width: 200px;
-  border-radius: 25px;
+  width: 400px;
+  border-radius: 8px;
   border: 2px solid #000000;
+}
+
+.wordListName {
+  text-align: left;
+  float: left;
+  width: 100px;
+}
+
+.wordsLanguages{
+  font-size: 12px;
+  color: rgb(70, 70, 70);
+  margin: 15px;
+  float: center;
+  width: 100px;
 }
 
 .reviewListButton {
@@ -85,11 +95,5 @@ export default {
 
 .deleteListButton {
   
-}
-
-
-.wordsLanguages{
-  font-size: 12px;
-  color: rgb(70, 70, 70);
 }
 </style>
