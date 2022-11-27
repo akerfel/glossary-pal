@@ -7,7 +7,7 @@ export default {
   components: {HomeView},
   data() {
     return {
-      listNames: this.model.getListNames(),
+      wordLists: this.model.wordLists,
     };
   },
   props: {
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <template>
-  <HomeView :listNames="listNames"/>
+  <HomeView :wordLists="wordLists"/>
 </template>

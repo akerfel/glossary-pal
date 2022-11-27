@@ -1,9 +1,9 @@
 <script>
 export default {
-  props: ["listNames"],
+  props: ["wordLists"],
 
   methods: {
-    reviewListACB(listName) {
+    clickedReviewListACB(listName) {
         console.log("listName clicked: " + listName)
     },
   }
@@ -12,12 +12,19 @@ export default {
 
 <template>
   <p class="title">{{ "Review a list"}}</p>
-  <div v-for="listName in listNames" v-bind:key="listName">
-    <button
-          class="listNameButton"
-          @click="reviewListACB(listName)"
-      >{{ listName }}</button>
+  <div v-for="wordList in wordLists" v-bind:key="wordList">
+    <div>
+      <button
+        class="listNameButton"
+        @click="clickedReviewListACB(wordList.name)">
+          <div>
+            <p>{{wordList.name}}</p> 
+            <p class="wordsLanguages">{{wordList.lang1}} to {{wordList.lang2}} </p> 
+          </div>
+      </button>
+    </div>
   </div>
+
 </template>
 
 <!-- Include CSS here
@@ -25,7 +32,7 @@ export default {
      CSS to this file  -->
 <style scoped>
 .title {
-  color: rgb(0, 255, 242);
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
@@ -39,8 +46,14 @@ export default {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
   margin: 4px 2px;
   cursor: pointer;
+  width: 200px
+}
+
+.wordsLanguages{
+  font-size: 10px;
+  color: rgb(193, 193, 193);
 }
 </style>
