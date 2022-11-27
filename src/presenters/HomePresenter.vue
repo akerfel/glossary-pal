@@ -1,21 +1,21 @@
 <script>
 import HomeView from "../views/HomeView.vue"
+import GlossaryModel from "@/GlossaryModel";
 export default {
   // In order to access the View 
   // in the Template
   components: {HomeView},
   data() {
     return {
-      greeting: "Hello World!",
+      listNames: this.model.getListNames(),
     };
   },
   props: {
-    word: String
+    model: GlossaryModel
   }
 };
 </script>
 
 <template>
-  <HomeView :greeting="greeting"
-            :word="word"/>
+  <HomeView :listNames="listNames"/>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HomePresenter :word="model.word"/>
+  <HomePresenter :model="model"/>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
             };
     },
     created() {
-      this.model = new GlossaryModel("some text")
+      this.model = new GlossaryModel()
     },
   components: {
     HomePresenter
