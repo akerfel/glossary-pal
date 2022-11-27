@@ -1,4 +1,4 @@
-// View.vue
+<!-- View.vue -->
 <script>
 export default {
    props: {
@@ -8,15 +8,15 @@ export default {
 };
 </script>
 
-// Include HTML here
+<!-- Include HTML here -->
 <template>
   <p class="greeting">{{ greeting }}</p>
   <p class="greeting">{{ word }}</p>
 </template>
 
-// Include CSS here
-// Remember to include scoped to isolate 
-// CSS to this file
+<!-- Include CSS here
+     Remember to include scoped to isolate 
+     CSS to this file  -->
 <style scoped>
 .greeting {
   color: rgb(0, 255, 13);
