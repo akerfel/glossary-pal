@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HomePresenter :word="word"/>
+  <HomePresenter :word="model.word"/>
 </template>
 
 <script>
@@ -10,12 +10,10 @@ export default {
   name: 'App',
   data() { return {
                 model: {},
-                word: {},
             };
     },
     created() {
       this.model = new GlossaryModel("some text")
-      this.word = this.model.word
     },
   components: {
     HomePresenter
