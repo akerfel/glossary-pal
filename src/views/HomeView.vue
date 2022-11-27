@@ -71,7 +71,9 @@ export default {
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  width: 200px
+  width: 200px;
+  border-radius: 25px;
+  border: 2px solid #000000;
 }
 
 .reviewListButton {
