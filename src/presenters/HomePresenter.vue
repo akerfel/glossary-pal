@@ -7,7 +7,7 @@ export default {
   components: {HomeView},
   data() {
     return {
-      wordLists: this.model.wordLists,
+      decks: this.model.decks,
     };
   },
   props: {
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <template>
-  <HomeView :wordLists="wordLists"/>
+  <HomeView :decks="decks"/>
 </template>

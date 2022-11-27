@@ -1,23 +1,23 @@
-import WordList from "./WordList";
+import Deck from "./Deck";
 
 class GlossaryModel {
-    constructor(wordLists = []){
-        this.wordLists = wordLists
-        var wordList1 = new WordList("Animals", "Swedish", "English", []);
-        var wordList2 = new WordList("Colors", "Swedish", "English", []);
-        var wordList3 = new WordList("Countries", "Swedish", "English", []);
-        this.wordLists.push(wordList1)
-        this.wordLists.push(wordList2)
-        this.wordLists.push(wordList3)
+    constructor(decks = []){
+        this.decks = decks
+        var deck1 = new Deck("Animals", "Swedish", "English", []);
+        var deck2 = new Deck("Colors", "Swedish", "English", []);
+        var deck3 = new Deck("Countries", "Swedish", "English", []);
+        this.decks.push(deck1)
+        this.decks.push(deck2)
+        this.decks.push(deck3)
     }
 
-    // Returns a list with the names of all glossary lists
+    // Returns a list with the names of all decks
     getListNames() {
-        function getNameOfListCB(wordlist) {
-            return wordlist.name
+        function getNameOfListCB(deck) {
+            return deck.name
         }
 
-        return this.wordLists.map(getNameOfListCB)
+        return this.decks.map(getNameOfListCB)
     }
 }
 

@@ -1,4 +1,4 @@
-class WordList {
+class Deck {
     constructor(name, lang1, lang2, words = []){
         this.name = name
         this.lang1 = lang1
@@ -7,4 +7,4 @@ class WordList {
     }
 }
 
-export default WordList
+export default Deck

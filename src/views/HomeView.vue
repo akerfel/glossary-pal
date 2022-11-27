@@ -1,43 +1,43 @@
 <script>
 export default {
-  props: ["wordLists"],
+  props: ["decks"],
 
   methods: {
-    clickedReviewListACB(listName) {
-        console.log("review list: " + listName)
+    clickedReviewListACB(deckName) {
+        console.log("review deck: " + deckName)
     },
-    clickedEditListACB(listName) {
-        console.log("edit list: " + listName)
+    clickedEditListACB(deckName) {
+        console.log("edit deck: " + deckName)
     },
-    clickedDeleteListACB(listName) {
-        console.log("delete list: " + listName)
+    clickedDeleteListACB(deckName) {
+        console.log("delete deck: " + deckName)
     },
   }
 };
 </script>
 
 <template>
-  <p class="title">{{ "Review a list"}}</p>
-  <div v-for="wordList in wordLists" v-bind:key="wordList">
+  <p class="title">{{ "Review a deck"}}</p>
+  <div v-for="deck in decks" v-bind:key="deck">
     <div class="reviewListSection">
 
-        <span class="wordListName">{{wordList.name}}</span> 
-        <span class="wordsLanguages">{{wordList.lang1}} to {{wordList.lang2}} </span> 
+        <span class="deckName">{{deck.name}}</span> 
+        <span class="wordsLanguages">{{deck.lang1}} to {{deck.lang2}} </span> 
   
-        <span class="wordListButtons">
+        <span class="deckButtons">
           <button
             class="reviewListButton"
-            @click="clickedReviewListACB(wordList.name)">
+            @click="clickedReviewListACB(deck.name)">
             Review
           </button>
           <button
             class="editListButton"
-            @click="clickedEditListACB(wordList.name)">
+            @click="clickedEditListACB(deck.name)">
             Edit
           </button>
           <button
             class="deleteListButton"
-            @click="clickedDeleteListACB(wordList.name)">
+            @click="clickedDeleteListACB(deck.name)">
             Delete
           </button>
         </span>
@@ -72,7 +72,7 @@ export default {
   border: 2px solid #000000;
 }
 
-.wordListName {
+.deckName {
   text-align: left;
   float: left;
   width: 100px;
