@@ -1,6 +1,6 @@
 class GlossaryModel {
-    constructor(){
-        this.word = "vueu"
+    constructor(word){
+        this.word = word
     }
 }
 
