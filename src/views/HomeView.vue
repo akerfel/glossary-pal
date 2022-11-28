@@ -1,5 +1,5 @@
 <script setup>
-  import { NButton } from 'naive-ui'
+import { NButton } from "naive-ui";
 </script>
 
 <script>
@@ -13,9 +13,6 @@ export default {
     clickedReviewListACB(deckName) {
       console.log("review deck: " + deckName);
     },
-    clickedEditListACB(deckName) {
-      console.log("edit deck: " + deckName);
-    },
     clickedDeleteListACB(deckName) {
       console.log("delete deck: " + deckName);
     },
@@ -25,26 +22,39 @@ export default {
 
 <template>
   <div>
-    <img alt="Glossary Pal logo" class="logo" src="@/assets/logo.png" width="400" height="125" />
+    <img
+      alt="Glossary Pal logo"
+      class="logo"
+      src="@/assets/logo.png"
+      width="400"
+      height="125"
+    />
   </div>
-  <n-button type="primary" class="createDeck" @click="clickedCreateDeck">Create a deck</n-button>
+  <n-button
+    type="primary"
+    size="large"
+    class="createDeck"
+    @click="clickedCreateDeck"
+    >Create a deck</n-button
+  >
   <p class="title">{{ "Review a deck" }}</p>
   <div v-for="deck in decks" v-bind:key="deck">
     <div class="deck">
       <span class="deckName">{{ deck.name }}</span>
       <span class="deckLanguages">{{ deck.lang1 }} to {{ deck.lang2 }} </span>
-
       <span class="deckButtons">
-        <button @click="clickedReviewListACB(deck.name)">Review</button>
-        <button @click="clickedEditListACB(deck.name)">Edit</button>
-        <button @click="clickedDeleteListACB(deck.name)">Delete</button>
+        <n-button type="info" @click="clickedReviewListACB(deck.name)">Review</n-button>
+        <n-button
+          type="error"
+          @click="clickedDeleteListACB(deck.name)"
+          >Delete</n-button
+        >
       </span>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 .logo {
   margin-bottom: 75px;
 }
@@ -64,7 +74,7 @@ export default {
   background-color: #4caf50;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 10px 15px;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
@@ -74,16 +84,25 @@ export default {
 }
 
 .deckName {
-  text-align: left;
-  float: left;
+  margin-right: 10px;
   width: 100px;
+  display: inline-block;
+  font-weight: bold;
 }
 
 .deckLanguages {
   font-size: 12px;
-  color: rgb(34, 34, 34);
-  margin: 15px;
-  float: center;
+  color: rgb(48, 48, 48);
+  display: inline-block;
+  margin-right: 30px;
   width: 100px;
 }
+
+.deckButtons {
+  float: right;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 15px;
+}
+
 </style>
