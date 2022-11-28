@@ -4,47 +4,44 @@ export default {
 
   methods: {
     clickedReviewListACB(deckName) {
-        console.log("review deck: " + deckName)
+      console.log("review deck: " + deckName);
     },
     clickedEditListACB(deckName) {
-        console.log("edit deck: " + deckName)
+      console.log("edit deck: " + deckName);
     },
     clickedDeleteListACB(deckName) {
-        console.log("delete deck: " + deckName)
+      console.log("delete deck: " + deckName);
     },
-  }
+  },
 };
 </script>
 
 <template>
-  <p class="title">{{ "Review a deck"}}</p>
+  <p class="title">{{ "Review a deck" }}</p>
   <div v-for="deck in decks" v-bind:key="deck">
     <div class="reviewListSection">
+      <span class="deckName">{{ deck.name }}</span>
+      <span class="wordsLanguages">{{ deck.lang1 }} to {{ deck.lang2 }} </span>
 
-        <span class="deckName">{{deck.name}}</span> 
-        <span class="wordsLanguages">{{deck.lang1}} to {{deck.lang2}} </span> 
-  
-        <span class="deckButtons">
-          <button
-            class="reviewListButton"
-            @click="clickedReviewListACB(deck.name)">
-            Review
-          </button>
-          <button
-            class="editListButton"
-            @click="clickedEditListACB(deck.name)">
-            Edit
-          </button>
-          <button
-            class="deleteListButton"
-            @click="clickedDeleteListACB(deck.name)">
-            Delete
-          </button>
-        </span>
-
+      <span class="deckButtons">
+        <button
+          class="reviewListButton"
+          @click="clickedReviewListACB(deck.name)"
+        >
+          Review
+        </button>
+        <button class="editListButton" @click="clickedEditListACB(deck.name)">
+          Edit
+        </button>
+        <button
+          class="deleteListButton"
+          @click="clickedDeleteListACB(deck.name)"
+        >
+          Delete
+        </button>
+      </span>
     </div>
   </div>
-
 </template>
 
 <!-- Include CSS here
@@ -57,10 +54,10 @@ export default {
   font-size: 24px;
 }
 .reviewListSection {
-  margin:5px auto;
+  margin: 5px auto;
   color: rgb(0, 255, 13);
   font-weight: bold;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -78,7 +75,7 @@ export default {
   width: 100px;
 }
 
-.wordsLanguages{
+.wordsLanguages {
   font-size: 12px;
   color: rgb(70, 70, 70);
   margin: 15px;
@@ -90,10 +87,8 @@ export default {
 }
 
 .editListButton {
-  
 }
 
 .deleteListButton {
-  
 }
 </style>

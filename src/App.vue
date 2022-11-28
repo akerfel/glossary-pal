@@ -1,23 +1,24 @@
 <template>
-  <HomePresenter :model="model"/>
+  <HomePresenter :model="model" />
 </template>
 
 <script>
-import HomePresenter from './presenters/HomePresenter.vue'
-import GlossaryModel from './GlossaryModel.js'
+import HomePresenter from "./presenters/HomePresenter.vue";
+import GlossaryModel from "./GlossaryModel.js";
 export default {
-  name: 'App',
-  data() { return {
-                model: {},
-            };
-    },
-    created() {
-      this.model = new GlossaryModel()
-    },
+  name: "App",
+  data() {
+    return {
+      model: {},
+    };
+  },
+  created() {
+    this.model = new GlossaryModel();
+  },
   components: {
-    HomePresenter
-  }
-}
+    HomePresenter,
+  },
+};
 </script>
 
 <style>
