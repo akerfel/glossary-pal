@@ -1,10 +1,8 @@
-<template>
-  <HomePresenter :model="model" />
-</template>
-
 <script>
+import { RouterLink, RouterView } from "vue-router";
 import HomePresenter from "./presenters/HomePresenter.vue";
 import GlossaryModel from "./GlossaryModel.js";
+
 export default {
   name: "App",
   data() {
@@ -21,16 +19,15 @@ export default {
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<template>
+  <div>
+    <HomePresenter :model="model" />
+  </div>
+</template>
+
+<style scoped>
+.home {
+  float: center;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 0px;
-  background-color: rgb(227, 107, 107);
-  width: 100vw;
-  height: 100vh;
 }
 </style>
