@@ -1,3 +1,7 @@
+<script setup>
+  import { NButton } from 'naive-ui'
+</script>
+
 <script>
 export default {
   props: ["decks"],
@@ -23,7 +27,7 @@ export default {
   <div>
     <img alt="Glossary Pal logo" class="logo" src="@/assets/logo.png" width="400" height="125" />
   </div>
-  <button class="createDeck" @click="clickedCreateDeck">Create a deck</button>
+  <n-button type="primary" class="createDeck" @click="clickedCreateDeck">Create a deck</n-button>
   <p class="title">{{ "Review a deck" }}</p>
   <div v-for="deck in decks" v-bind:key="deck">
     <div class="deck">
