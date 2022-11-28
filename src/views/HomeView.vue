@@ -20,6 +20,9 @@ export default {
 </script>
 
 <template>
+  <div>
+    <img alt="Glossary Pal logo" class="logo" src="@/assets/logo.png" width="400" height="125" />
+  </div>
   <button class="createDeck" @click="clickedCreateDeck">Create a deck</button>
   <p class="title">{{ "Review a deck" }}</p>
   <div v-for="deck in decks" v-bind:key="deck">
@@ -37,7 +40,12 @@ export default {
 </template>
 
 <style scoped>
+
+.logo {
+  margin-bottom: 75px;
+}
 .createDeck {
+  margin-bottom: 50px;
 }
 
 .title {
