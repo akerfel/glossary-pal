@@ -20,9 +20,7 @@ export default {
 </script>
 
 <template>
-  <div>
-    <HomePresenter :model="model" />
-  </div>
+  <RouterView :model="model"/>
 </template>
 
 <style scoped>
