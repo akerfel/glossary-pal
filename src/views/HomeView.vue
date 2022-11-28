@@ -70,9 +70,7 @@ export default {
 .deck {
   margin: 5px auto;
   color: rgb(0, 255, 13);
-  font-weight: bold;
   background-color: #4caf50;
-  border: none;
   color: white;
   padding: 10px 15px;
   text-decoration: none;
