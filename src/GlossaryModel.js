@@ -20,6 +20,13 @@ class GlossaryModel {
     return this.decks.map(getNameOfListCB);
   }
 
+  deleteDeck(deckID) {
+    function filterOnIDCB(deck) {
+      return !(deck.id === deckID);
+    }
+
+    this.decks = this.decks.filter(filterOnIDCB);
+  }
 }
 
 export default GlossaryModel;

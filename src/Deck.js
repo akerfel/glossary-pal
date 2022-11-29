@@ -1,19 +1,19 @@
 class Deck {
-    static nextID = 0
+  static nextID = 0;
 
-    static getID() {
-        const thisID = Deck.nextID
-        Deck.nextID += 1
-        return thisID
-    }
+  static getID() {
+    const thisID = Deck.nextID;
+    Deck.nextID += 1;
+    return thisID;
+  }
 
-    constructor(name, lang1, lang2, words = []){
-        this.id = Deck.getID()
-        this.name = name
-        this.lang1 = lang1
-        this.lang2 = lang2
-        this.words = words
-    }
+  constructor(name, lang1, lang2, words = []) {
+    this.id = Deck.getID();
+    this.name = name;
+    this.lang1 = lang1;
+    this.lang2 = lang2;
+    this.words = words;
+  }
 }
 
-export default Deck
+export default Deck;

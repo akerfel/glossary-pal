@@ -1,60 +1,72 @@
 <script setup>
-import { NButton } from "naive-ui";
+import { NButton, NPopconfirm } from "naive-ui";
 </script>
 
 <script>
 export default {
-  props: ["decks"],
+  props: ["model", "onDeleteDeck"],
 
   methods: {
     clickedCreateDeck() {
       console.log("Create a deck");
     },
-    clickedReviewListACB(deck) {
+    clickedReviewDeckACB(deck) {
       console.log("review deck: " + deck.name + " " + deck.id);
     },
-    clickedDeleteListACB(deck) {
+    clickedDeleteDeckACB(deck) {
       console.log("delete deck: " + deck.name + " " + deck.id);
+      this.onDeleteDeck(deck);
     },
   },
 };
 </script>
 
 <template>
-  <div>
-    <img
-      alt="Glossary Pal logo"
-      class="logo"
-      src="@/assets/logo.png"
-      width="400"
-      height="125"
-    />
-  </div>
-  <n-button
-    type="primary"
-    size="large"
-    class="createDeck"
-    @click="clickedCreateDeck"
-    >Create a deck</n-button
-  >
-  <p class="title">{{ "Review a deck" }}</p>
-  <div v-for="deck in decks" v-bind:key="deck">
-    <div class="deck">
-      <span class="deckName">{{ deck.name }}</span>
-      <span class="deckLanguages">{{ deck.lang1 }} to {{ deck.lang2 }} </span>
-      <span class="deckButtons">
-        <n-button type="info" @click="clickedReviewListACB(deck)">Review</n-button>
-        <n-button
-          type="error"
-          @click="clickedDeleteListACB(deck)"
-          >Delete</n-button
-        >
-      </span>
+  <div class="homeview">
+    <div>
+      <img
+        alt="Glossary Pal logo"
+        class="logo"
+        src="@/assets/logo.png"
+        width="400"
+        height="125"
+      />
+    </div>
+    <n-button
+      type="primary"
+      size="large"
+      class="createDeck"
+      @click="clickedCreateDeck"
+      >Create a deck</n-button
+    >
+    <p v-if="model.decks.length > 0" class="title">{{ "Review a deck" }}</p>
+    <div v-for="deck in model.decks" v-bind:key="deck">
+      <div class="deck">
+        <span class="deckName">{{ deck.name }}</span>
+        <span class="deckLanguages">{{ deck.lang1 }} to {{ deck.lang2 }} </span>
+        <span class="deckButtons">
+          <n-button type="info" @click="clickedReviewDeckACB(deck)"
+            >Review</n-button
+          >
+          <n-popconfirm @positive-click="clickedDeleteDeckACB(deck)">
+            <template #activator>
+              <n-button type="error">Delete</n-button>
+            </template>
+            Do you really want to delete the deck {{ deck.name }}?
+          </n-popconfirm>
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.homeview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .logo {
   margin-bottom: 75px;
 }
@@ -63,20 +75,18 @@ export default {
 }
 
 .title {
+  align-self: start;
+  margin-left: 8px;
   color: rgb(255, 255, 255);
   font-weight: bold;
   font-size: 24px;
 }
 .deck {
-  margin: 5px auto;
-  color: rgb(0, 255, 13);
+  margin: 5px;
   background-color: #4caf50;
-  color: white;
   padding: 10px 15px;
-  text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  width: 435px;
   border-radius: 8px;
   border: 2px solid rgb(206, 50, 50);
 }
@@ -86,6 +96,7 @@ export default {
   width: 100px;
   display: inline-block;
   font-weight: bold;
+  color: white;
 }
 
 .deckLanguages {
@@ -102,5 +113,4 @@ export default {
   grid-auto-flow: column;
   grid-column-gap: 15px;
 }
-
 </style>

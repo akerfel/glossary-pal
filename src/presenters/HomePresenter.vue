@@ -13,9 +13,14 @@ export default {
   props: {
     model: GlossaryModel,
   },
+  methods: {
+    deleteDeckACB(deck) {
+      this.model.deleteDeck(deck.id);
+    },
+  },
 };
 </script>
 
 <template>
-  <HomeView :decks="decks" />
+  <HomeView :model="model" :onDeleteDeck="deleteDeckACB" />
 </template>
