@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <RouterView :model="model"/>
+  <RouterView :model="model" />
 </template>
 
 <style scoped>
