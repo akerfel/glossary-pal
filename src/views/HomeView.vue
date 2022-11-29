@@ -7,6 +7,9 @@ export default {
   props: ["model", "onDeleteDeck"],
 
   methods: {
+    clickedLogout() {
+      console.log("Log out user");
+    },
     clickedCreateDeck() {
       console.log("Create a deck");
     },
@@ -23,6 +26,9 @@ export default {
 
 <template>
   <div class="homeview">
+    <div class="banner">
+      <n-button @click="clickedLogout()" type="primary" color="#3d3d39">Log out</n-button>
+    </div>
     <div>
       <img
         alt="Glossary Pal logo"
@@ -61,10 +67,16 @@ export default {
 </template>
 
 <style scoped>
+
 .homeview {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 440px;
+}
+
+.banner {
+  align-self:flex-end;
 }
 
 .logo {
