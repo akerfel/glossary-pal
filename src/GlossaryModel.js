@@ -19,6 +19,7 @@ class GlossaryModel {
 
     return this.decks.map(getNameOfListCB);
   }
+
 }
 
 export default GlossaryModel;

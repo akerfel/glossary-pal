@@ -10,11 +10,11 @@ export default {
     clickedCreateDeck() {
       console.log("Create a deck");
     },
-    clickedReviewListACB(deckName) {
-      console.log("review deck: " + deckName);
+    clickedReviewListACB(deck) {
+      console.log("review deck: " + deck.name + " " + deck.id);
     },
-    clickedDeleteListACB(deckName) {
-      console.log("delete deck: " + deckName);
+    clickedDeleteListACB(deck) {
+      console.log("delete deck: " + deck.name + " " + deck.id);
     },
   },
 };
@@ -43,10 +43,10 @@ export default {
       <span class="deckName">{{ deck.name }}</span>
       <span class="deckLanguages">{{ deck.lang1 }} to {{ deck.lang2 }} </span>
       <span class="deckButtons">
-        <n-button type="info" @click="clickedReviewListACB(deck.name)">Review</n-button>
+        <n-button type="info" @click="clickedReviewListACB(deck)">Review</n-button>
         <n-button
           type="error"
-          @click="clickedDeleteListACB(deck.name)"
+          @click="clickedDeleteListACB(deck)"
           >Delete</n-button
         >
       </span>
