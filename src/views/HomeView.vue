@@ -7,10 +7,10 @@ export default {
   props: ["model", "onDeleteDeck"],
 
   methods: {
-    clickedLogout() {
+    clickedLogoutACB() {
       console.log("Log out user");
     },
-    clickedCreateDeck() {
+    clickedCreateDeckACB() {
       console.log("Create a deck");
     },
     clickedReviewDeckACB(deck) {
