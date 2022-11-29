@@ -27,7 +27,7 @@ export default {
 <template>
   <div class="homeview">
     <div class="banner">
-      <n-button @click="clickedLogout()" type="primary" color="#3d3d39"
+      <n-button @click="clickedLogoutACB()" type="primary" color="#3d3d39"
         >Log out</n-button
       >
     </div>
@@ -44,7 +44,7 @@ export default {
       type="primary"
       size="large"
       class="createDeck"
-      @click="clickedCreateDeck"
+      @click="clickedCreateDeckACB"
       >Create a deck</n-button
     >
     <p v-if="model.decks.length > 0" class="title">{{ "Review a deck" }}</p>
