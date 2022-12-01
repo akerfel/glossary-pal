@@ -13,6 +13,9 @@ export default {
     clickedDeleteWordACB() {
       console.log("clicked delete word");
     },
+    clickedCreateDeckACB() {
+      console.log("clicked create deck")
+    }
   },
 
   data() {
@@ -40,6 +43,62 @@ export default {
           from: "Lejon",
           to: "Lion",
         },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
+        },
       ],
       langFrom: "Swedish",
       langTo: "English",
@@ -50,7 +109,7 @@ export default {
 
 <template>
   <div class="createview">
-    <h1 class="title">Create a new glossary deck</h1>
+    <h1 class="title">Create new glossary deck</h1>
     <div class="deckparams">
       <span>Deck name</span>
       <n-input class="deckname" type="text" placeholder="Title your deck" />
@@ -73,8 +132,8 @@ export default {
     </div>
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
-      <span id="fromLangTextAddWord">{{ this.langFrom }}</span>
-      <span id="toLangTextAddWord">{{ this.langTo }}</span>
+      <span class="fromLangTextAddWord">{{ this.langFrom }}</span>
+      <span class="toLangTextAddWord">{{ this.langTo }}</span>
       <n-input-group>
         <n-input placeholder="Language from" />
         <n-input placeholder="Language to" />
@@ -85,13 +144,13 @@ export default {
       <h2 id="addedWordsTitle">Words in deck</h2>
       <div id="scrollbarDiv">
         <div id="addedWordsColumns">
-          <span id="fromLangTextAddWord">{{ this.langFrom }}</span>
-          <span id="toLangTextAddWord">{{ this.langTo }}</span>
+          <span class="fromLangTextAddWord">{{ this.langFrom }}</span>
+          <span class="toLangTextAddWord">{{ this.langTo }}</span>
         </div>
-        <n-scrollbar id="addedWordsScroll">
+        <n-scrollbar style="max-height: 250px;">
           <div id="scrollbarWord" v-for="word in this.addedWords">
-            <span id="fromLangTextAddWord">{{ word.from }}</span>
-            <span id="fromLangTextAddWord">{{ word.to }}</span>
+            <span class="fromLangTextAddWord">{{ word.from }}</span>
+            <span class="toLangTextAddWord">{{ word.to }}</span>
             <n-button
               id="removeWordButton"
               type="error"
@@ -103,6 +162,7 @@ export default {
         </n-scrollbar>
       </div>
     </div>
+    <n-button id="createdeck" type="primary" @click="clickedCreateDeckACB">Create deck</n-button>
   </div>
 </template>
 
@@ -152,13 +212,14 @@ export default {
   margin-bottom: 10px;
 }
 
-#fromLangTextAddWord {
+.fromLangTextAddWord {
   display: inline-block;
   width: 42%;
 }
 
 .addedwords {
   width: 100%;
+  margin-bottom: 25px;
 }
 
 #addedWordsTitle {
@@ -180,10 +241,6 @@ export default {
   border: 2px solid rgb(206, 50, 50);
 }
 
-#addedWordsScroll {
-  max-height: 100px;
-}
-
 #scrollbarWord {
   background-color: aliceblue;
   color: rgb(0, 0, 0);
@@ -195,4 +252,9 @@ export default {
   height: 24px;
   float: right;
 }
+
+#createdeck {
+  width: 100%;
+}
+
 </style>
