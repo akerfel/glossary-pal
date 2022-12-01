@@ -8,19 +8,24 @@ export default {
 
   methods: {
     clickedAddWordACB() {
-      console.log("clicked add word");
+      console.log("added words: " + this.langFromWord + " " + this.langToWord);
+
+      this.addedWords.push({ from: this.langFromWord, to: this.langToWord });
+      // remove words from input fields
+      this.langFromWord = "";
+      this.langToWord = "";
     },
     clickedDeleteWordACB(word) {
       function removeWordCB(thisWord) {
-        return !(word === thisWord)
+        return !(word === thisWord);
       }
 
       console.log("clicked delete word");
-      this.addedWords = this.addedWords.filter(removeWordCB)
+      this.addedWords = this.addedWords.filter(removeWordCB);
     },
     clickedCreateDeckACB() {
-      console.log("clicked create deck")
-    }
+      console.log("clicked create deck");
+    },
   },
 
   data() {
@@ -48,65 +53,11 @@ export default {
           from: "Lejon",
           to: "Lion",
         },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
       ],
       langFrom: "Swedish",
       langTo: "English",
+      langFromWord: "",
+      langToWord: "",
     };
   },
 };
@@ -140,8 +91,8 @@ export default {
       <span class="fromLangTextAddWord">{{ this.langFrom }}</span>
       <span class="toLangTextAddWord">{{ this.langTo }}</span>
       <n-input-group>
-        <n-input placeholder="Language from" />
-        <n-input placeholder="Language to" />
+        <n-input v-model:value="langFromWord" placeholder="Language from" />
+        <n-input v-model:value="langToWord" placeholder="Language to" />
         <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
       </n-input-group>
     </div>
@@ -152,7 +103,7 @@ export default {
           <span class="fromLangTextAddWord">{{ this.langFrom }}</span>
           <span class="toLangTextAddWord">{{ this.langTo }}</span>
         </div>
-        <n-scrollbar style="max-height: 250px;">
+        <n-scrollbar style="max-height: 250px">
           <div id="scrollbarWord" v-for="word in this.addedWords">
             <span class="fromLangTextAddWord">{{ word.from }}</span>
             <span class="toLangTextAddWord">{{ word.to }}</span>
@@ -167,7 +118,9 @@ export default {
         </n-scrollbar>
       </div>
     </div>
-    <n-button id="createdeck" type="primary" @click="clickedCreateDeckACB">Create deck</n-button>
+    <n-button id="createdeck" type="primary" @click="clickedCreateDeckACB"
+      >Create deck</n-button
+    >
   </div>
 </template>
 
@@ -262,5 +215,4 @@ export default {
 #createdeck {
   width: 100%;
 }
-
 </style>
