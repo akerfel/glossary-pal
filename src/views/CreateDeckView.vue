@@ -1,5 +1,5 @@
 <script setup>
-import { NInput, NInputGroup, NSelect, NButton } from "naive-ui";
+import { NInput, NInputGroup, NSelect, NButton, NScrollbar } from "naive-ui";
 </script>
 
 <script>
@@ -8,7 +8,10 @@ export default {
 
   methods: {
     clickedAddWordACB() {
-      console.log("clicked add word")
+      console.log("clicked add word");
+    },
+    clickedDeleteWordACB() {
+      console.log("clicked delete word");
     },
   },
 
@@ -22,6 +25,20 @@ export default {
         {
           label: "English",
           value: "English",
+        },
+      ],
+      addedWords: [
+        {
+          from: "Bil",
+          to: "Car",
+        },
+        {
+          from: "Motorcykel",
+          to: "Motorcycle",
+        },
+        {
+          from: "Lejon",
+          to: "Lion",
         },
       ],
       langFrom: "Swedish",
@@ -55,7 +72,7 @@ export default {
       </n-input-group>
     </div>
     <div class="addword">
-      <h2 id="addWordTitle">Add a word</h2>
+      <h2 id="addWordTitle">Add words</h2>
       <span id="fromLangTextAddWord">{{ this.langFrom }}</span>
       <span id="toLangTextAddWord">{{ this.langTo }}</span>
       <n-input-group>
@@ -63,6 +80,28 @@ export default {
         <n-input placeholder="Language to" />
         <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
       </n-input-group>
+    </div>
+    <div class="addedwords">
+      <h2 id="addedWordsTitle">Words in deck</h2>
+      <div id="scrollbarDiv">
+        <div id="addedWordsColumns">
+          <span id="fromLangTextAddWord">{{ this.langFrom }}</span>
+          <span id="toLangTextAddWord">{{ this.langTo }}</span>
+        </div>
+        <n-scrollbar id="addedWordsScroll">
+          <div id="scrollbarWord" v-for="word in this.addedWords">
+            <span id="fromLangTextAddWord">{{ word.from }}</span>
+            <span id="fromLangTextAddWord">{{ word.to }}</span>
+            <n-button
+              id="removeWordButton"
+              type="error"
+              size="tiny"
+              @click="clickedDeleteWordACB"
+              >Delete</n-button
+            >
+          </div>
+        </n-scrollbar>
+      </div>
     </div>
   </div>
 </template>
@@ -104,6 +143,7 @@ export default {
 
 .addword {
   width: 100%;
+  margin-bottom: 30px;
 }
 
 #addWordTitle {
@@ -115,5 +155,44 @@ export default {
 #fromLangTextAddWord {
   display: inline-block;
   width: 42%;
+}
+
+.addedwords {
+  width: 100%;
+}
+
+#addedWordsTitle {
+  color: rgb(0, 194, 81);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#addedWordsColumns {
+  background-color: rgb(144, 144, 165);
+  color: rgb(0, 0, 0);
+  height: 28px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+#scrollbarDiv {
+  border: 2px solid rgb(206, 50, 50);
+}
+
+#addedWordsScroll {
+  max-height: 100px;
+}
+
+#scrollbarWord {
+  background-color: aliceblue;
+  color: rgb(0, 0, 0);
+  margin: 5px;
+}
+
+#removeWordButton {
+  width: 50px;
+  height: 24px;
+  float: right;
 }
 </style>
