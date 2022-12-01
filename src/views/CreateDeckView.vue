@@ -1,36 +1,23 @@
 <script setup>
-import { NInput, NDropdown, NButton } from "naive-ui";
+import { NInput, NInputGroup, NSelect, NButton } from "naive-ui";
 </script>
 
 <script>
 export default {
   props: ["model"],
 
-  methods: {
-    selectLangFrom(key) {
-      function getOptionWithKey(option) {
-        return option.key === key;
-      }
-      this.currentLangFrom = this.options.filter(getOptionWithKey)[0].label;
-    },
-    selectLangTo(key) {
-      function getOptionWithKey(option) {
-        return option.key === key;
-      }
-      this.currentLangTo = this.options.filter(getOptionWithKey)[0].label;
-    },
-  },
+  methods: {},
 
   data() {
     return {
       options: [
         {
           label: "Swedish",
-          key: "swedish",
+          value: "swedish",
         },
         {
           label: "English",
-          key: "english",
+          value: "english",
         },
       ],
       currentLangFrom: "Select a language",
@@ -44,21 +31,16 @@ export default {
   <div class="createview">
     <h1 class="title">Create a new glossary deck</h1>
     <div class="deckparams">
-      <n-input class="deckname" type="text" placeholder="Deck name" />
+      <span>Deck name</span>
+      <n-input class="deckname" type="text" placeholder="Title your deck" />
       <div>
-        <span>From language:</span>
-        <span id="toLangText">To language:</span>
+        <span>From language</span>
+        <span id="toLangText">To language</span>
       </div>
-      <n-dropdown trigger="click" :options="options" @select="selectLangFrom">
-        <n-button id="deckLangFrom" color="#ed7307">{{
-          this.currentLangFrom
-        }}</n-button>
-      </n-dropdown>
-      <n-dropdown trigger="click" :options="options" @select="selectLangTo">
-        <n-button id="deckLangTo" color="#ed7307">{{
-          this.currentLangTo
-        }}</n-button>
-      </n-dropdown>
+      <n-input-group>
+        <n-select placeholder="Select a language" :options="options"/>
+        <n-select placeholder="Select a language" :options="options"/>
+      </n-input-group>
     </div>
     <div class="addword">
       <n-input pair separator="-"/>
@@ -80,7 +62,7 @@ export default {
 }
 
 #toLangText {
-  margin-left: 160px;
+  margin-left: 125px;
 }
 
 .deckparams {
