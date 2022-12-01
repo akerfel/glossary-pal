@@ -11,15 +11,6 @@ class GlossaryModel {
     this.decks.push(deck3);
   }
 
-  // Returns a list with the names of all decks
-  getListNames() {
-    function getNameOfListCB(deck) {
-      return deck.name;
-    }
-
-    return this.decks.map(getNameOfListCB);
-  }
-
   deleteDeck(deckID) {
     function filterOnIDCB(deck) {
       return !(deck.id === deckID);
