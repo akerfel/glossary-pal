@@ -24,8 +24,4 @@ export default {
 </template>
 
 <style scoped>
-.home {
-  float: center;
-  text-align: center;
-}
 </style>

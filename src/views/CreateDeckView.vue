@@ -1,5 +1,12 @@
 <script setup>
-import { NInput, NInputGroup, NSelect, NButton, NScrollbar } from "naive-ui";
+import {
+  NInput,
+  NInputGroup,
+  NSelect,
+  NButton,
+  NScrollbar,
+  NAlert,
+} from "naive-ui";
 import Deck from "../Deck";
 </script>
 
@@ -26,13 +33,25 @@ export default {
     },
     clickedCreateDeckACB() {
       console.log("Deck title: " + this.deckTitle);
-      const thisDeck = new Deck(
-        this.deckTitle,
-        this.fromLang,
-        this.toLang,
-        this.addedWords
-      );
-      this.onCreateDeck(thisDeck);
+      if (this.deckTitle === "") {
+        this.creationErrorNoName = true;
+      } else {
+        const thisDeck = new Deck(
+          this.deckTitle,
+          this.fromLang,
+          this.toLang,
+          this.addedWords
+        );
+        this.onCreateDeck(thisDeck);
+        this.creationErrorNoName = false;
+        this.creationSuccessfull = true;
+      }
+    },
+    goToHomeACB() {
+      this.$router.push("/")
+    },
+    refreshViewACB() {
+      this.$router.go()
     },
   },
 
@@ -67,6 +86,8 @@ export default {
       toLang: "English",
       langFromWord: "",
       langToWord: "",
+      creationSuccessfull: false,
+      creationErrorNoName: false,
     };
   },
 };
@@ -131,9 +152,35 @@ export default {
         </n-scrollbar>
       </div>
     </div>
-    <n-button id="createdeck" type="primary" @click="clickedCreateDeckACB"
+    <n-alert
+      v-if="creationSuccessfull"
+      class="alert"
+      title="Deck created"
+      type="success"
+    >
+      Your deck "{{ this.deckTitle }}" has been successfully created.
+    </n-alert>
+    <n-alert
+      v-if="creationErrorNoName"
+      class="alert"
+      title="Deck creation error"
+      type="error"
+    >
+      Please name your deck.
+    </n-alert>
+    <n-button
+      v-if="!creationSuccessfull"
+      id="createdeck"
+      type="primary"
+      @click="clickedCreateDeckACB"
       >Create deck</n-button
     >
+    <div v-if="creationSuccessfull">
+      <n-button type="primary" @click="goToHomeACB">Go back to home</n-button>
+      <n-button style="margin-left: 30px" type="primary" @click="refreshViewACB"
+        >Create another deck</n-button
+      >
+    </div>
   </div>
 </template>
 
@@ -223,6 +270,10 @@ export default {
   width: 50px;
   height: 24px;
   float: right;
+}
+
+.alert {
+  margin-bottom: 25px;
 }
 
 #createdeck {

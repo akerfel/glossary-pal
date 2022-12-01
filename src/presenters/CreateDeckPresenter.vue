@@ -8,6 +8,10 @@ export default {
   methods: {
     createdDeckACB(deck) {
       this.model.addDeck(deck);
+      function printName(deck) {
+        console.log(deck.name)
+      }
+      this.model.decks.map(printName)
     }
   },
 };
