@@ -50,17 +50,19 @@ export default {
         <span id="toLangText">To language:</span>
       </div>
       <n-dropdown trigger="click" :options="options" @select="selectLangFrom">
-        <n-button class="deckLangFrom" color="#e67512">{{
+        <n-button id="deckLangFrom" color="#ed7307">{{
           this.currentLangFrom
         }}</n-button>
       </n-dropdown>
       <n-dropdown trigger="click" :options="options" @select="selectLangTo">
-        <n-button class="deckLangTo" color="#e67512">{{
+        <n-button id="deckLangTo" color="#ed7307">{{
           this.currentLangTo
         }}</n-button>
       </n-dropdown>
     </div>
-    <div class="addword"></div>
+    <div class="addword">
+      <n-input pair separator="-"/>
+    </div>
   </div>
 </template>
 
@@ -83,18 +85,24 @@ export default {
 
 .deckparams {
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .deckname {
   margin-bottom: 15px;
 }
 
-.deckLangFrom {
+#deckLangFrom {
   width: 40%;
 }
 
-.deckLangTo {
+#deckLangTo {
   width: 40%;
   float: right;
 }
+
+.addword {
+  width: 100%;
+}
+
 </style>
