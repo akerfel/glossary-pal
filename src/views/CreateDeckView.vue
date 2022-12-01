@@ -35,7 +35,12 @@ export default {
     clickedCreateDeckACB() {
       if (this.deckTitle === "") {
         this.creationErrorNoName = true;
-      } else {
+        this.creationErrorNoWords = false;
+      } else if (this.addedWords.length === 0) {
+        this.creationErrorNoWords = true
+        this.creationErrorNoName = false;
+      }
+      else {
         const thisDeck = new Deck(
           this.deckTitle,
           this.fromLang,
@@ -44,8 +49,9 @@ export default {
         );
         this.onCreateDeck(thisDeck);
         this.creationErrorNoName = false;
+        this.creationErrorNoWords = false;
         this.creationSuccessfull = true;
-      }
+        }
     },
     goToHomeACB() {
       this.$router.push("/");
@@ -88,6 +94,7 @@ export default {
       langToWord: "",
       creationSuccessfull: false,
       creationErrorNoName: false,
+      creationErrorNoWords: false,
     };
   },
 };
@@ -169,6 +176,14 @@ export default {
       type="error"
     >
       Please name your deck.
+    </n-alert>
+    <n-alert
+      v-if="creationErrorNoWords"
+      class="alert"
+      title="Deck creation error"
+      type="error"
+    >
+      Please add at least one word to your deck.
     </n-alert>
     <n-button
       v-if="!creationSuccessfull"
