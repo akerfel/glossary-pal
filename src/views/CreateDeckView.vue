@@ -6,22 +6,26 @@ import { NInput, NInputGroup, NSelect, NButton } from "naive-ui";
 export default {
   props: ["model"],
 
-  methods: {},
+  methods: {
+    clickedAddWordACB() {
+      console.log("clicked add word")
+    },
+  },
 
   data() {
     return {
       options: [
         {
           label: "Swedish",
-          value: "swedish",
+          value: "Swedish",
         },
         {
           label: "English",
-          value: "english",
+          value: "English",
         },
       ],
-      currentLangFrom: "Select a language",
-      currentLangTo: "Select a language",
+      langFrom: "Swedish",
+      langTo: "English",
     };
   },
 };
@@ -38,12 +42,27 @@ export default {
         <span id="toLangText">To language</span>
       </div>
       <n-input-group>
-        <n-select placeholder="Select a language" :options="options"/>
-        <n-select placeholder="Select a language" :options="options"/>
+        <n-select
+          v-model:value="langFrom"
+          placeholder="Select a language"
+          :options="options"
+        />
+        <n-select
+          v-model:value="langTo"
+          placeholder="Select a language"
+          :options="options"
+        />
       </n-input-group>
     </div>
     <div class="addword">
-      <n-input pair separator="-"/>
+      <h2 id="addWordTitle">Add a word</h2>
+      <span id="fromLangTextAddWord">{{ this.langFrom }}</span>
+      <span id="toLangTextAddWord">{{ this.langTo }}</span>
+      <n-input-group>
+        <n-input placeholder="Language from" />
+        <n-input placeholder="Language to" />
+        <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
+      </n-input-group>
     </div>
   </div>
 </template>
@@ -87,4 +106,14 @@ export default {
   width: 100%;
 }
 
+#addWordTitle {
+  color: rgb(0, 194, 81);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#fromLangTextAddWord {
+  display: inline-block;
+  width: 42%;
+}
 </style>
