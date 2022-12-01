@@ -1,16 +1,17 @@
 <script setup>
 import { NInput, NInputGroup, NSelect, NButton, NScrollbar } from "naive-ui";
+import Deck from "../Deck";
 </script>
 
 <script>
 export default {
-  props: ["model"],
+  props: ["model", "onCreateDeck"],
 
   methods: {
     clickedAddWordACB() {
       console.log("added words: " + this.langFromWord + " " + this.langToWord);
-
       this.addedWords.push({ from: this.langFromWord, to: this.langToWord });
+
       // remove words from input fields
       this.langFromWord = "";
       this.langToWord = "";
@@ -24,7 +25,14 @@ export default {
       this.addedWords = this.addedWords.filter(removeWordCB);
     },
     clickedCreateDeckACB() {
-      console.log("clicked create deck");
+      console.log("Deck title: " + this.deckTitle);
+      const thisDeck = new Deck(
+        this.deckTitle,
+        this.fromLang,
+        this.toLang,
+        this.addedWords
+      );
+      this.onCreateDeck(thisDeck);
     },
   },
 
@@ -54,8 +62,9 @@ export default {
           to: "Lion",
         },
       ],
-      langFrom: "Swedish",
-      langTo: "English",
+      deckTitle: "",
+      fromLang: "Swedish",
+      toLang: "English",
       langFromWord: "",
       langToWord: "",
     };
@@ -68,19 +77,23 @@ export default {
     <h1 class="title">Create new glossary deck</h1>
     <div class="deckparams">
       <span>Deck name</span>
-      <n-input class="deckname" type="text" placeholder="Title your deck" />
+      <n-input
+        v-model:value="deckTitle"
+        class="deckname"
+        placeholder="Title your deck"
+      />
       <div>
         <span>From language</span>
         <span id="toLangText">To language</span>
       </div>
       <n-input-group>
         <n-select
-          v-model:value="langFrom"
+          v-model:value="fromLang"
           placeholder="Select a language"
           :options="options"
         />
         <n-select
-          v-model:value="langTo"
+          v-model:value="toLang"
           placeholder="Select a language"
           :options="options"
         />
@@ -88,8 +101,8 @@ export default {
     </div>
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
-      <span class="fromLangTextAddWord">{{ this.langFrom }}</span>
-      <span class="toLangTextAddWord">{{ this.langTo }}</span>
+      <span class="fromLangTextAddWord">{{ this.fromLang }}</span>
+      <span class="toLangTextAddWord">{{ this.toLang }}</span>
       <n-input-group>
         <n-input v-model:value="langFromWord" placeholder="Language from" />
         <n-input v-model:value="langToWord" placeholder="Language to" />
@@ -100,8 +113,8 @@ export default {
       <h2 id="addedWordsTitle">Words in deck</h2>
       <div id="scrollbarDiv">
         <div id="addedWordsColumns">
-          <span class="fromLangTextAddWord">{{ this.langFrom }}</span>
-          <span class="toLangTextAddWord">{{ this.langTo }}</span>
+          <span class="fromLangTextAddWord">{{ this.fromLang }}</span>
+          <span class="toLangTextAddWord">{{ this.toLang }}</span>
         </div>
         <n-scrollbar style="max-height: 250px">
           <div id="scrollbarWord" v-for="word in this.addedWords">

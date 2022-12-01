@@ -18,6 +18,10 @@ class GlossaryModel {
 
     this.decks = this.decks.filter(filterOnIDCB);
   }
+
+  addDeck(deck) {
+    this.decks.push(deck);
+  }
 }
 
 export default GlossaryModel;

@@ -5,10 +5,14 @@ export default {
   props: {
     model: Object,
   },
-  methods: {},
+  methods: {
+    createdDeckACB(deck) {
+      this.model.addDeck(deck);
+    }
+  },
 };
 </script>
 
 <template>
-  <CreateDeckView :model="model" />
+  <CreateDeckView :model="model" :onCreateDeck="createdDeckACB"/>
 </template>
