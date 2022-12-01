@@ -44,12 +44,20 @@ export default {
   <div class="createview">
     <h1 class="title">Create a new glossary deck</h1>
     <div class="deckparams">
-      <n-input type="text" placeholder="Deck name" />
+      <n-input class="deckname" type="text" placeholder="Deck name" />
+      <div>
+        <span>From language:</span>
+        <span id="toLangText">To language:</span>
+      </div>
       <n-dropdown trigger="click" :options="options" @select="selectLangFrom">
-        <n-button>{{ this.currentLangFrom }}</n-button>
+        <n-button class="deckLangFrom" color="#e67512">{{
+          this.currentLangFrom
+        }}</n-button>
       </n-dropdown>
       <n-dropdown trigger="click" :options="options" @select="selectLangTo">
-        <n-button>{{ this.currentLangTo }}</n-button>
+        <n-button class="deckLangTo" color="#e67512">{{
+          this.currentLangTo
+        }}</n-button>
       </n-dropdown>
     </div>
     <div class="addword"></div>
@@ -57,8 +65,36 @@ export default {
 </template>
 
 <style scoped>
+.createview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 440px;
+}
+
 .title {
   color: rgb(0, 194, 81);
   margin-bottom: 15px;
+}
+
+#toLangText {
+  margin-left: 160px;
+}
+
+.deckparams {
+  width: 100%;
+}
+
+.deckname {
+  margin-bottom: 15px;
+}
+
+.deckLangFrom {
+  width: 40%;
+}
+
+.deckLangTo {
+  width: 40%;
+  float: right;
 }
 </style>
