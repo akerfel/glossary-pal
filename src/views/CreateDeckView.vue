@@ -10,8 +10,13 @@ export default {
     clickedAddWordACB() {
       console.log("clicked add word");
     },
-    clickedDeleteWordACB() {
+    clickedDeleteWordACB(word) {
+      function removeWordCB(thisWord) {
+        return !(word === thisWord)
+      }
+
       console.log("clicked delete word");
+      this.addedWords = this.addedWords.filter(removeWordCB)
     },
     clickedCreateDeckACB() {
       console.log("clicked create deck")
@@ -155,7 +160,7 @@ export default {
               id="removeWordButton"
               type="error"
               size="tiny"
-              @click="clickedDeleteWordACB"
+              @click="clickedDeleteWordACB(word)"
               >Delete</n-button
             >
           </div>
@@ -232,9 +237,8 @@ export default {
   background-color: rgb(144, 144, 165);
   color: rgb(0, 0, 0);
   height: 28px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
+
+  margin: 5px;
 }
 
 #scrollbarDiv {
@@ -244,7 +248,9 @@ export default {
 #scrollbarWord {
   background-color: aliceblue;
   color: rgb(0, 0, 0);
-  margin: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 #removeWordButton {
