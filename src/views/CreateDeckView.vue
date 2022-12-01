@@ -110,11 +110,13 @@ export default {
       <n-input-group>
         <n-select
           v-model:value="fromLang"
+          filterable
           placeholder="Select a language"
           :options="options"
         />
         <n-select
           v-model:value="toLang"
+          filterable
           placeholder="Select a language"
           :options="options"
         />
