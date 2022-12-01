@@ -16,23 +16,23 @@ export default {
 
   methods: {
     clickedAddWordACB() {
-      console.log("added words: " + this.langFromWord + " " + this.langToWord);
-      this.addedWords.push({ from: this.langFromWord, to: this.langToWord });
-
-      // remove words from input fields
-      this.langFromWord = "";
-      this.langToWord = "";
+      if (!(this.langFromWord === "" || this.langToWord === "")) {
+        this.addedWords.push({ from: this.langFromWord, to: this.langToWord });
+        this.addedWordError = false;
+        
+        // remove words from input fields
+        this.langFromWord = "";
+        this.langToWord = "";
+      }
     },
     clickedDeleteWordACB(word) {
       function removeWordCB(thisWord) {
         return !(word === thisWord);
       }
 
-      console.log("clicked delete word");
       this.addedWords = this.addedWords.filter(removeWordCB);
     },
     clickedCreateDeckACB() {
-      console.log("Deck title: " + this.deckTitle);
       if (this.deckTitle === "") {
         this.creationErrorNoName = true;
       } else {
@@ -48,10 +48,10 @@ export default {
       }
     },
     goToHomeACB() {
-      this.$router.push("/")
+      this.$router.push("/");
     },
     refreshViewACB() {
-      this.$router.go()
+      this.$router.go();
     },
   },
 
