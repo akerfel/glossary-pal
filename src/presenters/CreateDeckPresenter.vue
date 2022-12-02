@@ -2,11 +2,16 @@
 import CreateDeckView from "../views/CreateDeckView.vue";
 import PostCreateDeckView from "../views/PostCreateDeckView.vue";
 import Deck from "../Deck";
+import { getAvailableLanguages } from "../apiCalls";
+import resolvePromise from "../resolvePromise";
 
 export default {
   components: { CreateDeckView, PostCreateDeckView },
   props: {
     model: Object,
+  },
+  created() {
+    resolvePromise(getAvailableLanguages, this.deckCreation.test);
   },
   methods: {
     addDeck(deck) {
@@ -62,6 +67,7 @@ export default {
   data() {
     return {
       deckCreation: {
+        test: [],
         options: [
           {
             label: "Swedish",

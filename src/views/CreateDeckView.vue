@@ -29,6 +29,7 @@ export default {
 
 <template>
   <div v-if="!this.deckCreation.creationSuccessfull" class="createview">
+    <p>{{this.deckCreation.test}}</p>
     <h1 class="title">Create new glossary deck</h1>
     <div class="deckparams">
       <span>Deck name</span>

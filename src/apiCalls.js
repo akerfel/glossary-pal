@@ -1,6 +1,18 @@
 import { BASE_URL_TRANSLATE, API_KEY_TRANSLATE } from "/src/apiConfig";
 
+function treatHTTPResponseACB(response) {
+  if (response.status == 200) return response.json();
+  else throw "API error";
+}
+
 function getAvailableLanguages() {
+  function transformResponseACB(result) {
+    function langObjectToStringCB(langObj) {
+      return langObj.language
+    }
+    return result.data.languages.map(langObjectToStringCB)
+  }
+
   return fetch(BASE_URL_TRANSLATE, {
     method: "GET",
     headers: {
@@ -9,9 +21,8 @@ function getAvailableLanguages() {
       "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
     },
   })
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+    .then(treatHTTPResponseACB)
+    .then(transformResponseACB);
 }
 
 export { getAvailableLanguages };
