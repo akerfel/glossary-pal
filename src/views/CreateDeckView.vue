@@ -264,27 +264,29 @@ export default {
 }
 
 #addedWordsColumns {
-  background-color: rgb(144, 144, 165);
-  color: rgb(0, 0, 0);
+  background-color: #181818;
+  color: rgb(0, 194, 81);
   height: 28px;
-
-  margin: 5px;
+  margin-bottom: 5px;
+  padding-left: 5px;
 }
 
 #scrollbarDiv {
   border: 2px solid rgb(206, 50, 50);
+  background-color: rgb(255, 255, 255);
 }
 
 #scrollbarWord {
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
+  width: 95.8%;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
 #removeWordButton {
-  width: 50px;
+  width: 48px;
   height: 24px;
   float: right;
 }
