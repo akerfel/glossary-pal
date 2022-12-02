@@ -272,7 +272,7 @@ export default {
 }
 
 #scrollbarDiv {
-  border: 2px solid rgb(206, 50, 50);
+  border: 3px solid rgb(206, 50, 50);
   background-color: rgb(255, 255, 255);
 }
 
