@@ -26,8 +26,11 @@ export default {
     },
     translateFromLangWord() {
       console.log("get translation");
+      const sourceLang = this.deckCreation.fromLang;
+      const targetLang = this.deckCreation.toLang;
+      const toBeTranslated = this.deckCreation.langFromWord;
       resolvePromise(
-        translateWord("en", "es", "hola"),
+        translateWord(sourceLang, targetLang, toBeTranslated),
         this.deckCreation.translatedWordPromiseState,
         this.receiveTranslatedWord
       );
