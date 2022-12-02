@@ -1,26 +1,31 @@
 <script setup>
 import {
   NInput,
-  NInputGroup,
-  NSelect,
-  NButton,
-  NScrollbar,
-  NAlert,
 } from "naive-ui";
 import Deck from "../Deck";
 </script>
 
 <script>
 export default {
-  props: ["model", "onSubmit"],
+  props: ["model", 
+          "onConfirmAnswer", 
+          "deck"
+          ],
 
   methods: {
     
   },
 
+  created() {
+    console.log("deck in view: ")
+    console.log(this.deck)
+    console.log(this.deck.name)
+    console.log("---")
+  },
+
   data() {
     return {
-
+        answer: "",
     };
   },
 };
@@ -28,7 +33,10 @@ export default {
 
 <template>
   <div>
-    Hello
+    <p> deck: {{this.deck}} </p>
+  </div>  
+  <div>
+    <n-input v-model:value="answer" placeholder="Your answer..."/>
   </div>
 </template>
 

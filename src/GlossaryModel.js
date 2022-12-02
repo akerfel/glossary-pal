@@ -22,6 +22,14 @@ class GlossaryModel {
   addDeck(deck) {
     this.decks.push(deck);
   }
+
+  getDeck(deckID) {
+    function filterOnIDCB(deck) {
+      return (deck.id === deckID);
+    }
+
+    return this.decks.filter(filterOnIDCB)
+  }
 }
 
 export default GlossaryModel;

@@ -14,7 +14,7 @@ export default {
       this.$router.push("/create");
     },
     goToReviewDeckACB(deckID) {
-      this.$router.push("/review");
+      this.$router.push("/review/" + deckID);
     },
   },
 };
