@@ -54,11 +54,8 @@ export default {
       if (!this.hasAnswered) {
         this.clickedConfirm()
       }
-      else if (this.answerWasCorrect){
-        this.clickedNextWord()
-      }
       else {
-        this.clickedTryAgain()
+        this.clickedNextWord()
       }
     },
 
