@@ -44,9 +44,6 @@ export default {
           this.langCodesPromiseState.data.map(createLangOptionCB);
       }
     },
-    addDeck(deck) {
-      this.model.decks.push(deck);
-    },
     createdDeckACB() {
       let dc = this.deckCreation;
       if (dc.deckTitle === "") {
@@ -65,7 +62,7 @@ export default {
         dc.creationErrorNoName = false;
         dc.creationErrorNoWords = false;
         dc.creationSuccessfull = true;
-        this.addDeck(thisDeck);
+        this.model.addDeck(thisDeck);
       }
     },
     addWordACB() {
