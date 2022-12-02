@@ -12,6 +12,7 @@ export default {
   },
   created() {
     this.model = new GlossaryModel();
+    window.myModel=this.model;
   },
   components: {
     HomePresenter,

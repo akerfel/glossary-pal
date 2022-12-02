@@ -13,6 +13,10 @@ export default {
     goToCreateDeckACB() {
       this.$router.push("/create");
     },
+    goToReviewDeckACB(deckToReview) {
+      this.model.selectDeckToReview(deckToReview);
+      this.$router.push("/review");
+    },
   },
 };
 </script>
@@ -22,5 +26,6 @@ export default {
     :model="model"
     :onDeleteDeck="deleteDeckACB"
     :onGoToCreateDeck="goToCreateDeckACB"
+    :onGoToReviewDeck="goToReviewDeckACB"
   />
 </template>

@@ -14,6 +14,10 @@ class Deck {
     this.lang2 = lang2;
     this.words = words;
   }
+
+  getWord(index) {
+    return this.words[index]
+  }
 }
 
 export default Deck;
