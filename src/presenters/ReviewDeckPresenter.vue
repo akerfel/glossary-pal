@@ -9,18 +9,26 @@ export default {
   },
 
   methods: {
-    confirmedAnswer(answer) {
+    confirmedAnswerACB(answer) {
       this.hasAnswered = true;
-      console.log("Answered: " + answer)
       if (this.model.answerIsCorrect(answer)) {
         this.answerWasCorrect = true;
-        console.log("CORRECT!")
       }
       else {
         this.answerWasCorrect = false;
-        console.log("WRONG!")
+        this.model.addCurrentWordToWrongAnswers()
       }
-    }
+    },
+
+    giveNextQuestionACB() {
+      if (this.model.hasNextWord()) {
+        this.wordToTranslate = this.model.getNextWordToTranslate();
+        this.hasAnswered = false;
+      }
+      else {
+        this.$router.push("/"); // TODO: Change to postReview after it has been added
+      }
+    },
   },
 
   data() { 
@@ -35,7 +43,8 @@ export default {
 
 <template>
   <ReviewDeckView 
-    :onConfirmAnswer="confirmedAnswer"
+    :onConfirmAnswer="confirmedAnswerACB"
+    :onNextWord="giveNextQuestionACB"
     :wordToTranslate="wordToTranslate"
     :hasAnswered="hasAnswered"
     :answerWasCorrect="answerWasCorrect"/>

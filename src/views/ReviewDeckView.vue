@@ -11,16 +11,22 @@ export default {
     "wordToTranslate", 
     "onConfirmAnswer",
     "answerWasCorrect",
-    "hasAnswered",],
+    "hasAnswered",
+    "onNextWord",
+    "isOnLastWord",],
 
   created() {
 
   },
 
   methods: {
-    clickedConfirm () {
+    clickedConfirm() {
       this.onConfirmAnswer(this.answer);
-      console.log("Clicked confirm")
+    },
+
+    clickedNextWord() {
+      this.onNextWord();
+      this.answer = "";
     },
 
     getInputFieldClass(){
@@ -32,7 +38,19 @@ export default {
       }
       else
         return "inputIfWrongAnswer"
-    }
+    },
+
+    getConfirmButtonClass(){
+      if (this.hasAnswered) {
+        return "hidden"
+      }
+    },
+
+    getNextButtonClass(){
+      if (!this.hasAnswered) {
+        return "hidden"
+      }
+    },
   },
 
   data() {
@@ -45,7 +63,7 @@ export default {
 
 <template>
   <div class="reviewDeckView">
-    <span class="inputWordSection">
+    <span class="inputWordSpan">
       <h2>{{wordToTranslate}}</h2>
       <n-input
         v-bind:class="getInputFieldClass()"
@@ -53,9 +71,16 @@ export default {
         placeholder="Your answer..."
       />
       <n-button 
+        v-bind:class="getConfirmButtonClass()"
         type="primary" 
         @click="clickedConfirm">
         Confirm
+      </n-button>
+      <n-button 
+        v-bind:class="getNextButtonClass()"
+        type="primary" 
+        @click="clickedNextWord">
+        Next
       </n-button>
     </span>
   </div>  
@@ -70,21 +95,28 @@ export default {
   width: 300px;
 }
 
-.inputWordSection {
+.inputWordSpan {
   display: inline-block;
   width: 100%;
 }
 
 .inputIfNotAnsweredYet {
-  background-color: #ffffff; 
+  background-color: #ffffff;
+  margin-bottom: 5px; 
 }
 
 .inputIfWrongAnswer {
   background-color: #cf5555; 
+  margin-bottom: 5px;
 }
 
 .inputIfCorrectAnswer {
   background-color: #25ab32; 
+  margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
 }
 
 </style>

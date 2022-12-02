@@ -4,10 +4,7 @@ class GlossaryModel {
   constructor(decks = []) {
     this.decks = decks;
 
-    // Deck/words currently being reviewed
-    this.currentDeck = {};
-    this.wordToTranslateIndex = 0;
-    this.incorrectWords = [];
+    this.resetReviewAttributes();
 
     // Adding some example decks
     var deck1 = new Deck("Animals", "Swedish", "English", 
@@ -20,6 +17,12 @@ class GlossaryModel {
        {from: "blå", to: "blue"},]);
     this.addDeck(deck1);
     this.addDeck(deck2);
+  }
+
+  resetReviewAttributes() {
+    this.currentDeck = {};          // the current deck being reviewed
+    this.wordToTranslateIndex = 0;  // index of the current word being reviewed
+    this.wrongAnswers = [];         // wrong answers in the *from*-language
   }
 
   deleteDeck(deckID) {
@@ -49,15 +52,17 @@ class GlossaryModel {
   }
 
   hasNextWord() {
-    return (this.wordToTranslateIndex >= this.currentDeck.length)
+    return this.wordToTranslateIndex < this.currentDeck.words.length - 1
   }
-
-  nextWord() {
-    this.wordToTranslateIndex++;
-  }
+  
 
   getWordToTranslate() {
     return this.currentDeck.getWord(this.wordToTranslateIndex).from;
+  }
+
+  getNextWordToTranslate() {
+    this.wordToTranslateIndex++;
+    return this.getWordToTranslate();
   }
 
   getCorrectAnswer() {
@@ -66,6 +71,14 @@ class GlossaryModel {
 
   answerIsCorrect(answer) {
     return answer === this.getCorrectAnswer()
+  }
+
+  addCurrentWordToWrongAnswers() {
+    this.wrongAnswers.push(this.getWordToTranslate());
+  }
+
+  getWrongAnswers() {
+    return this.wrongAnswers;
   }
 }
 
