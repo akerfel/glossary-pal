@@ -26,7 +26,7 @@ class GlossaryModel {
 
   resetReviewAttributes() {
     this.currentDeck = {};          // the current deck being reviewed
-    this.currentWordIndex = 0;  // index of the current word being reviewed
+    this.currentWordIndex = 0;      // index of the current word being reviewed
     this.wrongAnswers = [];         // wrong answers in the *from*-language
   }
 
@@ -53,7 +53,7 @@ class GlossaryModel {
   selectDeckToReview(deck) {
     this.currentDeck = deck;
     this.currentWordIndex = 0;
-    this.incorrectWords = [];
+    this.wrongAnswers = [];
   }
 
   hasNextWord() {
