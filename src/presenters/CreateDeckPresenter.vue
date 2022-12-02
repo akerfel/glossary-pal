@@ -21,24 +21,18 @@ export default {
   methods: {
     getLangOptions() {
       let parsedLangs = [];
-      function getLangNameCB(code) {
-        return langCodeMap.get(code).name;
-      }
-      function createLangOptionCB(langName) {
+      function createLangOptionCB(langCode) {
+        const langName = langCodeMap.get(langCode).name;
         if (parsedLangs.includes(langName)) {
           return {};
         } else {
           parsedLangs.push(langName);
-          const langOption = { label: langName, value: langName };
-          return langOption;
+          return { label: langName, value: langCode };
         }
       }
       if (this.deckCreation.langCodesPromiseState.data) {
-        const langNames =
-          this.deckCreation.langCodesPromiseState.data.map(getLangNameCB);
-        this.deckCreation.langOptions = langNames.map(
-          createLangOptionCB.bind(this)
-        );
+        this.deckCreation.langOptions =
+          this.deckCreation.langCodesPromiseState.data.map(createLangOptionCB);
       }
     },
     addDeck(deck) {
