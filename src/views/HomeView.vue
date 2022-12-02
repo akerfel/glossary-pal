@@ -4,7 +4,7 @@ import { NButton, NPopconfirm } from "naive-ui";
 
 <script>
 export default {
-  props: ["model", "onDeleteDeck", "onGoToCreateDeck"],
+  props: ["model", "onDeleteDeck", "onGoToCreateDeck", "onGoToReviewDeck"],
 
   methods: {
     clickedLogoutACB() {
@@ -16,6 +16,7 @@ export default {
     },
     clickedReviewDeckACB(deck) {
       console.log("review deck: " + deck.name + " " + deck.id);
+      this.onGoToReviewDeck(deck.id);
     },
     clickedDeleteDeckACB(deck) {
       console.log("delete deck: " + deck.name + " " + deck.id);
