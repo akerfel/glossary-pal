@@ -11,7 +11,6 @@ export default {
       console.log("Log out user");
     },
     clickedCreateDeckACB() {
-      console.log("Create a deck");
       this.onGoToCreateDeck();
     },
     clickedReviewDeckACB(deck) {
