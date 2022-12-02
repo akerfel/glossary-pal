@@ -15,11 +15,11 @@ export default {
     resolvePromise(
       getAvailableLanguages(),
       this.langCodesPromiseState,
-      this.getLangOptions
+      this.getLangOptionsACB
     );
   },
   methods: {
-    receiveTranslatedWord() {
+    receiveTranslatedWordACB() {
       if (this.deckCreation.translatedWordPromiseState.data) {
         this.deckCreation.langToWord = this.deckCreation.translatedWordPromiseState.data
       }
@@ -31,10 +31,10 @@ export default {
       resolvePromise(
         translateWord(sourceLang, targetLang, toBeTranslated),
         this.deckCreation.translatedWordPromiseState,
-        this.receiveTranslatedWord
+        this.receiveTranslatedWordACB
       );
     },
-    getLangOptions() {
+    getLangOptionsACB() {
       function createLangOptionCB(langCode) {
         const langName = langCodeMap.get(langCode).name;
         return { label: langName, value: langCode };
