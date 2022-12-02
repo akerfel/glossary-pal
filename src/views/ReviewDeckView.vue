@@ -33,7 +33,7 @@ export default {
 
 <template>
   <div>
-    <p> deck: {{this.deck}} </p>
+    <p> Reviewing Deck "{{this.deck.name}}"</p>
   </div>  
   <div>
     <n-input v-model:value="answer" placeholder="Your answer..."/>

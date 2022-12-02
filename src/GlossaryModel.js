@@ -28,7 +28,7 @@ class GlossaryModel {
       return (deck.id === deckID);
     }
 
-    return this.decks.filter(filterOnIDCB)
+    return this.decks.find(filterOnIDCB)
   }
 }
 
