@@ -2,7 +2,7 @@
 import CreateDeckView from "../views/CreateDeckView.vue";
 import PostCreateDeckView from "../views/PostCreateDeckView.vue";
 import Deck from "../Deck";
-import { getAvailableLanguages } from "../apiCalls";
+import { getAvailableLanguages, translateWord } from "../apiCalls";
 import resolvePromise from "../resolvePromise";
 import langCodeMap from "../langCodesMap";
 
@@ -19,8 +19,18 @@ export default {
     );
   },
   methods: {
+    receiveTranslatedWord() {
+      if (this.deckCreation.translatedWordPromiseState.data) {
+        this.deckCreation.langToWord = this.deckCreation.translatedWordPromiseState.data
+      }
+    },
     translateFromLangWord() {
       console.log("get translation");
+      resolvePromise(
+        translateWord("en", "es", "hola"),
+        this.deckCreation.translatedWordPromiseState,
+        this.receiveTranslatedWord
+      );
     },
     getLangOptions() {
       function createLangOptionCB(langCode) {
@@ -84,8 +94,9 @@ export default {
   },
   data() {
     return {
-      langCodesPromiseState: [],
+      langCodesPromiseState: {},
       deckCreation: {
+        translatedWordPromiseState: {},
         langOptions: [],
         deckWords: [
           {
@@ -119,19 +130,14 @@ export default {
   <div v-if="!this.langCodesPromiseState.promise">No data</div>
   <div
     v-else-if="
-      !this.langCodesPromiseState.data &&
-      !this.langCodesPromiseState.error
+      !this.langCodesPromiseState.data && !this.langCodesPromiseState.error
     "
   >
-    <img
-      style="margin-top: 250px;"
-      src="../assets/loading.gif"
-    />
+    <img style="margin-top: 250px" src="../assets/loading.gif" />
   </div>
   <div
     v-else-if="
-      !this.langCodesPromiseState.data &&
-      this.langCodesPromiseState.error
+      !this.langCodesPromiseState.data && this.langCodesPromiseState.error
     "
   >
     {{ this.langCodesPromiseState.error.toString() }}

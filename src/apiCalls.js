@@ -1,4 +1,8 @@
-import { BASE_URL_TRANSLATE, API_KEY_TRANSLATE } from "/src/apiConfig";
+import {
+  BASE_URL_TRANSLATE,
+  BASE_URL_GET_LANG,
+  API_KEY_GOOGLE,
+} from "/src/apiConfig";
 
 function treatHTTPResponseACB(response) {
   if (response.status == 200) return response.json();
@@ -8,16 +12,16 @@ function treatHTTPResponseACB(response) {
 function getAvailableLanguages() {
   function transformResponseACB(result) {
     function langObjectToStringCB(langObj) {
-      return langObj.language
+      return langObj.language;
     }
-    return result.data.languages.map(langObjectToStringCB)
+    return result.data.languages.map(langObjectToStringCB);
   }
 
-  return fetch(BASE_URL_TRANSLATE, {
-    "method": "GET",
-    "headers": {
+  return fetch(BASE_URL_GET_LANG, {
+    method: "GET",
+    headers: {
       "Accept-Encoding": "application/gzip",
-      "X-RapidAPI-Key": API_KEY_TRANSLATE,
+      "X-RapidAPI-Key": API_KEY_GOOGLE,
       "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
     },
   })
@@ -25,4 +29,30 @@ function getAvailableLanguages() {
     .then(transformResponseACB);
 }
 
-export { getAvailableLanguages };
+function translateWord(sourceLang, targetLang, word) {
+  function transformResponseACB(result) {
+    return result.data.translations[0].translatedText;
+  }
+
+  const encodedParams = new URLSearchParams();
+  encodedParams.append("source", sourceLang);
+  encodedParams.append("target", targetLang);
+  encodedParams.append("q", word);
+
+  const options = {
+    method: "POST",
+    headers: {
+      "content-type": "application/x-www-form-urlencoded",
+      "Accept-Encoding": "application/gzip",
+      "X-RapidAPI-Key": API_KEY_GOOGLE,
+      "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+    },
+    body: encodedParams,
+  };
+
+  return fetch(BASE_URL_TRANSLATE, options)
+    .then(treatHTTPResponseACB)
+    .then(transformResponseACB);
+}
+
+export { getAvailableLanguages, translateWord };
