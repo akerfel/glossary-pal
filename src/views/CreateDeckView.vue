@@ -13,7 +13,13 @@ import langCodeMap from "../langCodesMap";
 
 <script>
 export default {
-  props: ["deckCreation", "onCreateDeck", "onDeleteWord", "onAddWord"],
+  props: [
+    "deckCreation",
+    "onCreateDeck",
+    "onDeleteWord",
+    "onAddWord",
+    "onGetTranslate",
+  ],
 
   methods: {
     getLangFromCode(code) {
@@ -27,6 +33,9 @@ export default {
     },
     clickedCreateDeckACB() {
       this.onCreateDeck();
+    },
+    clickedGetTranslationACB() {
+      this.onGetTranslate();
     },
   },
 };
@@ -79,7 +88,12 @@ export default {
         />
         <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
       </n-input-group>
-      <n-button id="getTranslation" type="info">Get translation</n-button>
+      <n-button
+        id="getTranslation"
+        type="info"
+        @click="clickedGetTranslationACB"
+        >Get translation</n-button
+      >
     </div>
     <div class="deckWords">
       <h2 id="deckWordsTitle">Words in deck</h2>

@@ -19,6 +19,9 @@ export default {
     );
   },
   methods: {
+    translateFromLangWord() {
+      console.log("get translation");
+    },
     getLangOptions() {
       function createLangOptionCB(langCode) {
         const langName = langCodeMap.get(langCode).name;
@@ -139,6 +142,7 @@ export default {
     :onCreateDeck="createdDeckACB"
     :onDeleteWord="deleteWordACB"
     :onAddWord="addWordACB"
+    :onGetTranslate="translateFromLangWord"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
