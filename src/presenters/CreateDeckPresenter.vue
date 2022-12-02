@@ -1,13 +1,14 @@
 <script>
 import CreateDeckView from "../views/CreateDeckView.vue";
 import PostCreateDeckView from "../views/PostCreateDeckView.vue";
+import promiseNoData from "../views/promiseNoData.vue";
 import Deck from "../Deck";
 import { getAvailableLanguages, translateWord } from "../apiCalls";
 import resolvePromise from "../resolvePromise";
 import langCodeMap from "../langCodesMap";
 
 export default {
-  components: { CreateDeckView, PostCreateDeckView },
+  components: { CreateDeckView, PostCreateDeckView, promiseNoData },
   props: {
     model: Object,
   },
@@ -21,7 +22,8 @@ export default {
   methods: {
     receiveTranslatedWordACB() {
       if (this.deckCreation.translatedWordPromiseState.data) {
-        this.deckCreation.langToWord = this.deckCreation.translatedWordPromiseState.data
+        this.deckCreation.langToWord =
+          this.deckCreation.translatedWordPromiseState.data;
       }
     },
     translateFromLangWord() {
@@ -126,23 +128,9 @@ export default {
 </script>
 
 <template>
-  <div v-if="!this.langCodesPromiseState.promise">No data</div>
-  <div
-    v-else-if="
-      !this.langCodesPromiseState.data && !this.langCodesPromiseState.error
-    "
-  >
-    <img style="margin-top: 250px" src="../assets/loading.gif" />
-  </div>
-  <div
-    v-else-if="
-      !this.langCodesPromiseState.data && this.langCodesPromiseState.error
-    "
-  >
-    {{ this.langCodesPromiseState.error.toString() }}
-  </div>
+  <promiseNoData :promiseState="this.langCodesPromiseState" />
   <CreateDeckView
-    v-else-if="this.langCodesPromiseState.data"
+    v-if="this.langCodesPromiseState.data"
     :deckCreation="deckCreation"
     :onCreateDeck="createdDeckACB"
     :onDeleteWord="deleteWordACB"
