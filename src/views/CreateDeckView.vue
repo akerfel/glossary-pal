@@ -64,7 +64,9 @@ export default {
     </div>
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
-      <span class="fromLangTextAddWord">{{ this.getLangFromCode(this.deckCreation.fromLang) }}</span>
+      <span class="fromLangTextAddWord">{{
+        this.getLangFromCode(this.deckCreation.fromLang)
+      }}</span>
       <span>{{ this.getLangFromCode(this.deckCreation.toLang) }}</span>
       <n-input-group>
         <n-input
@@ -77,6 +79,7 @@ export default {
         />
         <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
       </n-input-group>
+      <n-button id="getTranslation" type="info">Get translation</n-button>
     </div>
     <div class="deckWords">
       <h2 id="deckWordsTitle">Words in deck</h2>
@@ -173,6 +176,10 @@ export default {
 .fromLangTextAddWord {
   display: inline-block;
   width: 42%;
+}
+
+#getTranslation {
+  margin-top: 10px;
 }
 
 .deckWords {
