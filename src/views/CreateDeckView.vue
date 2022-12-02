@@ -132,7 +132,7 @@ export default {
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
       <span class="fromLangTextAddWord">{{ this.fromLang }}</span>
-      <span class="toLangTextAddWord">{{ this.toLang }}</span>
+      <span>{{ this.toLang }}</span>
       <n-input-group>
         <n-input v-model:value="langFromWord" placeholder="Language from" />
         <n-input v-model:value="langToWord" placeholder="Language to" />
@@ -144,12 +144,12 @@ export default {
       <div id="scrollbarDiv">
         <div id="addedWordsColumns">
           <span class="fromLangTextAddWord">{{ this.fromLang }}</span>
-          <span class="toLangTextAddWord">{{ this.toLang }}</span>
+          <span>{{ this.toLang }}</span>
         </div>
         <n-scrollbar style="max-height: 250px">
           <div id="scrollbarWord" v-for="word in this.addedWords">
             <span class="fromLangTextAddWord">{{ word.from }}</span>
-            <span class="toLangTextAddWord">{{ word.to }}</span>
+            <span>{{ word.to }}</span>
             <n-button
               id="removeWordButton"
               type="error"
