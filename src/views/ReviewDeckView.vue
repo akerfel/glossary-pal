@@ -14,6 +14,7 @@ export default {
     "answerWasCorrect",
     "hasAnswered",
     "onNextWord",
+    "onTryAgain",
     "isOnLastWord",
     "fromLanguage",
     "toLanguage",],
@@ -34,6 +35,12 @@ export default {
       this.focusInput();
     },
 
+    clickedTryAgain() {
+      this.onTryAgain();
+      this.answer = "";
+      this.focusInput();
+    },
+
     getInputPlaceHolderText() {
       if (!this.hasAnswered) {
         return "Translate from " + this.fromLanguage + " to " + this.toLanguage;
@@ -45,8 +52,11 @@ export default {
       if (!this.hasAnswered) {
         this.clickedConfirm()
       }
-      else {
+      else if (this.answerWasCorrect){
         this.clickedNextWord()
+      }
+      else {
+        this.clickedTryAgain()
       }
     },
 
@@ -58,7 +68,6 @@ export default {
         return "hiddenAnswer";
       }
     },
-
 
     focusInput() {
       this.$refs.inputAnswer.focus();
@@ -116,20 +125,33 @@ export default {
         </div>
       </div>
 
+      <!-- Confirm -->
       <n-button 
         v-if="!this.hasAnswered"
-        class="confirmAndNextButton"
+        class="buttons"
         type="primary" 
         @click="clickedConfirm">
         Confirm
       </n-button>
 
+      <!-- Next -->
+      <div>
+        <n-button 
+          v-if="this.hasAnswered"
+          class="buttons"
+          type="primary" 
+          @click="clickedNextWord">
+          Next
+        </n-button>
+      </div>
+
+      <!-- Try Again -->
       <n-button 
-        v-if="this.hasAnswered"
-        class="confirmAndNextButton"
+        v-if="(!this.answerWasCorrect && this.hasAnswered)"
+        class="buttons"
         type="primary" 
-        @click="clickedNextWord">
-        Next
+        @click="clickedTryAgain">
+        Try Again
       </n-button>
 
     </span>
@@ -145,10 +167,6 @@ export default {
   width: 300px;
   text-align: center;
   margin-bottom: 5px;
-
-  padding: 10px;
-  border: 2px solid rgb(106, 106, 106);
-  border-radius: 10px;
 }
 
 .wordToTranslate {
@@ -156,8 +174,8 @@ export default {
   margin-bottom: 10px;
 }
 
-.confirmAndNextButton {
-  width: 75px;
+.buttons {
+  width: 100px;
   margin-bottom: 20px;
 }
 

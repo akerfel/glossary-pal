@@ -31,6 +31,11 @@ export default {
         this.$router.push("/"); // TODO: Change to postReview after it has been added
       }
     },
+
+    tryAgainACB() {
+      this.hasAnswered = false;
+      this.answerWasCorrect = true;
+    },
   },
 
   data() { 
@@ -48,6 +53,7 @@ export default {
   <ReviewDeckView 
     :onConfirmAnswer="confirmedAnswerACB"
     :onNextWord="giveNextQuestionACB"
+    :onTryAgain="tryAgainACB"
     :wordToTranslate="wordToTranslate"
     :correctAnswer="correctAnswer"
     :hasAnswered="hasAnswered"

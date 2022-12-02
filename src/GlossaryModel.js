@@ -15,8 +15,13 @@ class GlossaryModel {
       [{from: "röd", to: "red"},
        {from: "grön", to: "green"},
        {from: "blå", to: "blue"},]);
+    var deck3 = new Deck("Hard Swedish Words", "Swedish", "Swedish",
+      [{from: "hedendom", to: "religionslöshet"},
+       {from: "hedonism", to: "njutningsfilosofi"},
+       {from: "hegemoni", to: "maktställning"},]);
     this.addDeck(deck1);
     this.addDeck(deck2);
+    this.addDeck(deck3);
   }
 
   resetReviewAttributes() {
@@ -78,8 +83,11 @@ class GlossaryModel {
     return answer === this.getCorrectAnswer()
   }
 
+  // Adds the index of the current word to this.wrongAnswers
   addCurrentWordToWrongAnswers() {
-    this.wrongAnswers.push(this.getWordToTranslate());
+    if (!this.wrongAnswers.includes(this.wordToTranslateIndex)) {
+      this.wrongAnswers.push(this.wordToTranslateIndex);
+    }
   }
 
   getWrongAnswers() {
