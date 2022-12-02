@@ -13,7 +13,9 @@ export default {
     "answerWasCorrect",
     "hasAnswered",
     "onNextWord",
-    "isOnLastWord",],
+    "isOnLastWord",
+    "fromLanguage",
+    "toLanguage",],
 
   created() {
 
@@ -51,6 +53,10 @@ export default {
         return "hidden"
       }
     },
+
+    getInputPlaceHolderText() {
+      return "Translate from " + this.fromLanguage + " to " + this.toLanguage;
+    }
   },
 
   data() {
@@ -68,7 +74,7 @@ export default {
       <n-input
         v-bind:class="getInputFieldClass()"
         v-model:value="answer"
-        placeholder="Your answer..."
+        v-bind:placeholder="getInputPlaceHolderText()"
       />
       <n-button 
         v-bind:class="getConfirmButtonClass()"

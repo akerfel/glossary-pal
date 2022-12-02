@@ -47,5 +47,7 @@ export default {
     :onNextWord="giveNextQuestionACB"
     :wordToTranslate="wordToTranslate"
     :hasAnswered="hasAnswered"
+    :fromLanguage="this.model.currentDeck.lang1"
+    :toLanguage="this.model.currentDeck.lang2"
     :answerWasCorrect="answerWasCorrect"/>
 </template>
