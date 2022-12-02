@@ -1,8 +1,5 @@
 <script setup>
 import {
-  NInput,
-  NInputGroup,
-  NSelect,
   NButton,
   NScrollbar,
   NAlert,
@@ -69,44 +66,6 @@ export default {
   width: 440px;
 }
 
-.title {
-  color: rgb(0, 194, 81);
-  margin-bottom: 15px;
-}
-
-#toLangText {
-  margin-left: 125px;
-}
-
-.deckparams {
-  width: 100%;
-  margin-bottom: 50px;
-}
-
-.deckname {
-  margin-bottom: 15px;
-}
-
-#deckLangFrom {
-  width: 40%;
-}
-
-#deckLangTo {
-  width: 40%;
-  float: right;
-}
-
-.addword {
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-#addWordTitle {
-  color: rgb(0, 194, 81);
-  text-align: center;
-  margin-bottom: 10px;
-}
-
 .fromLangTextAddWord {
   display: inline-block;
   width: 42%;
@@ -145,17 +104,7 @@ export default {
   margin-bottom: 5px;
 }
 
-#removeWordButton {
-  width: 48px;
-  height: 24px;
-  float: right;
-}
-
 .alert {
   margin-bottom: 25px;
-}
-
-#createdeck {
-  width: 100%;
 }
 </style>
