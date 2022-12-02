@@ -1,9 +1,5 @@
 <script setup>
-import {
-  NButton,
-  NScrollbar,
-  NAlert,
-} from "naive-ui";
+import { NButton, NScrollbar, NAlert } from "naive-ui";
 </script>
 
 <script>
