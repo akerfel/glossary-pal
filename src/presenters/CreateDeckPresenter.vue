@@ -15,17 +15,30 @@ export default {
     resolvePromise(
       getAvailableLanguages(),
       this.deckCreation.langCodesPromiseState,
-      this.getFullLangNames
+      this.getLangOptions
     );
   },
   methods: {
-    getFullLangNames() {
+    getLangOptions() {
+      let parsedLangs = [];
       function getLangNameCB(code) {
         return langCodeMap.get(code).name;
       }
+      function createLangOptionCB(langName) {
+        if (parsedLangs.includes(langName)) {
+          return {};
+        } else {
+          parsedLangs.push(langName);
+          const langOption = { label: langName, value: langName };
+          return langOption;
+        }
+      }
       if (this.deckCreation.langCodesPromiseState.data) {
-        this.deckCreation.langNames =
+        const langNames =
           this.deckCreation.langCodesPromiseState.data.map(getLangNameCB);
+        this.deckCreation.langOptions = langNames.map(
+          createLangOptionCB.bind(this)
+        );
       }
     },
     addDeck(deck) {
@@ -82,17 +95,7 @@ export default {
     return {
       deckCreation: {
         langCodesPromiseState: [],
-        langNames: [],
-        options: [
-          {
-            label: "Swedish",
-            value: "Swedish",
-          },
-          {
-            label: "English",
-            value: "English",
-          },
-        ],
+        langOptions: [],
         deckWords: [
           {
             from: "Bil",

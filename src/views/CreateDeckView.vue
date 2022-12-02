@@ -29,7 +29,6 @@ export default {
 
 <template>
   <div v-if="!this.deckCreation.creationSuccessfull" class="createview">
-    <p>{{this.deckCreation.langNames}}</p>
     <h1 class="title">Create new glossary deck</h1>
     <div class="deckparams">
       <span>Deck name</span>
@@ -47,13 +46,13 @@ export default {
           v-model:value="this.deckCreation.fromLang"
           filterable
           placeholder="Select a language"
-          :options="this.deckCreation.options"
+          :options="this.deckCreation.langOptions"
         />
         <n-select
           v-model:value="this.deckCreation.toLang"
           filterable
           placeholder="Select a language"
-          :options="this.deckCreation.options"
+          :options="this.deckCreation.langOptions"
         />
       </n-input-group>
     </div>
