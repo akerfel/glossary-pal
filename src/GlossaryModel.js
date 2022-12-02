@@ -3,12 +3,18 @@ import Deck from "./Deck";
 class GlossaryModel {
   constructor(decks = []) {
     this.decks = decks;
-    var deck1 = new Deck("Animals", "Swedish", "English", []);
-    var deck2 = new Deck("Colors", "Swedish", "English", []);
-    var deck3 = new Deck("Countries", "Swedish", "English", []);
-    this.decks.push(deck1);
-    this.decks.push(deck2);
-    this.decks.push(deck3);
+
+    // Adding some example decks
+    var deck1 = new Deck("Animals", "Swedish", "English", 
+      [{from: "katt", to: "cat"},
+       {from: "björn", to: "bear"},
+       {from: "lejon", to: "lion"},]);
+    var deck2 = new Deck("Colors", "Swedish", "English", 
+    [{from: "röd", to: "red"},
+     {from: "grön", to: "green"},
+     {from: "blå", to: "blue"},]);
+    this.addDeck(deck1);
+    this.addDeck(deck2);
   }
 
   deleteDeck(deckID) {
