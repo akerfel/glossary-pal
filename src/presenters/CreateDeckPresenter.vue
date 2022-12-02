@@ -6,13 +6,16 @@ export default {
     model: Object,
   },
   methods: {
+    addDeck(deck) {
+      this.model.decks.push(deck);
+    },
     createdDeckACB(deck) {
-      this.model.addDeck(deck);
-    }
+      this.addDeck(deck);
+    },
   },
 };
 </script>
 
 <template>
-  <CreateDeckView :model="model" :onCreateDeck="createdDeckACB"/>
+  <CreateDeckView :model="model" :onCreateDeck="createdDeckACB" />
 </template>
