@@ -20,6 +20,9 @@ export default {
     );
   },
   methods: {
+    getLangName(code) {
+      return langCodeMap.get(code).name;
+    },
     receiveTranslatedWordACB() {
       if (this.deckCreation.translatedWordPromiseState.data) {
         this.deckCreation.langToWord =
@@ -57,8 +60,8 @@ export default {
       } else {
         const thisDeck = new Deck(
           dc.deckTitle,
-          langCodeMap.get(dc.fromLang).name,
-          langCodeMap.get(dc.toLang).name,
+          this.getLangName(dc.fromLang),
+          this.getLangName(dc.toLang),
           dc.deckWords
         );
         dc.creationErrorNoName = false;
@@ -136,10 +139,12 @@ export default {
     :onDeleteWord="deleteWordACB"
     :onAddWord="addWordACB"
     :onGetTranslate="translateFromLangWordACB"
+    :getLangName="getLangName"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
     :onGoToHome="goToHomeACB"
     :onCreateAnotherDeck="refreshViewACB"
+    :getLangName="getLangName"
   />
 </template>

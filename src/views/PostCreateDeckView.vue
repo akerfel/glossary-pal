@@ -4,7 +4,7 @@ import { NButton, NScrollbar, NAlert } from "naive-ui";
 
 <script>
 export default {
-  props: ["deckCreation", "onGoToHome", "onCreateAnotherDeck"],
+  props: ["deckCreation", "onGoToHome", "onCreateAnotherDeck", "getLangName"],
 
   methods: {
     clickedGoToHomeACB() {
@@ -28,9 +28,9 @@ export default {
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
-            this.deckCreation.fromLang
+            this.getLangName(this.deckCreation.fromLang)
           }}</span>
-          <span>{{ this.deckCreation.toLang }}</span>
+          <span>{{ this.getLangName(this.deckCreation.toLang) }}</span>
         </div>
         <n-scrollbar style="max-height: 500px">
           <div id="scrollbarWord" v-for="word in this.deckCreation.deckWords">
