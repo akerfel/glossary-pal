@@ -24,6 +24,7 @@ export default {
       if (this.model.hasNextWord()) {
         this.wordToTranslate = this.model.getNextWordToTranslate();
         this.correctAnswer = this.model.getCorrectAnswer();
+        this.currentWordIndex = this.model.getCurrentWordIndex() + 1;
         this.hasAnswered = false;
         this.answerWasCorrect = true;
       }
@@ -42,6 +43,8 @@ export default {
     return {
       wordToTranslate: this.model.getWordToTranslate(),
       correctAnswer: this.model.getWordToTranslateAnswer(),
+      currentWordIndex: this.model.getCurrentWordIndex() + 1,
+      deckSize: this.model.getCurrentDeckSize(),
       answerWasCorrect: true,
       hasAnswered: false,
     };
@@ -56,6 +59,8 @@ export default {
     :onTryAgain="tryAgainACB"
     :wordToTranslate="wordToTranslate"
     :correctAnswer="correctAnswer"
+    :currentWordIndex="currentWordIndex"
+    :deckSize="deckSize"
     :hasAnswered="hasAnswered"
     :fromLanguage="this.model.currentDeck.lang1"
     :toLanguage="this.model.currentDeck.lang2"

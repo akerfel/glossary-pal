@@ -10,6 +10,8 @@ export default {
   props: [
     "wordToTranslate", 
     "correctAnswer",
+    "currentWordIndex",
+    "deckSize",
     "onConfirmAnswer",
     "answerWasCorrect",
     "hasAnswered",
@@ -103,6 +105,7 @@ export default {
 
 <template>
   <div class="reviewDeckView">
+    <p>{{currentWordIndex}} / {{deckSize}}</p>
     <span class="inputWordSpan">
       <h1 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h1>
 

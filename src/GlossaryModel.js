@@ -93,6 +93,14 @@ class GlossaryModel {
   getWrongAnswers() {
     return this.wrongAnswers;
   }
+
+  getCurrentWordIndex() {
+    return this.wordToTranslateIndex;
+  }
+
+  getCurrentDeckSize() {
+    return this.currentDeck.words.length;
+  }
 }
 
 export default GlossaryModel;
