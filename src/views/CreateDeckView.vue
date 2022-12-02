@@ -11,14 +11,7 @@ import {
 
 <script>
 export default {
-  props: [
-    "deckCreation",
-    "onCreateDeck",
-    "onGoToHome",
-    "onCreateAnotherDeck",
-    "onDeleteWord",
-    "onAddWord",
-  ],
+  props: ["deckCreation", "onCreateDeck", "onDeleteWord", "onAddWord"],
 
   methods: {
     clickedAddWordACB() {
@@ -30,18 +23,12 @@ export default {
     clickedCreateDeckACB() {
       this.onCreateDeck();
     },
-    clickedGoToHomeACB() {
-      this.onGoToHome();
-    },
-    clickedCreateAnotherDeckACB() {
-      this.onCreateAnotherDeck();
-    },
   },
 };
 </script>
 
 <template>
-  <div class="createview">
+  <div v-if="!this.deckCreation.creationSuccessfull" class="createview">
     <h1 class="title">Create new glossary deck</h1>
     <div class="deckparams">
       <span>Deck name</span>
@@ -110,15 +97,6 @@ export default {
       </div>
     </div>
     <n-alert
-      v-if="this.deckCreation.creationSuccessfull"
-      class="alert"
-      title="Deck created"
-      type="success"
-    >
-      Your deck "{{ this.deckCreation.deckTitle }}" has been successfully
-      created.
-    </n-alert>
-    <n-alert
       v-if="this.deckCreation.creationErrorNoName"
       class="alert"
       title="Deck creation error"
@@ -134,24 +112,9 @@ export default {
     >
       Please add at least one word to your deck.
     </n-alert>
-    <n-button
-      v-if="!this.deckCreation.creationSuccessfull"
-      id="createdeck"
-      type="primary"
-      @click="clickedCreateDeckACB"
+    <n-button id="createdeck" type="primary" @click="clickedCreateDeckACB"
       >Create deck</n-button
     >
-    <div v-if="this.deckCreation.creationSuccessfull">
-      <n-button type="primary" @click="clickedGoToHomeACB"
-        >Go back to home</n-button
-      >
-      <n-button
-        style="margin-left: 30px"
-        type="primary"
-        @click="clickedCreateAnotherDeckACB"
-        >Create another deck</n-button
-      >
-    </div>
   </div>
 </template>
 

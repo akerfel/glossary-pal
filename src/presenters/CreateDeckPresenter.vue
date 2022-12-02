@@ -1,9 +1,10 @@
 <script>
 import CreateDeckView from "../views/CreateDeckView.vue";
+import PostCreateDeckView from "../views/PostCreateDeckView.vue";
 import Deck from "../Deck";
 
 export default {
-  components: { CreateDeckView },
+  components: { CreateDeckView, PostCreateDeckView },
   props: {
     model: Object,
   },
@@ -12,7 +13,7 @@ export default {
       this.model.decks.push(deck);
     },
     createdDeckACB() {
-      let dc = this.deckCreation
+      let dc = this.deckCreation;
       if (dc.deckTitle === "") {
         dc.creationErrorNoName = true;
         dc.creationErrorNoWords = false;
@@ -33,7 +34,7 @@ export default {
       }
     },
     addWordACB() {
-      let dc = this.deckCreation
+      let dc = this.deckCreation;
       if (!(dc.langFromWord === "" || dc.langToWord === "")) {
         dc.deckWords.push({ from: dc.langFromWord, to: dc.langToWord });
         dc.addedWordError = false;
@@ -44,7 +45,7 @@ export default {
       }
     },
     deleteWordACB(word) {
-      let dc = this.deckCreation
+      let dc = this.deckCreation;
       function removeWordCB(thisWord) {
         return !(word === thisWord);
       }
@@ -103,9 +104,12 @@ export default {
   <CreateDeckView
     :deckCreation="deckCreation"
     :onCreateDeck="createdDeckACB"
-    :onGoToHome="goToHomeACB"
-    :onCreateAnotherDeck="refreshViewACB"
     :onDeleteWord="deleteWordACB"
     :onAddWord="addWordACB"
+  />
+  <PostCreateDeckView
+    :deckCreation="deckCreation"
+    :onGoToHome="goToHomeACB"
+    :onCreateAnotherDeck="refreshViewACB"
   />
 </template>
