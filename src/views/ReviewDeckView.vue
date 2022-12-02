@@ -35,7 +35,10 @@ export default {
     },
 
     getInputPlaceHolderText() {
-      return "Translate from " + this.fromLanguage + " to " + this.toLanguage;
+      if (!this.hasAnswered) {
+        return "Translate from " + this.fromLanguage + " to " + this.toLanguage;
+      }
+      return "";
     },
 
     clickedEnter() {
@@ -46,6 +49,16 @@ export default {
         this.clickedNextWord()
       }
     },
+
+    getCorrectAnswerClass() {
+      if (!this.answerWasCorrect) {
+        return "correctAnswerWhenWrong";
+      }
+      else {
+        return "hiddenAnswer";
+      }
+    },
+
 
     focusInput() {
       this.$refs.inputAnswer.focus();
@@ -83,6 +96,7 @@ export default {
   <div class="reviewDeckView">
     <span class="inputWordSpan">
       <h1 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h1>
+
       <n-input
         ref="inputAnswer"
         :style="getInputFieldStyle"
@@ -92,6 +106,16 @@ export default {
         @keyup.enter="clickedEnter"
         :autofocus="true"
       />
+
+      <div>
+        <div v-bind:class="getCorrectAnswerClass()">
+          <p id="correctAnswerTitle"> 
+          Correct answer
+          </p>
+        <strong>{{correctAnswer}}</strong>
+        </div>
+      </div>
+
       <n-button 
         v-if="!this.hasAnswered"
         class="confirmAndNextButton"
@@ -99,6 +123,7 @@ export default {
         @click="clickedConfirm">
         Confirm
       </n-button>
+
       <n-button 
         v-if="this.hasAnswered"
         class="confirmAndNextButton"
@@ -106,7 +131,7 @@ export default {
         @click="clickedNextWord">
         Next
       </n-button>
-      <p v-if="!answerWasCorrect" id="answerWhenWrong"> Correct answer: <strong>{{correctAnswer}}</strong></p>
+
     </span>
   </div>  
 </template>
@@ -119,6 +144,7 @@ export default {
   align-items: center;
   width: 300px;
   text-align: center;
+  margin-bottom: 5px;
 
   border: 2px solid rgb(206, 50, 50);
   border-radius: 25px;
@@ -140,8 +166,35 @@ export default {
   width: 100%;
 }
 
-#answerWhenWrong {
-  color: #94e09c; 
+#correctAnswerTitle {
+  color: rgb(144, 164, 148);
+}
+
+.correctAnswerWhenWrong {
+  display: inline-block;
+  text-align: center;
+  color: rgb(0, 194, 81);
+  margin-bottom: 15px;
+
+  padding: 5px;
+  border: 2px solid rgb(7, 77, 58);
+  border-radius: 5px;
+  background-color: rgb(49, 17, 6);
+
+}
+
+.hiddenAnswer {
+  visibility: hidden;
+
+  display: inline-block;
+  text-align: center;
+  color: rgb(0, 194, 81);
+  margin-bottom: 15px;
+
+  padding: 5px;
+  border: 2px solid rgb(7, 77, 58);
+  border-radius: 5px;
+  background-color: rgb(49, 17, 6);
 }
 
 </style>
