@@ -26,7 +26,7 @@ export default {
           this.deckCreation.translatedWordPromiseState.data;
       }
     },
-    translateFromLangWord() {
+    translateFromLangWordACB() {
       const sourceLang = this.deckCreation.fromLang;
       const targetLang = this.deckCreation.toLang;
       const toBeTranslated = this.deckCreation.langFromWord;
@@ -135,7 +135,7 @@ export default {
     :onCreateDeck="createdDeckACB"
     :onDeleteWord="deleteWordACB"
     :onAddWord="addWordACB"
-    :onGetTranslate="translateFromLangWord"
+    :onGetTranslate="translateFromLangWordACB"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
