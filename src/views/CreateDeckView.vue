@@ -7,95 +7,35 @@ import {
   NScrollbar,
   NAlert,
 } from "naive-ui";
-import Deck from "../Deck";
 </script>
 
 <script>
 export default {
-  props: ["model", "onCreateDeck"],
+  props: [
+    "deckCreation",
+    "onCreateDeck",
+    "onGoToHome",
+    "onCreateAnotherDeck",
+    "onDeleteWord",
+    "onAddWord",
+  ],
 
   methods: {
     clickedAddWordACB() {
-      if (!(this.langFromWord === "" || this.langToWord === "")) {
-        this.addedWords.push({ from: this.langFromWord, to: this.langToWord });
-        this.addedWordError = false;
-        
-        // remove words from input fields
-        this.langFromWord = "";
-        this.langToWord = "";
-      }
+      this.onAddWord();
     },
     clickedDeleteWordACB(word) {
-      function removeWordCB(thisWord) {
-        return !(word === thisWord);
-      }
-
-      this.addedWords = this.addedWords.filter(removeWordCB);
+      this.onDeleteWord(word);
     },
     clickedCreateDeckACB() {
-      if (this.deckTitle === "") {
-        this.creationErrorNoName = true;
-        this.creationErrorNoWords = false;
-      } else if (this.addedWords.length === 0) {
-        this.creationErrorNoWords = true
-        this.creationErrorNoName = false;
-      }
-      else {
-        const thisDeck = new Deck(
-          this.deckTitle,
-          this.fromLang,
-          this.toLang,
-          this.addedWords
-        );
-        this.onCreateDeck(thisDeck);
-        this.creationErrorNoName = false;
-        this.creationErrorNoWords = false;
-        this.creationSuccessfull = true;
-        }
+      this.onCreateDeck();
     },
-    goToHomeACB() {
-      this.$router.push("/");
+    clickedGoToHomeACB() {
+      this.onGoToHome();
     },
-    refreshViewACB() {
-      this.$router.go();
+    clickedCreateAnotherDeckACB() {
+      this.onCreateAnotherDeck();
     },
-  },
-
-  data() {
-    return {
-      options: [
-        {
-          label: "Swedish",
-          value: "Swedish",
-        },
-        {
-          label: "English",
-          value: "English",
-        },
-      ],
-      addedWords: [
-        {
-          from: "Bil",
-          to: "Car",
-        },
-        {
-          from: "Motorcykel",
-          to: "Motorcycle",
-        },
-        {
-          from: "Lejon",
-          to: "Lion",
-        },
-      ],
-      deckTitle: "",
-      fromLang: "Swedish",
-      toLang: "English",
-      langFromWord: "",
-      langToWord: "",
-      creationSuccessfull: false,
-      creationErrorNoName: false,
-      creationErrorNoWords: false,
-    };
   },
 };
 </script>
@@ -106,7 +46,7 @@ export default {
     <div class="deckparams">
       <span>Deck name</span>
       <n-input
-        v-model:value="deckTitle"
+        v-model:value="this.deckCreation.deckTitle"
         class="deckname"
         placeholder="Title your deck"
       />
@@ -116,38 +56,46 @@ export default {
       </div>
       <n-input-group>
         <n-select
-          v-model:value="fromLang"
+          v-model:value="this.deckCreation.fromLang"
           filterable
           placeholder="Select a language"
-          :options="options"
+          :options="this.deckCreation.options"
         />
         <n-select
-          v-model:value="toLang"
+          v-model:value="this.deckCreation.toLang"
           filterable
           placeholder="Select a language"
-          :options="options"
+          :options="this.deckCreation.options"
         />
       </n-input-group>
     </div>
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
-      <span class="fromLangTextAddWord">{{ this.fromLang }}</span>
-      <span>{{ this.toLang }}</span>
+      <span class="fromLangTextAddWord">{{ this.deckCreation.fromLang }}</span>
+      <span>{{ this.deckCreation.toLang }}</span>
       <n-input-group>
-        <n-input v-model:value="langFromWord" placeholder="Language from" />
-        <n-input v-model:value="langToWord" placeholder="Language to" />
+        <n-input
+          v-model:value="this.deckCreation.langFromWord"
+          placeholder="Language from"
+        />
+        <n-input
+          v-model:value="this.deckCreation.langToWord"
+          placeholder="Language to"
+        />
         <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
       </n-input-group>
     </div>
-    <div class="addedwords">
-      <h2 id="addedWordsTitle">Words in deck</h2>
+    <div class="deckWords">
+      <h2 id="deckWordsTitle">Words in deck</h2>
       <div id="scrollbarDiv">
-        <div id="addedWordsColumns">
-          <span class="fromLangTextAddWord">{{ this.fromLang }}</span>
-          <span>{{ this.toLang }}</span>
+        <div id="deckWordsColumns">
+          <span class="fromLangTextAddWord">{{
+            this.deckCreation.fromLang
+          }}</span>
+          <span>{{ this.deckCreation.toLang }}</span>
         </div>
         <n-scrollbar style="max-height: 250px">
-          <div id="scrollbarWord" v-for="word in this.addedWords">
+          <div id="scrollbarWord" v-for="word in this.deckCreation.deckWords">
             <span class="fromLangTextAddWord">{{ word.from }}</span>
             <span>{{ word.to }}</span>
             <n-button
@@ -162,15 +110,16 @@ export default {
       </div>
     </div>
     <n-alert
-      v-if="creationSuccessfull"
+      v-if="this.deckCreation.creationSuccessfull"
       class="alert"
       title="Deck created"
       type="success"
     >
-      Your deck "{{ this.deckTitle }}" has been successfully created.
+      Your deck "{{ this.deckCreation.deckTitle }}" has been successfully
+      created.
     </n-alert>
     <n-alert
-      v-if="creationErrorNoName"
+      v-if="this.deckCreation.creationErrorNoName"
       class="alert"
       title="Deck creation error"
       type="error"
@@ -178,7 +127,7 @@ export default {
       Please name your deck.
     </n-alert>
     <n-alert
-      v-if="creationErrorNoWords"
+      v-if="this.deckCreation.creationErrorNoWords"
       class="alert"
       title="Deck creation error"
       type="error"
@@ -186,15 +135,20 @@ export default {
       Please add at least one word to your deck.
     </n-alert>
     <n-button
-      v-if="!creationSuccessfull"
+      v-if="!this.deckCreation.creationSuccessfull"
       id="createdeck"
       type="primary"
       @click="clickedCreateDeckACB"
       >Create deck</n-button
     >
-    <div v-if="creationSuccessfull">
-      <n-button type="primary" @click="goToHomeACB">Go back to home</n-button>
-      <n-button style="margin-left: 30px" type="primary" @click="refreshViewACB"
+    <div v-if="this.deckCreation.creationSuccessfull">
+      <n-button type="primary" @click="clickedGoToHomeACB"
+        >Go back to home</n-button
+      >
+      <n-button
+        style="margin-left: 30px"
+        type="primary"
+        @click="clickedCreateAnotherDeckACB"
         >Create another deck</n-button
       >
     </div>
@@ -252,18 +206,18 @@ export default {
   width: 42%;
 }
 
-.addedwords {
+.deckWords {
   width: 100%;
   margin-bottom: 25px;
 }
 
-#addedWordsTitle {
+#deckWordsTitle {
   color: rgb(0, 194, 81);
   text-align: center;
   margin-bottom: 10px;
 }
 
-#addedWordsColumns {
+#deckWordsColumns {
   background-color: #181818;
   color: rgb(0, 194, 81);
   height: 28px;
