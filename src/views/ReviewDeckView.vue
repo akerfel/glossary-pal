@@ -79,6 +79,7 @@ export default {
         v-bind:class="getInputFieldClass()"
         v-model:value="answer"
         v-bind:placeholder="getInputPlaceHolderText()"
+        v-bind:readonly="hasAnswered"
       />
       <n-button 
         v-bind:class="getConfirmButtonClass()"
@@ -133,6 +134,7 @@ export default {
 .hidden {
   display: none;
 }
+
 #answerWhenWrong {
   color: #94e09c; 
 }
