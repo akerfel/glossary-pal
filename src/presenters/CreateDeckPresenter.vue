@@ -58,8 +58,8 @@ export default {
       } else {
         const thisDeck = new Deck(
           dc.deckTitle,
-          dc.fromLang,
-          dc.toLang,
+          langCodeMap.get(dc.fromLang).name,
+          langCodeMap.get(dc.toLang).name,
           dc.deckWords
         );
         dc.creationErrorNoName = false;
