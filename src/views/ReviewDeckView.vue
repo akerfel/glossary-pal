@@ -32,31 +32,17 @@ export default {
       this.answer = "";
     },
 
-    getInputFieldClass(){
-      if (!this.hasAnswered) {
-        return "inputIfNotAnsweredYet"
-      }
-      if (this.answerWasCorrect) {
-        return "inputIfCorrectAnswer"
-      }
-      else
-        return "inputIfWrongAnswer"
-    },
-
-    getConfirmButtonClass(){
-      if (this.hasAnswered) {
-        return "hidden"
-      }
-    },
-
-    getNextButtonClass(){
-      if (!this.hasAnswered) {
-        return "hidden"
-      }
-    },
-
     getInputPlaceHolderText() {
       return "Translate from " + this.fromLanguage + " to " + this.toLanguage;
+    },
+
+    clickedEnter() {
+      if (!this.hasAnswered) {
+        this.clickedConfirm()
+      }
+      else {
+        this.clickedNextWord()
+      }
     }
   },
 
@@ -65,30 +51,47 @@ export default {
         answer: "",
     };
   },
+
+  computed: {
+    // It was not possible to just return a class reference here,
+    // perhaps because that does not override n-input's class?
+    getInputFieldStyle(){
+      var style = "margin-bottom: 5px;"
+      if (!this.hasAnswered) {
+        style += "background-color: #ffffff; "
+        return style;
+      }
+      if (this.answerWasCorrect) {
+        style += "background-color: #94e09c;"
+      }
+      else {
+        style += "background-color: #d3a4a4;"
+      }
+      return style;
+    },
+  },
 };
 </script>
 
 <template>
   <div class="reviewDeckView">
-    <CustomComponent
-        @keyup.enter="clickedConfirm"
-    />
     <span class="inputWordSpan">
       <h2 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h2>
       <n-input
-        v-bind:class="getInputFieldClass()"
+        :style="getInputFieldStyle"
         v-model:value="answer"
         v-bind:placeholder="getInputPlaceHolderText()"
         v-bind:readonly="hasAnswered"
+        @keyup.enter="clickedEnter"
       />
       <n-button 
-        v-bind:class="getConfirmButtonClass()"
+        v-if="!this.hasAnswered"
         type="primary" 
         @click="clickedConfirm">
         Confirm
       </n-button>
       <n-button 
-        v-bind:class="getNextButtonClass()"
+        v-if="this.hasAnswered"
         type="primary" 
         @click="clickedNextWord">
         Next
@@ -114,25 +117,6 @@ export default {
 .inputWordSpan {
   display: inline-block;
   width: 100%;
-}
-
-.inputIfNotAnsweredYet {
-  background-color: #ffffff;
-  margin-bottom: 5px; 
-}
-
-.inputIfWrongAnswer {
-  background-color: #d3a4a4; 
-  margin-bottom: 5px;
-}
-
-.inputIfCorrectAnswer {
-  background-color: #94e09c; 
-  margin-bottom: 5px;
-}
-
-.hidden {
-  display: none;
 }
 
 #answerWhenWrong {
