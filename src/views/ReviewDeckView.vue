@@ -1,21 +1,38 @@
 <script setup>
 import {
   NInput,
+  NButton,
 } from "naive-ui";
 </script>
 
 <script>
 export default {
-  props: ["wordToTranslate", 
-          "onConfirmAnswer",
-          ],
-
-  methods: {
-    
-  },
+  props: [
+    "wordToTranslate", 
+    "onConfirmAnswer",
+    "answerWasCorrect",
+    "hasAnswered",],
 
   created() {
 
+  },
+
+  methods: {
+    clickedConfirm () {
+      this.onConfirmAnswer(this.answer);
+      console.log("Clicked confirm")
+    },
+
+    getInputFieldClass(){
+      if (!this.hasAnswered) {
+        return "inputIfNotAnsweredYet"
+      }
+      if (this.answerWasCorrect) {
+        return "inputIfCorrectAnswer"
+      }
+      else
+        return "inputIfWrongAnswer"
+    }
   },
 
   data() {
@@ -31,9 +48,15 @@ export default {
     <span class="inputWordSection">
       <h2>{{wordToTranslate}}</h2>
       <n-input
+        v-bind:class="getInputFieldClass()"
         v-model:value="answer"
         placeholder="Your answer..."
       />
+      <n-button 
+        type="primary" 
+        @click="clickedConfirm">
+        Confirm
+      </n-button>
     </span>
   </div>  
 </template>
@@ -50,6 +73,18 @@ export default {
 .inputWordSection {
   display: inline-block;
   width: 100%;
+}
+
+.inputIfNotAnsweredYet {
+  background-color: #ffffff; 
+}
+
+.inputIfWrongAnswer {
+  background-color: #cf5555; 
+}
+
+.inputIfCorrectAnswer {
+  background-color: #25ab32; 
 }
 
 </style>

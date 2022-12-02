@@ -59,6 +59,14 @@ class GlossaryModel {
   getWordToTranslate() {
     return this.currentDeck.getWord(this.wordToTranslateIndex).from;
   }
+
+  getCorrectAnswer() {
+    return this.currentDeck.getWord(this.wordToTranslateIndex).to;
+  }
+
+  answerIsCorrect(answer) {
+    return answer === this.getCorrectAnswer()
+  }
 }
 
 export default GlossaryModel;
