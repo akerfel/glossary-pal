@@ -62,7 +62,7 @@ export default {
     // It was not possible to just return a class reference here,
     // perhaps because that does not override n-input's class?
     getInputFieldStyle(){
-      var style = "margin-bottom: 5px;"
+      var style = "margin-bottom: 20px;"
       if (!this.hasAnswered) {
         style += "background-color: #ffffff; "
         return style;
@@ -82,7 +82,7 @@ export default {
 <template>
   <div class="reviewDeckView">
     <span class="inputWordSpan">
-      <h2 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h2>
+      <h1 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h1>
       <n-input
         ref="inputAnswer"
         :style="getInputFieldStyle"
@@ -118,14 +118,21 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 300px;
+  text-align: center;
+
+  border: 2px solid rgb(206, 50, 50);
+  border-radius: 25px;
+  background-color: rgb(49, 17, 6);
 }
 
 .wordToTranslate {
   color: rgb(0, 194, 81);
+  margin-bottom: 10px;
 }
 
 .confirmAndNextButton {
   width: 75px;
+  margin-bottom: 20px;
 }
 
 .inputWordSpan {
