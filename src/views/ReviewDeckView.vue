@@ -94,12 +94,14 @@ export default {
       />
       <n-button 
         v-if="!this.hasAnswered"
+        class="confirmAndNextButton"
         type="primary" 
         @click="clickedConfirm">
         Confirm
       </n-button>
       <n-button 
         v-if="this.hasAnswered"
+        class="confirmAndNextButton"
         type="primary" 
         @click="clickedNextWord">
         Next
@@ -120,6 +122,10 @@ export default {
 
 .wordToTranslate {
   color: rgb(0, 194, 81);
+}
+
+.confirmAndNextButton {
+  width: 75px;
 }
 
 .inputWordSpan {
