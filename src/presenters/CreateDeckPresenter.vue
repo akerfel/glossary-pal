@@ -119,7 +119,27 @@ export default {
 </script>
 
 <template>
+  <div v-if="!this.deckCreation.langCodesPromiseState.promise">No data</div>
+  <div
+    v-else-if="
+      !this.deckCreation.langCodesPromiseState.data &&
+      !this.deckCreation.langCodesPromiseState.error
+    "
+  >
+    <img
+      src="../assets/loading.gif"
+    />
+  </div>
+  <div
+    v-else-if="
+      !this.deckCreation.langCodesPromiseState.data &&
+      this.deckCreation.langCodesPromiseState.error
+    "
+  >
+    {{ this.deckCreation.langCodesPromiseState.error.toString() }}
+  </div>
   <CreateDeckView
+    v-else-if="this.deckCreation.langCodesPromiseState.data"
     :deckCreation="deckCreation"
     :onCreateDeck="createdDeckACB"
     :onDeleteWord="deleteWordACB"
