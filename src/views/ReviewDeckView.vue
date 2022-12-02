@@ -159,7 +159,6 @@ export default {
 .confirmAndNextButton {
   width: 75px;
   margin-bottom: 20px;
-  color: ADD8E6
 }
 
 .inputWordSpan {
