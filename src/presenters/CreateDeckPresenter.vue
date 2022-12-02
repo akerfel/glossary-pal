@@ -20,15 +20,9 @@ export default {
   },
   methods: {
     getLangOptions() {
-      let parsedLangs = [];
       function createLangOptionCB(langCode) {
         const langName = langCodeMap.get(langCode).name;
-        if (parsedLangs.includes(langName)) {
-          return {};
-        } else {
-          parsedLangs.push(langName);
-          return { label: langName, value: langCode };
-        }
+        return { label: langName, value: langCode };
       }
       if (this.deckCreation.langCodesPromiseState.data) {
         this.deckCreation.langOptions =
