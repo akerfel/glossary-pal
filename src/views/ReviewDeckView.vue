@@ -8,7 +8,7 @@ import {
 <script>
 export default {
   props: [
-    "wordToTranslate", 
+    "currentWord", 
     "correctAnswer",
     "currentWordIndex",
     "deckSize",
@@ -107,7 +107,7 @@ export default {
   <div class="reviewDeckView">
     <p>{{currentWordIndex}} / {{deckSize}}</p>
     <span class="inputWordSpan">
-      <h1 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h1>
+      <h1 class="currentWord"> <b>{{currentWord}}</b></h1>
 
       <n-input
         ref="inputAnswer"
@@ -172,7 +172,7 @@ export default {
   margin-bottom: 5px;
 }
 
-.wordToTranslate {
+.currentWord {
   color: rgb(255, 255, 255);
   margin-bottom: 10px;
 }

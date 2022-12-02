@@ -26,7 +26,7 @@ class GlossaryModel {
 
   resetReviewAttributes() {
     this.currentDeck = {};          // the current deck being reviewed
-    this.wordToTranslateIndex = 0;  // index of the current word being reviewed
+    this.currentWordIndex = 0;  // index of the current word being reviewed
     this.wrongAnswers = [];         // wrong answers in the *from*-language
   }
 
@@ -52,31 +52,31 @@ class GlossaryModel {
 
   selectDeckToReview(deck) {
     this.currentDeck = deck;
-    this.wordToTranslateIndex = 0;
+    this.currentWordIndex = 0;
     this.incorrectWords = [];
   }
 
   hasNextWord() {
-    return this.wordToTranslateIndex < this.currentDeck.words.length - 1
+    return this.currentWordIndex < this.currentDeck.words.length - 1
   }
   
 
-  getWordToTranslate() {
-    return this.currentDeck.getWord(this.wordToTranslateIndex).from;
+  getCurrentWord() {
+    return this.currentDeck.getWord(this.currentWordIndex).from;
   }
 
-  getWordToTranslateAnswer() {
-    return this.currentDeck.getWord(this.wordToTranslateIndex).to;
+  getCurrentWordAnswer() {
+    return this.currentDeck.getWord(this.currentWordIndex).to;
   }
 
 
-  getNextWordToTranslate() {
-    this.wordToTranslateIndex++;
-    return this.getWordToTranslate();
+  getNextCurrentWord() {
+    this.currentWordIndex++;
+    return this.getCurrentWord();
   }
 
   getCorrectAnswer() {
-    return this.currentDeck.getWord(this.wordToTranslateIndex).to;
+    return this.currentDeck.getWord(this.currentWordIndex).to;
   }
 
   answerIsCorrect(answer) {
@@ -85,8 +85,8 @@ class GlossaryModel {
 
   // Adds the index of the current word to this.wrongAnswers
   addCurrentWordToWrongAnswers() {
-    if (!this.wrongAnswers.includes(this.wordToTranslateIndex)) {
-      this.wrongAnswers.push(this.wordToTranslateIndex);
+    if (!this.wrongAnswers.includes(this.currentWordIndex)) {
+      this.wrongAnswers.push(this.currentWordIndex);
     }
   }
 
@@ -95,7 +95,7 @@ class GlossaryModel {
   }
 
   getCurrentWordIndex() {
-    return this.wordToTranslateIndex;
+    return this.currentWordIndex;
   }
 
   getCurrentDeckSize() {

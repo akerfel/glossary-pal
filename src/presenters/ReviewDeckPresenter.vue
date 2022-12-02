@@ -22,7 +22,7 @@ export default {
 
     giveNextQuestionACB() {
       if (this.model.hasNextWord()) {
-        this.wordToTranslate = this.model.getNextWordToTranslate();
+        this.currentWord = this.model.getNextCurrentWord();
         this.correctAnswer = this.model.getCorrectAnswer();
         this.currentWordIndex = this.model.getCurrentWordIndex() + 1;
         this.hasAnswered = false;
@@ -41,8 +41,8 @@ export default {
 
   data() { 
     return {
-      wordToTranslate: this.model.getWordToTranslate(),
-      correctAnswer: this.model.getWordToTranslateAnswer(),
+      currentWord: this.model.getCurrentWord(),
+      correctAnswer: this.model.getCurrentWordAnswer(),
       currentWordIndex: this.model.getCurrentWordIndex() + 1,
       deckSize: this.model.getCurrentDeckSize(),
       answerWasCorrect: true,
@@ -57,7 +57,7 @@ export default {
     :onConfirmAnswer="confirmedAnswerACB"
     :onNextWord="giveNextQuestionACB"
     :onTryAgain="tryAgainACB"
-    :wordToTranslate="wordToTranslate"
+    :currentWord="currentWord"
     :correctAnswer="correctAnswer"
     :currentWordIndex="currentWordIndex"
     :deckSize="deckSize"
