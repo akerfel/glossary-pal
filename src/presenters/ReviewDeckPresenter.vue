@@ -3,25 +3,27 @@ import Deck from "../Deck";
 import ReviewDeckView from "../views/ReviewDeckView.vue";
 export default {
   components: { ReviewDeckView },
+
   props: {
     model: Object,
   },
-  methods: {
-    confirmAnswerACB() {
-      
-    },
-  },
 
   data() { 
-    // deckId is sent from router
-    return {deck: this.model.getDeck(parseInt(this.$route.params.deckId))};
-  }
+    return {
+      wordToTranslate: this.model.getWordToTranslate()
+    };
+  },
+  
+  methods: {
+    confirmAnswerACB() {
+      console.log("Confirmed answer")
+    },
+  },
 };
 </script>
 
 <template>
   <ReviewDeckView 
-    :model="model" 
-    :onConfirmAnswer="confirmAnswerACB"
-    :deck="this.deck"/>
+    :wordToTranslate="wordToTranslate" 
+    :onConfirmAnswer="confirmAnswerACB"/>
 </template>

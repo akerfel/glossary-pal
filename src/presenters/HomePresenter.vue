@@ -13,8 +13,9 @@ export default {
     goToCreateDeckACB() {
       this.$router.push("/create");
     },
-    goToReviewDeckACB(deckID) {
-      this.$router.push("/review/" + deckID);
+    goToReviewDeckACB(deckToReview) {
+      this.model.selectDeckToReview(deckToReview);
+      this.$router.push("/review");
     },
   },
 };

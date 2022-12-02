@@ -17,7 +17,7 @@ const router = createRouter({
       component: () => CreateDeckPresenter,
     },
     {
-      path: "/review/:deckId",
+      path: "/review",
       name: "review",
       component: () => ReviewDeckPresenter,
     },

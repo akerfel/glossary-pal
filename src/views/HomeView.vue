@@ -16,7 +16,7 @@ export default {
     },
     clickedReviewDeckACB(deck) {
       console.log("review deck: " + deck.name + " " + deck.id);
-      this.onGoToReviewDeck(deck.id);
+      this.onGoToReviewDeck(deck);
     },
     clickedDeleteDeckACB(deck) {
       console.log("delete deck: " + deck.name + " " + deck.id);

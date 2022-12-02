@@ -2,14 +2,12 @@
 import {
   NInput,
 } from "naive-ui";
-import Deck from "../Deck";
 </script>
 
 <script>
 export default {
-  props: ["model", 
-          "onConfirmAnswer", 
-          "deck"
+  props: ["wordToTranslate", 
+          "onConfirmAnswer",
           ],
 
   methods: {
@@ -17,10 +15,7 @@ export default {
   },
 
   created() {
-    console.log("deck in view: ")
-    console.log(this.deck)
-    console.log(this.deck.name)
-    console.log("---")
+
   },
 
   data() {
@@ -32,13 +27,29 @@ export default {
 </script>
 
 <template>
-  <div>
-    <p> Reviewing Deck "{{this.deck.name}}"</p>
+  <div class="reviewDeckView">
+    <span class="inputWordSection">
+      <h2>{{wordToTranslate}}</h2>
+      <n-input
+        v-model:value="answer"
+        placeholder="Your answer..."
+      />
+    </span>
   </div>  
-  <div>
-    <n-input v-model:value="answer" placeholder="Your answer..."/>
-  </div>
 </template>
 
 <style scoped>
+
+.reviewDeckView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.inputWordSection {
+  display: inline-block;
+  width: 100%;
+}
+
 </style>
