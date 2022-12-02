@@ -12,6 +12,7 @@ export default {
   },
   created() {
     this.model = new GlossaryModel();
+    window.myModel=this.model;
   },
   components: {
     HomePresenter,
@@ -24,8 +25,4 @@ export default {
 </template>
 
 <style scoped>
-.home {
-  float: center;
-  text-align: center;
-}
 </style>

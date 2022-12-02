@@ -1,5 +1,6 @@
 <script>
 import HomeView from "../views/HomeView.vue";
+
 export default {
   components: { HomeView },
   props: {
@@ -9,10 +10,22 @@ export default {
     deleteDeckACB(deck) {
       this.model.deleteDeck(deck.id);
     },
+    goToCreateDeckACB() {
+      this.$router.push("/create");
+    },
+    goToReviewDeckACB(deckToReview) {
+      this.model.selectDeckToReview(deckToReview);
+      this.$router.push("/review");
+    },
   },
 };
 </script>
 
 <template>
-  <HomeView :model="model" :onDeleteDeck="deleteDeckACB" />
+  <HomeView
+    :model="model"
+    :onDeleteDeck="deleteDeckACB"
+    :onGoToCreateDeck="goToCreateDeckACB"
+    :onGoToReviewDeck="goToReviewDeckACB"
+  />
 </template>
