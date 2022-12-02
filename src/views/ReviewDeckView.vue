@@ -9,6 +9,7 @@ import {
 export default {
   props: [
     "wordToTranslate", 
+    "correctAnswer",
     "onConfirmAnswer",
     "answerWasCorrect",
     "hasAnswered",
@@ -88,6 +89,7 @@ export default {
         @click="clickedNextWord">
         Next
       </n-button>
+      <p v-if="!answerWasCorrect" id="answerWhenWrong"> Correct answer: <strong>{{wordToTranslate}}</strong></p>
     </span>
   </div>  
 </template>
@@ -127,6 +129,9 @@ export default {
 
 .hidden {
   display: none;
+}
+#answerWhenWrong {
+  color: #94e09c; 
 }
 
 </style>

@@ -24,6 +24,7 @@ export default {
       if (this.model.hasNextWord()) {
         this.wordToTranslate = this.model.getNextWordToTranslate();
         this.hasAnswered = false;
+        this.answerWasCorrect = true;
       }
       else {
         this.$router.push("/"); // TODO: Change to postReview after it has been added
@@ -34,7 +35,8 @@ export default {
   data() { 
     return {
       wordToTranslate: this.model.getWordToTranslate(),
-      answerWasCorrect: false,
+      correctAnswer: this.model.getWordToTranslateAnswer,
+      answerWasCorrect: true,
       hasAnswered: false,
     };
   },
@@ -49,5 +51,6 @@ export default {
     :hasAnswered="hasAnswered"
     :fromLanguage="this.model.currentDeck.lang1"
     :toLanguage="this.model.currentDeck.lang2"
-    :answerWasCorrect="answerWasCorrect"/>
+    :answerWasCorrect="answerWasCorrect"
+    :correctAnswer="correctAnswer"/>
 </template>

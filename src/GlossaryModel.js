@@ -60,6 +60,11 @@ class GlossaryModel {
     return this.currentDeck.getWord(this.wordToTranslateIndex).from;
   }
 
+  getWordToTranslateAnswer() {
+    return this.currentDeck.getWord(this.wordToTranslateIndex).to;
+  }
+
+
   getNextWordToTranslate() {
     this.wordToTranslateIndex++;
     return this.getWordToTranslate();
