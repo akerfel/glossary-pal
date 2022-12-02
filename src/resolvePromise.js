@@ -11,7 +11,6 @@ function resolvePromise(promiseToResolve, promiseState, notify) {
     if (notify) notify();
   }
 
-  console.log("resolve promise");
   if (promiseToResolve !== null) {
     promiseState.promise = promiseToResolve;
     promiseState.data = null;

@@ -11,9 +11,13 @@ export default {
     model: Object,
   },
   created() {
-    resolvePromise(getAvailableLanguages, this.deckCreation.test);
+    resolvePromise(getAvailableLanguages(), this.deckCreation.langCodesPromiseState, this.getFullLangNames);
   },
   methods: {
+    getFullLangNames() {
+      if (this.deckCreation.langCodesPromiseState.data) {
+      }
+    },
     addDeck(deck) {
       this.model.decks.push(deck);
     },
@@ -67,7 +71,8 @@ export default {
   data() {
     return {
       deckCreation: {
-        test: [],
+        langCodesPromiseState: [],
+        langNames: [],
         options: [
           {
             label: "Swedish",
