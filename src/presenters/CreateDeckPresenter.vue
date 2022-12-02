@@ -4,6 +4,7 @@ import PostCreateDeckView from "../views/PostCreateDeckView.vue";
 import Deck from "../Deck";
 import { getAvailableLanguages } from "../apiCalls";
 import resolvePromise from "../resolvePromise";
+import langCodeMap from "../langCodesMap";
 
 export default {
   components: { CreateDeckView, PostCreateDeckView },
@@ -11,11 +12,20 @@ export default {
     model: Object,
   },
   created() {
-    resolvePromise(getAvailableLanguages(), this.deckCreation.langCodesPromiseState, this.getFullLangNames);
+    resolvePromise(
+      getAvailableLanguages(),
+      this.deckCreation.langCodesPromiseState,
+      this.getFullLangNames
+    );
   },
   methods: {
     getFullLangNames() {
+      function getLangNameCB(code) {
+        return langCodeMap.get(code).name;
+      }
       if (this.deckCreation.langCodesPromiseState.data) {
+        this.deckCreation.langNames =
+          this.deckCreation.langCodesPromiseState.data.map(getLangNameCB);
       }
     },
     addDeck(deck) {
