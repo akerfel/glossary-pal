@@ -25,11 +25,13 @@ export default {
   methods: {
     clickedConfirm() {
       this.onConfirmAnswer(this.answer);
+      this.focusInput();
     },
 
     clickedNextWord() {
       this.onNextWord();
       this.answer = "";
+      this.focusInput();
     },
 
     getInputPlaceHolderText() {
@@ -43,7 +45,11 @@ export default {
       else {
         this.clickedNextWord()
       }
-    }
+    },
+
+    focusInput() {
+      this.$refs.inputAnswer.focus();
+    },
   },
 
   data() {
@@ -78,11 +84,13 @@ export default {
     <span class="inputWordSpan">
       <h2 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h2>
       <n-input
+        ref="inputAnswer"
         :style="getInputFieldStyle"
         v-model:value="answer"
         v-bind:placeholder="getInputPlaceHolderText()"
         v-bind:readonly="hasAnswered"
         @keyup.enter="clickedEnter"
+        :autofocus="true"
       />
       <n-button 
         v-if="!this.hasAnswered"
