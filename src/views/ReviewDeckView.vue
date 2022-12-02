@@ -26,6 +26,10 @@ export default {
   },
 
   methods: {
+    created() {
+      this.focusInput();
+    },
+
     clickedConfirm() {
       this.onConfirmAnswer(this.answer);
       this.focusInput();
