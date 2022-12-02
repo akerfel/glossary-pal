@@ -127,6 +127,7 @@ export default {
     "
   >
     <img
+      style="margin-top: 250px;"
       src="../assets/loading.gif"
     />
   </div>
