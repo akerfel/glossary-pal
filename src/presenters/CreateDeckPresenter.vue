@@ -14,7 +14,7 @@ export default {
   created() {
     resolvePromise(
       getAvailableLanguages(),
-      this.deckCreation.langCodesPromiseState,
+      this.langCodesPromiseState,
       this.getLangOptions
     );
   },
@@ -24,9 +24,9 @@ export default {
         const langName = langCodeMap.get(langCode).name;
         return { label: langName, value: langCode };
       }
-      if (this.deckCreation.langCodesPromiseState.data) {
+      if (this.langCodesPromiseState.data) {
         this.deckCreation.langOptions =
-          this.deckCreation.langCodesPromiseState.data.map(createLangOptionCB);
+          this.langCodesPromiseState.data.map(createLangOptionCB);
       }
     },
     addDeck(deck) {
@@ -81,8 +81,8 @@ export default {
   },
   data() {
     return {
+      langCodesPromiseState: [],
       deckCreation: {
-        langCodesPromiseState: [],
         langOptions: [],
         deckWords: [
           {
@@ -99,8 +99,8 @@ export default {
           },
         ],
         deckTitle: "",
-        fromLang: "Swedish",
-        toLang: "English",
+        fromLang: "sv",
+        toLang: "en",
         langFromWord: "",
         langToWord: "",
         creationSuccessfull: false,
@@ -113,11 +113,11 @@ export default {
 </script>
 
 <template>
-  <div v-if="!this.deckCreation.langCodesPromiseState.promise">No data</div>
+  <div v-if="!this.langCodesPromiseState.promise">No data</div>
   <div
     v-else-if="
-      !this.deckCreation.langCodesPromiseState.data &&
-      !this.deckCreation.langCodesPromiseState.error
+      !this.langCodesPromiseState.data &&
+      !this.langCodesPromiseState.error
     "
   >
     <img
@@ -127,14 +127,14 @@ export default {
   </div>
   <div
     v-else-if="
-      !this.deckCreation.langCodesPromiseState.data &&
-      this.deckCreation.langCodesPromiseState.error
+      !this.langCodesPromiseState.data &&
+      this.langCodesPromiseState.error
     "
   >
-    {{ this.deckCreation.langCodesPromiseState.error.toString() }}
+    {{ this.langCodesPromiseState.error.toString() }}
   </div>
   <CreateDeckView
-    v-else-if="this.deckCreation.langCodesPromiseState.data"
+    v-else-if="this.langCodesPromiseState.data"
     :deckCreation="deckCreation"
     :onCreateDeck="createdDeckACB"
     :onDeleteWord="deleteWordACB"

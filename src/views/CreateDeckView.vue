@@ -7,6 +7,8 @@ import {
   NScrollbar,
   NAlert,
 } from "naive-ui";
+
+import langCodeMap from "../langCodesMap";
 </script>
 
 <script>
@@ -14,6 +16,9 @@ export default {
   props: ["deckCreation", "onCreateDeck", "onDeleteWord", "onAddWord"],
 
   methods: {
+    getLangFromCode(code) {
+      return langCodeMap.get(code).name;
+    },
     clickedAddWordACB() {
       this.onAddWord();
     },
@@ -44,6 +49,7 @@ export default {
       <n-input-group>
         <n-select
           v-model:value="this.deckCreation.fromLang"
+          v-model:label="this.deckCreation.fromLangLabel"
           filterable
           placeholder="Select a language"
           :options="this.deckCreation.langOptions"
@@ -58,8 +64,8 @@ export default {
     </div>
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
-      <span class="fromLangTextAddWord">{{ this.deckCreation.fromLang }}</span>
-      <span>{{ this.deckCreation.toLang }}</span>
+      <span class="fromLangTextAddWord">{{ this.getLangFromCode(this.deckCreation.fromLang) }}</span>
+      <span>{{ this.getLangFromCode(this.deckCreation.toLang) }}</span>
       <n-input-group>
         <n-input
           v-model:value="this.deckCreation.langFromWord"
@@ -77,9 +83,9 @@ export default {
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
-            this.deckCreation.fromLang
+            this.getLangFromCode(this.deckCreation.fromLang)
           }}</span>
-          <span>{{ this.deckCreation.toLang }}</span>
+          <span>{{ this.getLangFromCode(this.deckCreation.toLang) }}</span>
         </div>
         <n-scrollbar style="max-height: 250px">
           <div id="scrollbarWord" v-for="word in this.deckCreation.deckWords">
