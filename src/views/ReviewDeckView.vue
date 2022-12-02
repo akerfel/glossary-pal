@@ -146,19 +146,20 @@ export default {
   text-align: center;
   margin-bottom: 5px;
 
-  border: 2px solid rgb(206, 50, 50);
-  border-radius: 25px;
-  background-color: rgb(49, 17, 6);
+  padding: 10px;
+  border: 2px solid rgb(106, 106, 106);
+  border-radius: 10px;
 }
 
 .wordToTranslate {
-  color: rgb(0, 194, 81);
+  color: rgb(255, 255, 255);
   margin-bottom: 10px;
 }
 
 .confirmAndNextButton {
   width: 75px;
   margin-bottom: 20px;
+  color: ADD8E6
 }
 
 .inputWordSpan {
@@ -176,11 +177,12 @@ export default {
   color: rgb(0, 194, 81);
   margin-bottom: 15px;
 
+  /* Border for correct answer box. Might add back.
   padding: 5px;
   border: 2px solid rgb(7, 77, 58);
   border-radius: 5px;
   background-color: rgb(49, 17, 6);
-
+  */
 }
 
 .hiddenAnswer {
@@ -191,10 +193,12 @@ export default {
   color: rgb(0, 194, 81);
   margin-bottom: 15px;
 
+  /*
   padding: 5px;
   border: 2px solid rgb(7, 77, 58);
   border-radius: 5px;
   background-color: rgb(49, 17, 6);
+  */
 }
 
 </style>
