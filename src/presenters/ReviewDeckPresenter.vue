@@ -23,6 +23,7 @@ export default {
     giveNextQuestionACB() {
       if (this.model.hasNextWord()) {
         this.wordToTranslate = this.model.getNextWordToTranslate();
+        this.correctAnswer = this.model.getCorrectAnswer();
         this.hasAnswered = false;
         this.answerWasCorrect = true;
       }
@@ -35,7 +36,7 @@ export default {
   data() { 
     return {
       wordToTranslate: this.model.getWordToTranslate(),
-      correctAnswer: this.model.getWordToTranslateAnswer,
+      correctAnswer: this.model.getWordToTranslateAnswer(),
       answerWasCorrect: true,
       hasAnswered: false,
     };
@@ -48,9 +49,9 @@ export default {
     :onConfirmAnswer="confirmedAnswerACB"
     :onNextWord="giveNextQuestionACB"
     :wordToTranslate="wordToTranslate"
+    :correctAnswer="correctAnswer"
     :hasAnswered="hasAnswered"
     :fromLanguage="this.model.currentDeck.lang1"
     :toLanguage="this.model.currentDeck.lang2"
-    :answerWasCorrect="answerWasCorrect"
-    :correctAnswer="correctAnswer"/>
+    :answerWasCorrect="answerWasCorrect"/>
 </template>

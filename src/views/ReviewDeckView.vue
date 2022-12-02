@@ -70,6 +70,9 @@ export default {
 
 <template>
   <div class="reviewDeckView">
+    <CustomComponent
+        @keyup.enter="clickedConfirm"
+    />
     <span class="inputWordSpan">
       <h2 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h2>
       <n-input
@@ -89,7 +92,7 @@ export default {
         @click="clickedNextWord">
         Next
       </n-button>
-      <p v-if="!answerWasCorrect" id="answerWhenWrong"> Correct answer: <strong>{{wordToTranslate}}</strong></p>
+      <p v-if="!answerWasCorrect" id="answerWhenWrong"> Correct answer: <strong>{{correctAnswer}}</strong></p>
     </span>
   </div>  
 </template>
