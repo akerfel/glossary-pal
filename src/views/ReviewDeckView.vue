@@ -70,7 +70,7 @@ export default {
 <template>
   <div class="reviewDeckView">
     <span class="inputWordSpan">
-      <h2>{{wordToTranslate}}</h2>
+      <h2 class="wordToTranslate"> <b>{{wordToTranslate}}</b></h2>
       <n-input
         v-bind:class="getInputFieldClass()"
         v-model:value="answer"
@@ -101,6 +101,10 @@ export default {
   width: 300px;
 }
 
+.wordToTranslate {
+  color: rgb(0, 194, 81);
+}
+
 .inputWordSpan {
   display: inline-block;
   width: 100%;
@@ -112,12 +116,12 @@ export default {
 }
 
 .inputIfWrongAnswer {
-  background-color: #cf5555; 
+  background-color: #d3a4a4; 
   margin-bottom: 5px;
 }
 
 .inputIfCorrectAnswer {
-  background-color: #25ab32; 
+  background-color: #94e09c; 
   margin-bottom: 5px;
 }
 
