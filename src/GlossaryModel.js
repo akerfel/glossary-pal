@@ -80,7 +80,7 @@ class GlossaryModel {
   }
 
   answerIsCorrect(answer) {
-    return answer === this.getCorrectAnswer()
+    return answer.toLowerCase() === this.getCorrectAnswer().toLowerCase();
   }
 
   // Adds the index of the current word to this.wrongAnswers
