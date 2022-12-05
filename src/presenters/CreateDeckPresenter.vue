@@ -33,11 +33,13 @@ export default {
       const sourceLang = this.deckCreation.fromLang;
       const targetLang = this.deckCreation.toLang;
       const toBeTranslated = this.deckCreation.langFromWord;
-      resolvePromise(
-        translateWord(sourceLang, targetLang, toBeTranslated),
-        this.deckCreation.translatedWordPromiseState,
-        this.receiveTranslatedWordACB
-      );
+      if (toBeTranslated.length > 0) {
+        resolvePromise(
+          translateWord(sourceLang, targetLang, toBeTranslated),
+          this.deckCreation.translatedWordPromiseState,
+          this.receiveTranslatedWordACB
+        );
+      }
     },
     getLangOptionsACB() {
       function createLangOptionCB(langCode) {
