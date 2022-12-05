@@ -22,13 +22,13 @@ export default {
 
 <template>
   <div class="postReviewView">
-    <div class="result">
+    <div>
         <p>{{correctAnswersAmount}}  / {{deckSize}} cards cleared</p>
         <h3><b>Deck: {{currentDeckName}}</b></h3>
         <h3 class="languages"><b>{{fromLanguage}} to {{toLanguage}}</b></h3>
     </div>
    
-    <div class="goHomeButton">
+    <div>
         <n-button 
             class="buttons"
             type="primary" 
