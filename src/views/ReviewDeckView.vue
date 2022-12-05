@@ -124,7 +124,7 @@ export default {
 
       <!-- Confirm -->
       <n-button
-        v-if="!this.hasAnswered"
+        v-if="!hasAnswered"
         class="buttons"
         type="primary"
         @click="clickedConfirm"
@@ -135,7 +135,7 @@ export default {
       <!-- Next -->
       <div>
         <n-button
-          v-if="this.hasAnswered"
+          v-if="hasAnswered"
           class="buttons"
           type="primary"
           @click="clickedNextWord"
@@ -146,7 +146,7 @@ export default {
 
       <!-- Try Again -->
       <n-button
-        v-if="!this.answerWasCorrect && this.hasAnswered"
+        v-if="!answerWasCorrect && hasAnswered"
         class="buttons"
         type="primary"
         @click="clickedTryAgain"
