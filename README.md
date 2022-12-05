@@ -4,10 +4,6 @@ Glossary Pal is a website for creating and reviewing glossary lists. The webpage
 
 ![firefox_Z94ZbTdXNC](https://user-images.githubusercontent.com/45148959/205668260-98f8a0eb-dedf-495d-bb7a-25c8e757e2a3.gif)
 
-## Example images
-
-![image](https://user-images.githubusercontent.com/45148959/205668792-5f146dee-12d4-4e56-bcd8-2f0d4d3f40dc.png)
-
 # Running this project
 
 This template should help get you started developing with Vue 3 in Vite.
