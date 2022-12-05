@@ -1,6 +1,5 @@
 <script>
-import { RouterLink, RouterView } from "vue-router";
-import HomePresenter from "./presenters/HomePresenter.vue";
+import { RouterView } from "vue-router";
 import GlossaryModel from "./GlossaryModel.js";
 
 export default {
@@ -12,11 +11,9 @@ export default {
   },
   created() {
     this.model = new GlossaryModel();
-    window.myModel=this.model;
+    window.myModel = this.model;
   },
-  components: {
-    HomePresenter,
-  },
+  components: {},
 };
 </script>
 
@@ -24,5 +21,4 @@ export default {
   <RouterView :model="model" />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

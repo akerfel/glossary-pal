@@ -1,14 +1,11 @@
 <script setup>
-import {
-  NInput,
-  NButton,
-} from "naive-ui";
+import { NInput, NButton } from "naive-ui";
 </script>
 
 <script>
 export default {
   props: [
-    "currentWord", 
+    "currentWord",
     "correctAnswer",
     "currentWordIndex",
     "deckSize",
@@ -19,11 +16,10 @@ export default {
     "onTryAgain",
     "isOnLastWord",
     "fromLanguage",
-    "toLanguage",],
+    "toLanguage",
+  ],
 
-  created() {
-
-  },
+  created() {},
 
   methods: {
     created() {
@@ -56,18 +52,16 @@ export default {
 
     clickedEnter() {
       if (!this.hasAnswered) {
-        this.clickedConfirm()
-      }
-      else {
-        this.clickedNextWord()
+        this.clickedConfirm();
+      } else {
+        this.clickedNextWord();
       }
     },
 
     getCorrectAnswerClass() {
       if (!this.answerWasCorrect) {
         return "correctAnswerWhenWrong";
-      }
-      else {
+      } else {
         return "hiddenAnswer";
       }
     },
@@ -79,24 +73,23 @@ export default {
 
   data() {
     return {
-        answer: "",
+      answer: "",
     };
   },
 
   computed: {
     // It was not possible to just return a class reference here,
     // perhaps because that does not override n-input's class?
-    getInputFieldStyle(){
-      var style = "margin-bottom: 20px;"
+    getInputFieldStyle() {
+      var style = "margin-bottom: 20px;";
       if (!this.hasAnswered) {
-        style += "background-color: #ffffff; "
+        style += "background-color: #ffffff; ";
         return style;
       }
       if (this.answerWasCorrect) {
-        style += "background-color: #94e09c;"
-      }
-      else {
-        style += "background-color: #d3a4a4;"
+        style += "background-color: #94e09c;";
+      } else {
+        style += "background-color: #d3a4a4;";
       }
       return style;
     },
@@ -106,9 +99,11 @@ export default {
 
 <template>
   <div class="reviewDeckView">
-    <p>{{currentWordIndex}} / {{deckSize}}</p>
+    <p>{{ currentWordIndex }} / {{ deckSize }}</p>
     <span class="inputWordSpan">
-      <h1 class="currentWord"> <b>{{currentWord}}</b></h1>
+      <h1 class="currentWord">
+        <b>{{ currentWord }}</b>
+      </h1>
 
       <n-input
         ref="inputAnswer"
@@ -122,48 +117,47 @@ export default {
 
       <div>
         <div v-bind:class="getCorrectAnswerClass()">
-          <p id="correctAnswerTitle"> 
-          Correct answer
-          </p>
-        <strong>{{correctAnswer}}</strong>
+          <p id="correctAnswerTitle">Correct answer</p>
+          <strong>{{ correctAnswer }}</strong>
         </div>
       </div>
 
       <!-- Confirm -->
-      <n-button 
+      <n-button
         v-if="!this.hasAnswered"
         class="buttons"
-        type="primary" 
-        @click="clickedConfirm">
+        type="primary"
+        @click="clickedConfirm"
+      >
         Confirm
       </n-button>
 
       <!-- Next -->
       <div>
-        <n-button 
+        <n-button
           v-if="this.hasAnswered"
           class="buttons"
-          type="primary" 
-          @click="clickedNextWord">
+          type="primary"
+          @click="clickedNextWord"
+        >
           Next
         </n-button>
       </div>
 
       <!-- Try Again -->
-      <n-button 
-        v-if="(!this.answerWasCorrect && this.hasAnswered)"
+      <n-button
+        v-if="!this.answerWasCorrect && this.hasAnswered"
         class="buttons"
-        type="primary" 
-        @click="clickedTryAgain">
+        type="primary"
+        @click="clickedTryAgain"
+      >
         Try Again
       </n-button>
-
     </span>
-  </div>  
+  </div>
 </template>
 
 <style scoped>
-
 .reviewDeckView {
   display: flex;
   flex-direction: column;
@@ -221,5 +215,4 @@ export default {
   background-color: rgb(49, 17, 6);
   */
 }
-
 </style>

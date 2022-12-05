@@ -1,5 +1,4 @@
 <script>
-import Deck from "../Deck";
 import ReviewDeckView from "../views/ReviewDeckView.vue";
 export default {
   components: { ReviewDeckView },
@@ -13,10 +12,9 @@ export default {
       this.hasAnswered = true;
       if (this.model.answerIsCorrect(answer)) {
         this.answerWasCorrect = true;
-      }
-      else {
+      } else {
         this.answerWasCorrect = false;
-        this.model.addCurrentWordToWrongAnswers()
+        this.model.addCurrentWordToWrongAnswers();
       }
     },
 
@@ -27,8 +25,7 @@ export default {
         this.currentWordIndex = this.model.getCurrentWordIndex() + 1;
         this.hasAnswered = false;
         this.answerWasCorrect = true;
-      }
-      else {
+      } else {
         this.$router.push("/postReviewView"); // TODO: Change to postReview after it has been added
       }
     },
@@ -39,7 +36,7 @@ export default {
     },
   },
 
-  data() { 
+  data() {
     return {
       currentWord: this.model.getCurrentWord(),
       correctAnswer: this.model.getCurrentWordAnswer(),
@@ -53,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <ReviewDeckView 
+  <ReviewDeckView
     :onConfirmAnswer="confirmedAnswerACB"
     :onNextWord="giveNextQuestionACB"
     :onTryAgain="tryAgainACB"
@@ -64,5 +61,6 @@ export default {
     :hasAnswered="hasAnswered"
     :fromLanguage="this.model.currentDeck.lang1"
     :toLanguage="this.model.currentDeck.lang2"
-    :answerWasCorrect="answerWasCorrect"/>
+    :answerWasCorrect="answerWasCorrect"
+  />
 </template>
