@@ -11,14 +11,14 @@ import {
 
 <script>
 export default {
-  props: [
-    "deckCreation",
-    "onCreateDeck",
-    "onDeleteWord",
-    "onAddWord",
-    "onGetTranslate",
-    "getLangName",
-  ],
+  props: {
+    deckCreation: Object,
+    onCreateDeck: Function,
+    onDeleteWord: Function,
+    onAddWord: Function,
+    onGetTranslate: Function,
+    getLangName: Function,
+  },
 
   methods: {
     clickedAddWordACB() {
@@ -38,13 +38,13 @@ export default {
 </script>
 
 <template>
-  <div v-if="!this.deckCreation.creationSuccessfull" class="createview">
-    <p>{{ this.deckCreation.test }}</p>
+  <div v-if="!deckCreation.creationSuccessfull" class="createview">
+    <p>{{ deckCreation.test }}</p>
     <h1 class="title">Create new glossary deck</h1>
     <div class="deckparams">
       <span>Deck name</span>
       <n-input
-        v-model:value="this.deckCreation.deckTitle"
+        v-model:value="deckCreation.deckTitle"
         class="deckname"
         placeholder="Title your deck"
       />
@@ -54,38 +54,38 @@ export default {
       </div>
       <n-input-group>
         <n-select
-          v-model:value="this.deckCreation.fromLang"
-          v-model:label="this.deckCreation.fromLangLabel"
+          v-model:value="deckCreation.fromLang"
+          v-model:label="deckCreation.fromLangLabel"
           filterable
           placeholder="Select a language"
-          :options="this.deckCreation.langOptions"
+          :options="deckCreation.langOptions"
         />
         <n-select
-          v-model:value="this.deckCreation.toLang"
+          v-model:value="deckCreation.toLang"
           filterable
           placeholder="Select a language"
-          :options="this.deckCreation.langOptions"
+          :options="deckCreation.langOptions"
         />
       </n-input-group>
     </div>
     <div class="addword">
       <h2 id="addWordTitle">Add words</h2>
       <span class="fromLangTextAddWord">{{
-        this.getLangName(this.deckCreation.fromLang)
+        getLangName(deckCreation.fromLang)
       }}</span>
-      <span>{{ this.getLangName(this.deckCreation.toLang) }}</span>
+      <span>{{ getLangName(deckCreation.toLang) }}</span>
       <n-input-group>
         <n-input
-          v-model:value="this.deckCreation.langFromWord"
+          v-model:value="deckCreation.langFromWord"
           placeholder="Language from"
         />
         <n-input
-          v-model:value="this.deckCreation.langToWord"
+          v-model:value="deckCreation.langToWord"
           placeholder="Language to"
           :loading="
-            this.deckCreation.translatedWordPromiseState.promise &&
-            !this.deckCreation.translatedWordPromiseState.data &&
-            !this.deckCreation.translatedWordPromiseState.error
+            deckCreation.translatedWordPromiseState.promise &&
+            !deckCreation.translatedWordPromiseState.data &&
+            !deckCreation.translatedWordPromiseState.error
           "
         />
         <n-button @click="clickedAddWordACB" type="primary">Add word</n-button>
@@ -102,14 +102,14 @@ export default {
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
-            this.getLangName(this.deckCreation.fromLang)
+            getLangName(deckCreation.fromLang)
           }}</span>
-          <span>{{ this.getLangName(this.deckCreation.toLang) }}</span>
+          <span>{{ getLangName(deckCreation.toLang) }}</span>
         </div>
         <n-scrollbar style="max-height: 250px">
           <div
             id="scrollbarWord"
-            v-for="word in this.deckCreation.deckWords"
+            v-for="word in deckCreation.deckWords"
             v-bind:key="word"
           >
             <span class="fromLangTextAddWord">{{ word.from }}</span>
@@ -126,7 +126,7 @@ export default {
       </div>
     </div>
     <n-alert
-      v-if="this.deckCreation.creationErrorNoName"
+      v-if="deckCreation.creationErrorNoName"
       class="alert"
       title="Deck creation error"
       type="error"
@@ -134,7 +134,7 @@ export default {
       Please name your deck.
     </n-alert>
     <n-alert
-      v-if="this.deckCreation.creationErrorNoWords"
+      v-if="deckCreation.creationErrorNoWords"
       class="alert"
       title="Deck creation error"
       type="error"

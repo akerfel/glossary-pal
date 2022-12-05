@@ -4,7 +4,12 @@ import { NButton, NScrollbar, NAlert } from "naive-ui";
 
 <script>
 export default {
-  props: ["deckCreation", "onGoToHome", "onCreateAnotherDeck", "getLangName"],
+  props: {
+    deckCreation: Object,
+    onGoToHome: Function,
+    onCreateAnotherDeck: Function,
+    getLangName: Function,
+  },
 
   methods: {
     clickedGoToHomeACB() {
@@ -18,9 +23,9 @@ export default {
 </script>
 
 <template>
-  <div v-if="this.deckCreation.creationSuccessfull" class="postcreateview">
+  <div v-if="deckCreation.creationSuccessfull" class="postcreateview">
     <n-alert class="alert" title="Deck created" type="success">
-      Your deck "{{ this.deckCreation.deckTitle }}" has been successfully
+      Your deck "{{ deckCreation.deckTitle }}" has been successfully
       created.
     </n-alert>
     <div class="deckWords">
@@ -28,14 +33,14 @@ export default {
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
-            this.getLangName(this.deckCreation.fromLang)
+            getLangName(deckCreation.fromLang)
           }}</span>
-          <span>{{ this.getLangName(this.deckCreation.toLang) }}</span>
+          <span>{{ getLangName(deckCreation.toLang) }}</span>
         </div>
         <n-scrollbar style="max-height: 500px">
           <div
             id="scrollbarWord"
-            v-for="word in this.deckCreation.deckWords"
+            v-for="word in deckCreation.deckWords"
             v-bind:key="word"
           >
             <span class="fromLangTextAddWord">{{ word.from }}</span>
