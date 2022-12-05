@@ -30,7 +30,6 @@ export default {
    
     <div>
         <n-button 
-            class="buttons"
             type="primary" 
             @click="goToHomeClicked">
             Go back to home
