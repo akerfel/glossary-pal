@@ -26,7 +26,7 @@ export default {
         this.hasAnswered = false;
         this.answerWasCorrect = true;
       } else {
-        this.$router.push("/postReviewView"); // TODO: Change to postReview after it has been added
+        this.$router.push("/postReviewView"); 
       }
     },
 

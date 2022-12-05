@@ -24,10 +24,10 @@ export default {
 
 <template>
   <PostReviewView 
-	:currentDeckName="this.model.currentDeck.name"
+	:currentDeckName="model.currentDeck.name"
 	:deckSize="deckSize"
-	:fromLanguage="this.model.currentDeck.lang1"
-  :toLanguage="this.model.currentDeck.lang2"
+	:fromLanguage="model.currentDeck.lang1"
+  :toLanguage="model.currentDeck.lang2"
 	:onGoToHomeClicked="goToHomeACB"
 	:correctAnswersAmount="correctAnswersAmount" />
 </template>
