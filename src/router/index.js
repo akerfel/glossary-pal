@@ -18,6 +18,11 @@ const router = createRouter({
       name: "review",
       component: () => import ("../presenters/ReviewDeckPresenter.vue"),
     },
+    {
+      path: "/postReviewView",
+      name: "postReviewView",
+      component: () => import ("../presenters/PostReviewViewPresenter.vue"),
+    }, 
   ],
 });
 
