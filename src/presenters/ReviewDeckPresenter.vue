@@ -29,7 +29,7 @@ export default {
         this.answerWasCorrect = true;
       }
       else {
-        this.$router.push("/"); // TODO: Change to postReview after it has been added
+        this.$router.push("/postReviewView"); // TODO: Change to postReview after it has been added
       }
     },
 
