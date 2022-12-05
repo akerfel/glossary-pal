@@ -1,9 +1,14 @@
 <script>
-import { RouterView } from "vue-router";
 import GlossaryModel from "./GlossaryModel.js";
+import AppView from "./views/AppView.vue";
 
 export default {
   name: "App",
+  methods: {
+    goToHomeACB() {
+      this.$router.push("/")
+    }
+  },
   data() {
     return {
       model: {},
@@ -13,12 +18,16 @@ export default {
     this.model = new GlossaryModel();
     window.myModel = this.model;
   },
-  components: {},
+  components: { AppView },
 };
 </script>
 
 <template>
-  <RouterView :model="model" />
+  <AppView :model="model" :onGoToHome="goToHomeACB"/>
 </template>
 
-<style scoped></style>
+<style scoped>
+.banner {
+  align-self: flex-end;
+}
+</style>
