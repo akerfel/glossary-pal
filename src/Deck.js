@@ -16,7 +16,7 @@ class Deck {
   }
 
   getWord(index) {
-    return this.words[index]
+    return this.words[index];
   }
 }
 

@@ -33,7 +33,11 @@ export default {
           <span>{{ this.getLangName(this.deckCreation.toLang) }}</span>
         </div>
         <n-scrollbar style="max-height: 500px">
-          <div id="scrollbarWord" v-for="word in this.deckCreation.deckWords">
+          <div
+            id="scrollbarWord"
+            v-for="word in this.deckCreation.deckWords"
+            v-bind:key="word"
+          >
             <span class="fromLangTextAddWord">{{ word.from }}</span>
             <span>{{ word.to }}</span>
           </div>
