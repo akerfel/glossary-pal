@@ -6,11 +6,7 @@ Glossary Pal is a website for creating and reviewing glossary lists. The webpage
 
 ## Example images
 
-![image](https://user-images.githubusercontent.com/45148959/205668531-1b01f095-0284-475c-86ad-95a4da9ada32.png)
-
-![image](https://user-images.githubusercontent.com/45148959/205668583-88981079-da88-4d7f-9dca-5a44c3bade6e.png)
-
-![image](https://user-images.githubusercontent.com/45148959/205668673-269fd964-6b4a-4efc-8e94-00cfe410858b.png)
+![image](https://user-images.githubusercontent.com/45148959/205668792-5f146dee-12d4-4e56-bcd8-2f0d4d3f40dc.png)
 
 # Running this project
 
