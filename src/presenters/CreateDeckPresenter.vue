@@ -92,8 +92,15 @@ export default {
     goToHomeACB() {
       this.$router.push("/");
     },
-    refreshViewACB() {
-      this.$router.go();
+    resetDeckCreationVarsACB() {
+      let dc = this.deckCreation;
+      dc.deckWords = [];
+      dc.deckTitle = "";
+      dc.langFromWord = "";
+      dc.langToWord = "";
+      dc.creationSuccessfull = false;
+      dc.creationErrorNoName = false;
+      dc.creationErrorNoWords = false;
     },
   },
   data() {
@@ -144,7 +151,7 @@ export default {
   <PostCreateDeckView
     :deckCreation="deckCreation"
     :onGoToHome="goToHomeACB"
-    :onCreateAnotherDeck="refreshViewACB"
+    :onCreateAnotherDeck="resetDeckCreationVarsACB"
     :getLangName="getLangName"
   />
 </template>
