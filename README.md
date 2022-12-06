@@ -8,6 +8,7 @@ Glossary Pal is a website for creating and reviewing glossary lists. The webpage
 So far we have a home view, where you can see your current decks; a create a deck view where you can create a new deck; and a review view, where you can review the words in a deck. The functionality for all three views is more or less done, but may need some touching up. The create a deck view contains the API calls: we make calls to the Google Translate API in order to get the languages that the service can translate, and calls to translate words which the user has inputted.
 
 The major areas left are: user implementation (sign in, registration views) and persistence (using Firebase). There are also some additional features that we may implement, such as being able to edit an already created deck, and reviewing the words you missed once more after a session (see GitHub issues).
+
 ## File structure
 Everything interesting is in the src folder, where we have the folders "assets", "router", "presenters", and "views". Outside of these folders we have general Javascript code and "root" files such as App.vue and main.js.
 
