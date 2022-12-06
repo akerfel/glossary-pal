@@ -4,17 +4,21 @@ Glossary Pal is a website for creating and reviewing glossary lists. The webpage
 
 ![firefox_Z94ZbTdXNC](https://user-images.githubusercontent.com/45148959/205668260-98f8a0eb-dedf-495d-bb7a-25c8e757e2a3.gif)
 
-# Running this project
+## Mid-project status
+So far we have a home view, where you can see your current decks; a create a deck view where you can create a new deck; and a review view, where you can review the words in a deck. The functionality for all three views is more or less done, but may need some touching up. The create a deck view contains the API calls: we make calls to the Google Translate API in order to get the languages that the service can translate, and calls to translate actuals words based user input.
 
-This template should help get you started developing with Vue 3 in Vite.
+The major areas left are: user implementation (sign in, registration views) and persistence (using Firebase). There are also some additional features that we may implement, such as being able to edit an already created deck, and reviewing the words you missed once more after a session (see GitHub issues).
 
-## Recommended IDE Setup
+## File structure
+Everything interesting is in the src folder, where we have the folders "assets", "router", "presenters", and "views". Outside of these folders we have general Javascript code and "root" files such as App.vue and main.js.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+main.js and App.vue are the backbones of the application, serving as the entry and main execution. GlossaryModel.js and Deck.js are the model files, defining the classes that are used throughout the project. apiCalls.js, resolvePromise.js, and langCodesMap.js are general Javascript code which simplifies the logic in the presenters.
 
-## Customize configuration
+index.js in the router folder is just a vue router, defining the paths (currently "/", "/create", and "/review") of the application.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+For the presenters we have: HomePresenter, CreateDeckPresenter, ReviewDeckPresenter, and PostReviewViewPresenter. Each serve as a presenter either for one view, or in the case of CreateADeck, two (which ones should be obvious). Most application logic is handled here.
+
+As for the views, most do what you think they do: define the view but not much else. The odd one out is promiseNoData.vue, which is used in createADeckPresenter to render a loading icon while the promise is resolving (and an error if it fails). 
 
 ## Project Setup
 
