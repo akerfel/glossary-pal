@@ -19,7 +19,6 @@ class GlossaryModel {
     ]);
     var deck3 = new Deck("Hard Swedish Words", "Swedish", "Swedish", [
       { from: "hedendom", to: "religionslöshet" },
-      { from: "hedonism", to: "njutningsfilosofi" },
       { from: "hegemoni", to: "maktställning" },
     ]);
     this.addDeck(deck1);
