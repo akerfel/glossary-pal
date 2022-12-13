@@ -1,6 +1,6 @@
 <script>
 import HomeView from "../views/HomeView.vue";
-
+import firebase from 'firebase'
 export default {
   components: { HomeView },
   props: {
@@ -13,10 +13,12 @@ export default {
     goToCreateDeckACB() {
       this.$router.push("/create");
     },
+    
     goToReviewDeckACB(deckToReview) {
       this.model.selectDeckToReview(deckToReview);
       this.$router.push("/review");
     },
+
   },
 };
 </script>

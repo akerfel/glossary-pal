@@ -18,6 +18,7 @@ export default {
       console.log("delete deck: " + deck.name + " " + deck.id);
       this.onDeleteDeck(deck);
     },
+    
   },
 };
 </script>

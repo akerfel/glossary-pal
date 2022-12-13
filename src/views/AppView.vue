@@ -5,12 +5,14 @@ import { RouterView } from "vue-router";
 
 <script>
 export default {
-  props: ["model", "onGoToHome"],
+  props: ["model", "onGoToHome", "onLogOut"],
   methods: {
     clickedLogoutACB() {
       console.log("Log out user");
+      this.onLogOut();
     },
     clickedHomeACB() {
+      "Going to home"
       this.onGoToHome();
     },
   },
@@ -20,12 +22,12 @@ export default {
 <template>
   <div class="appview">
     <div class="banner">
-      <n-button id="homebutton" @click="clickedHomeACB()" type="primary"
+      <n-button id="homebutton" @click="clickedHomeACB" type="primary"
         >Home</n-button
       >
       <n-button
         id="signout"
-        @click="clickedLogoutACB()"
+        @click="clickedLogoutACB"
         type="primary"
         color="#3d3d3d"
         >Log out</n-button
