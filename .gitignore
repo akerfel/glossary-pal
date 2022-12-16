@@ -28,5 +28,6 @@ coverage
 *.sw?
 
 src/apiConfig.js
+src/firebaseConfig.js
 
 .firebase/
