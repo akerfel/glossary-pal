@@ -17,6 +17,9 @@ export default {
         alert(error.message);
       });
     },
+    onGoToInfo() {
+      this.$router.push("/info")
+    },
   },
   data() {
     return {
@@ -32,7 +35,7 @@ export default {
 </script>
 
 <template>
-  <AppView :model="model" :onGoToHome="goToHomeACB" :onLogOut="onLogOutACB"/>
+  <AppView :model="model" :onGoToHome="goToHomeACB" :onLogOut="onLogOutACB" :onGoToInfo="onGoToInfo"/>
 </template>
 
 <style scoped>
