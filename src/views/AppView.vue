@@ -5,7 +5,7 @@ import { RouterView } from "vue-router";
 
 <script>
 export default {
-  props: ["model", "onGoToHome", "onLogOut"],
+  props: ["model", "onGoToHome", "onLogOut", "onGoToInfo"],
   methods: {
     clickedLogoutACB() {
       console.log("Log out user");
@@ -14,6 +14,10 @@ export default {
     clickedHomeACB() {
       "Going to home"
       this.onGoToHome();
+    },
+    clickedInfoACB() {
+      "Going to info"
+      this.onGoToInfo();
     },
   },
 };
@@ -24,6 +28,9 @@ export default {
     <div class="banner">
       <n-button id="homebutton" @click="clickedHomeACB" type="primary"
         >Home</n-button
+      >
+      <n-button id="homebutton" @click="clickedInfoACB" type="info" 
+        >Info</n-button
       >
       <n-button
         id="signout"
