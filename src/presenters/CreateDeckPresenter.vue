@@ -46,9 +46,12 @@ export default {
         const langName = langCodeMap.get(langCode).name;
         return { label: langName, value: langCode };
       }
+      function sortLangOptionsAlphabeticallyCB(langOption1, langOption2) {
+        return langOption1.label > langOption2.label
+      }
       if (this.langCodesPromiseState.data) {
-        this.deckCreation.langOptions =
-          this.langCodesPromiseState.data.map(createLangOptionCB);
+        const unsortedLangOptions = this.langCodesPromiseState.data.map(createLangOptionCB);
+        this.deckCreation.langOptions = unsortedLangOptions.sort(sortLangOptionsAlphabeticallyCB)
       }
     },
     createdDeckACB() {
