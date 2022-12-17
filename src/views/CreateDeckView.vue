@@ -18,11 +18,23 @@ export default {
     onAddWord: Function,
     onGetTranslate: Function,
     getLangName: Function,
+    onDeckNameChange: Function,
+    onFromLangChange: Function,
+    onToLangChange: Function,
+    onLangFromWordChange: Function,
+    onLangToWordChange: Function,
+    onLangSwitch: Function,
+    getNumberOfWordsInDeck: Function,
   },
 
   methods: {
+    scrollDownToBottom() {
+      const element = document.getElementById("scrollbar");
+      element.scrollTop = element.scrollHeight;
+    },
     clickedAddWordACB() {
       this.onAddWord();
+      setTimeout(() => this.scrollDownToBottom(), 10)
     },
     clickedDeleteWordACB(word) {
       this.onDeleteWord(word);
@@ -32,6 +44,24 @@ export default {
     },
     clickedGetTranslationACB() {
       this.onGetTranslate();
+    },
+    deckNameChangedACB(deckName) {
+      this.onDeckNameChange(deckName);
+    },
+    fromLanguageChangedACB(langCode) {
+      this.onFromLangChange(langCode);
+    },
+    toLanguageChangedACB(langCode) {
+      this.onToLangChange(langCode);
+    },
+    langFromWordChangedACB(string) {
+      this.onLangFromWordChange(string);
+    },
+    langToWordChangedACB(string) {
+      this.onLangToWordChange(string);
+    },
+    clickedLangSwitchBtn() {
+      this.onLangSwitch();
     },
   },
 };
@@ -44,7 +74,8 @@ export default {
     <div class="deckparams">
       <span>Deck name</span>
       <n-input
-        v-model:value="deckCreation.deckTitle"
+        @input="deckNameChangedACB"
+        type="text"
         class="deckname"
         placeholder="Title your deck"
       />
@@ -54,16 +85,22 @@ export default {
       </div>
       <n-input-group>
         <n-select
-          v-model:value="deckCreation.fromLang"
-          v-model:label="deckCreation.fromLangLabel"
+          :on-update:value="fromLanguageChangedACB"
           filterable
           placeholder="Select a language"
+          v-bind:value="deckCreation.fromLang"
+          default-value="sv"
           :options="deckCreation.langOptions"
         />
+        <n-button id="langSwitchBtn" type="info" @click="clickedLangSwitchBtn">
+          ⇆
+        </n-button>
         <n-select
-          v-model:value="deckCreation.toLang"
+          :on-update:value="toLanguageChangedACB"
           filterable
           placeholder="Select a language"
+          v-bind:value="deckCreation.toLang"
+          default-value="en"
           :options="deckCreation.langOptions"
         />
       </n-input-group>
@@ -76,12 +113,14 @@ export default {
       <span>{{ getLangName(deckCreation.toLang) }}</span>
       <n-input-group>
         <n-input
-          v-model:value="deckCreation.langFromWord"
+          @input="langFromWordChangedACB"
           placeholder="Language from"
+          v-bind:value="deckCreation.langFromWord"
         />
         <n-input
-          v-model:value="deckCreation.langToWord"
+          @input="langToWordChangedACB"
           placeholder="Language to"
+          v-bind:value="deckCreation.langToWord"
           :loading="
             deckCreation.translatedWordPromiseState.promise &&
             !deckCreation.translatedWordPromiseState.data &&
@@ -98,7 +137,9 @@ export default {
       >
     </div>
     <div class="deckWords">
-      <h2 id="deckWordsTitle">Words in deck</h2>
+      <h2 id="deckWordsTitle">
+        Words in deck ({{ getNumberOfWordsInDeck() }})
+      </h2>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
@@ -106,7 +147,7 @@ export default {
           }}</span>
           <span>{{ getLangName(deckCreation.toLang) }}</span>
         </div>
-        <n-scrollbar style="max-height: 250px">
+        <div id="scrollbar">
           <div
             id="scrollbarWord"
             v-for="word in deckCreation.deckWords"
@@ -122,7 +163,7 @@ export default {
               >Delete</n-button
             >
           </div>
-        </n-scrollbar>
+        </div>
       </div>
     </div>
     <n-alert
@@ -161,7 +202,7 @@ export default {
 }
 
 #toLangText {
-  margin-left: 125px;
+  margin-left: 144px;
 }
 
 .deckparams {
@@ -222,13 +263,16 @@ export default {
 }
 
 #scrollbarDiv {
-  border: 3px solid rgb(206, 50, 50);
-  background-color: rgb(255, 255, 255);
+  border: 3px solid rgb(82, 80, 80);
+}
+
+#scrollbar {
+  max-height: 250px;
+  overflow-y: scroll;
 }
 
 #scrollbarWord {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   width: 95.8%;
   margin-left: 5px;
   margin-right: 5px;
@@ -247,5 +291,9 @@ export default {
 
 #createdeck {
   width: 100%;
+}
+
+#langSwitchBtn {
+  width: 50px;
 }
 </style>

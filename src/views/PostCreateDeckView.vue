@@ -9,6 +9,7 @@ export default {
     onGoToHome: Function,
     onCreateAnotherDeck: Function,
     getLangName: Function,
+    getNumberOfWordsInDeck: Function,
   },
 
   methods: {
@@ -25,11 +26,10 @@ export default {
 <template>
   <div v-if="deckCreation.creationSuccessfull" class="postcreateview">
     <n-alert class="alert" title="Deck created" type="success">
-      Your deck "{{ deckCreation.deckTitle }}" has been successfully
-      created.
+      Your deck "{{ deckCreation.deckTitle }}" has been successfully created.
     </n-alert>
     <div class="deckWords">
-      <h2 id="deckWordsTitle">Words in deck</h2>
+      <h2 id="deckWordsTitle">Words in deck ({{getNumberOfWordsInDeck()}})</h2>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
@@ -37,7 +37,7 @@ export default {
           }}</span>
           <span>{{ getLangName(deckCreation.toLang) }}</span>
         </div>
-        <n-scrollbar style="max-height: 500px">
+        <div id="scrollbar">
           <div
             id="scrollbarWord"
             v-for="word in deckCreation.deckWords"
@@ -46,7 +46,7 @@ export default {
             <span class="fromLangTextAddWord">{{ word.from }}</span>
             <span>{{ word.to }}</span>
           </div>
-        </n-scrollbar>
+        </div>
       </div>
     </div>
     <div>
@@ -96,13 +96,16 @@ export default {
 }
 
 #scrollbarDiv {
-  border: 3px solid rgb(206, 50, 50);
-  background-color: rgb(255, 255, 255);
+  border: 3px solid rgb(82, 80, 80);
+}
+
+#scrollbar {
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 #scrollbarWord {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   width: 95.8%;
   margin-left: 5px;
   margin-right: 5px;
