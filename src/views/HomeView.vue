@@ -5,7 +5,13 @@ import { notificationApiInjectionKey } from "naive-ui/es/notification/src/Notifi
 
 <script>
 export default {
-  props: ["model", "onDeleteDeck", "onGoToCreateDeck", "onGoToReviewDeck"],
+  props: [
+    "model",
+    "onDeleteDeck",
+    "onGoToCreateDeck",
+    "onGoToReviewDeck",
+    "onEditDeck",
+  ],
 
   methods: {
     clickedCreateDeckACB() {
@@ -18,6 +24,9 @@ export default {
     clickedDeleteDeckACB(deck) {
       console.log("delete deck: " + deck.name + " " + deck.id);
       this.onDeleteDeck(deck);
+    },
+    clickedEditDeckACB(deck) {
+      this.onEditDeck(deck);
     },
   },
 };
@@ -57,7 +66,9 @@ export default {
           <n-button type="info" @click="clickedReviewDeckACB(deck)"
             >Review</n-button
           >
-
+          <n-button type="warning" @click="clickedEditDeckACB(deck)"
+            >Edit</n-button
+          >
           <n-popconfirm @positive-click="clickedDeleteDeckACB(deck)">
             <template #activator>
               <n-button type="error">Delete</n-button>

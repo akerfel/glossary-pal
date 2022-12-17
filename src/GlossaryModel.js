@@ -105,6 +105,27 @@ class GlossaryModel {
   getCurrentDeckSize() {
     return this.currentDeck.words.length;
   }
+
+  getEditDeck() {
+    return this.currentEditDeck;
+  }
+
+  setCurrentEditDeck(deck) {
+    this.currentEditDeck = deck;
+  }
+
+  resetCurrentEditDeck() {
+    this.currentEditDeck = false;
+  }
+
+  updateCurrentEditDeck(editedDeck) {
+    const editDeckID = this.currentEditDeck.getDeckID();
+    this.decks = this.decks.map((deck) => {
+      if (deck.getDeckID() === editDeckID) {
+        return editedDeck;
+      } else return deck;
+    });
+  }
 }
 
 export default GlossaryModel;

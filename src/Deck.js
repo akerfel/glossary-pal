@@ -15,6 +15,10 @@ class Deck {
     this.words = words;
   }
 
+  getDeckID() {
+    return this.id;
+  }
+
   getWord(index) {
     return this.words[index];
   }
