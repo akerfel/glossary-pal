@@ -10,11 +10,15 @@ export default {
     "fromLanguage",
     "toLanguage",
     "correctAnswersAmount",
-    "onGoToHomeClicked"],
+    "onGoToHomeClicked",
+    "onReviewAgainClicked"],
 
   methods: {
     goToHomeClicked() {
-        this.onGoToHomeClicked();
+       this.onGoToHomeClicked();
+    },
+    reviewAgainClicked() {
+      this.onReviewAgainClicked();
     },
   },
 };
@@ -35,6 +39,14 @@ export default {
             Go back to home
         </n-button>
     </div>
+    <div>
+      <n-button 
+        type="primary" 
+        @click="reviewAgainClicked"
+        class="buttons">
+        Review Again
+      </n-button>
+    </div>
 
   </div>
 </template>
@@ -52,6 +64,10 @@ export default {
 
 .languages {
     margin-bottom: 10px;
+}
+
+.buttons {
+  margin-top: 10px;
 }
 
 </style>

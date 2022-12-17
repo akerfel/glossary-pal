@@ -11,6 +11,10 @@ export default {
     goToHomeACB() {
     	this.$router.push("/");
     },
+	reviewAgainACB() {
+		this.model.resetReviewAttributes();
+        this.$router.push("/review");
+    },
   },
 
 	data() {
@@ -27,7 +31,8 @@ export default {
 	:currentDeckName="model.currentDeck.name"
 	:deckSize="deckSize"
 	:fromLanguage="model.currentDeck.lang1"
-  :toLanguage="model.currentDeck.lang2"
+  	:toLanguage="model.currentDeck.lang2"
 	:onGoToHomeClicked="goToHomeACB"
+	:onReviewAgainClicked="reviewAgainACB"
 	:correctAnswersAmount="correctAnswersAmount" />
 </template>

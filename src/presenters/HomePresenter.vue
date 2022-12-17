@@ -15,6 +15,7 @@ export default {
     },
     
     goToReviewDeckACB(deckToReview) {
+      this.model.resetReviewAttributes();
       this.model.selectDeckToReview(deckToReview);
       this.$router.push("/review");
     },

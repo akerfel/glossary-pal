@@ -4,6 +4,7 @@ class GlossaryModel {
   constructor(decks = []) {
     this.decks = decks;
 
+    this.currentDeck = {}; // the current deck being reviewed
     this.resetReviewAttributes();
 
     // Adding some example decks
@@ -26,8 +27,11 @@ class GlossaryModel {
     this.addDeck(deck3);
   }
 
-  resetReviewAttributes() {
+  clearCurrentDeck() {
     this.currentDeck = {}; // the current deck being reviewed
+  }
+
+  resetReviewAttributes() {
     this.currentWordIndex = 0; // index of the current word being reviewed
     this.wrongAnswers = []; // the indexes of the words in currentDeck which were answered incorrectly
   }
