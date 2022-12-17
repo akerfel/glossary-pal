@@ -1,12 +1,5 @@
 <script setup>
-import {
-  NInput,
-  NInputGroup,
-  NSelect,
-  NButton,
-  NScrollbar,
-  NAlert,
-} from "naive-ui";
+import { NInput, NInputGroup, NSelect, NButton, NAlert } from "naive-ui";
 </script>
 
 <script>
@@ -25,6 +18,7 @@ export default {
     onLangToWordChange: Function,
     onLangSwitch: Function,
     getNumberOfWordsInDeck: Function,
+    onFinishEditDeck: Function,
   },
 
   methods: {
@@ -34,7 +28,7 @@ export default {
     },
     clickedAddWordACB() {
       this.onAddWord();
-      setTimeout(() => this.scrollDownToBottom(), 10)
+      setTimeout(() => this.scrollDownToBottom(), 10);
     },
     clickedDeleteWordACB(word) {
       this.onDeleteWord(word);
@@ -63,6 +57,9 @@ export default {
     clickedLangSwitchBtn() {
       this.onLangSwitch();
     },
+    clickedFinishEditACB() {
+      this.onFinishEditDeck();
+    },
   },
 };
 </script>
@@ -70,11 +67,15 @@ export default {
 <template>
   <div v-if="!deckCreation.creationSuccessfull" class="createview">
     <p>{{ deckCreation.test }}</p>
-    <h1 class="title">Create new glossary deck</h1>
+    <h1 v-if="!deckCreation.isEditing" class="title">
+      Create new glossary deck
+    </h1>
+    <h1 v-else class="title">Edit deck</h1>
     <div class="deckparams">
       <span>Deck name</span>
       <n-input
         @input="deckNameChangedACB"
+        v-bind:value="this.deckCreation.deckTitle"
         type="text"
         class="deckname"
         placeholder="Title your deck"
@@ -169,7 +170,7 @@ export default {
     <n-alert
       v-if="deckCreation.creationErrorNoName"
       class="alert"
-      title="Deck creation error"
+      title="Deck error"
       type="error"
     >
       Please name your deck.
@@ -177,13 +178,24 @@ export default {
     <n-alert
       v-if="deckCreation.creationErrorNoWords"
       class="alert"
-      title="Deck creation error"
+      title="Deck error"
       type="error"
     >
       Please add at least one word to your deck.
     </n-alert>
-    <n-button id="createdeck" type="primary" @click="clickedCreateDeckACB"
+    <n-button
+      v-if="!deckCreation.isEditing"
+      class="createdeck"
+      type="primary"
+      @click="clickedCreateDeckACB"
       >Create deck</n-button
+    >
+    <n-button
+      v-else
+      class="createdeck"
+      type="primary"
+      @click="clickedFinishEditACB"
+      >Finish and save deck</n-button
     >
   </div>
 </template>
@@ -212,15 +224,6 @@ export default {
 
 .deckname {
   margin-bottom: 15px;
-}
-
-#deckLangFrom {
-  width: 40%;
-}
-
-#deckLangTo {
-  width: 40%;
-  float: right;
 }
 
 .addword {
@@ -289,7 +292,7 @@ export default {
   margin-bottom: 25px;
 }
 
-#createdeck {
+.createdeck {
   width: 100%;
 }
 
