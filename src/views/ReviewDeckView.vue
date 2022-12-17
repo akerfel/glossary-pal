@@ -97,15 +97,38 @@ export default {
         <b>{{ currentWord }}</b>
       </h1>
 
-      <n-input
-        ref="inputAnswer"
-        :style="getInputFieldStyle"
-        v-model:value="answer"
-        v-bind:placeholder="inputPlaceHolderText"
-        v-bind:readonly="hasAnswered"
-        @keyup.enter="clickedEnter"
-        :autofocus="true"
-      />
+      <n-input-group
+        class="inputAnswerGroup">
+        <td> 
+          <n-input
+            ref="inputAnswer"
+            class="inputField"
+            :style="getInputFieldStyle"
+            v-model:value="answer"
+            v-bind:placeholder="inputPlaceHolderText"
+            v-bind:readonly="hasAnswered"
+            @keyup.enter="clickedEnter"
+            :autofocus="true"
+          />
+        </td>
+          
+        <td>
+          <!-- Checkmark if correct answer -->
+        <h1
+          class="checkmarkOrRedX"
+          v-if="answerWasCorrect && hasAnswered">
+          &#10004;&#65039;
+        </h1>
+        
+        <!-- Red X if wrong answer -->
+        <h1
+          class="checkmarkOrRedX"
+          v-if="!answerWasCorrect && hasAnswered">
+          &#10060;
+        </h1>
+        </td>
+        
+      </n-input-group>
 
       <div>
         <div v-bind:class="getCorrectAnswerClass()">
@@ -157,6 +180,21 @@ export default {
   width: 300px;
   text-align: center;
   margin-bottom: 5px;
+}
+
+.inputAnswerGroup {
+  
+  display: flex;
+  flex-direction: row;
+}
+
+.inputField {
+  width: 300px;
+}
+
+.checkmarkOrRedX {
+  display: inline-block;
+  position:relative; top:-8px;
 }
 
 .currentWord {

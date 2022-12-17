@@ -77,7 +77,7 @@ export default {
       class="allCardsCleared"
       v-else>
       <h2>All cards cleared!</h2>
-      <h1> &#10004;&#65039; </h1>
+      <h1>&#10004;&#65039;</h1>
     </div>
     <div>
       <n-button 
