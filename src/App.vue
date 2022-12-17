@@ -18,7 +18,10 @@ export default {
       });
     },
     onGoToInfo() {
-      this.$router.push("/info")
+      if (this.$route.name === "info") {
+        this.$router.push("/")
+      }
+      else this.$router.push("/info")
     },
   },
   data() {
