@@ -97,7 +97,11 @@ export default {
       }}</span>
       <span>{{ getLangName(deckCreation.toLang) }}</span>
       <n-input-group>
-        <n-input @input="langFromWordChangedACB" placeholder="Language from" />
+        <n-input
+          @input="langFromWordChangedACB"
+          placeholder="Language from"
+          v-bind:value="deckCreation.langFromWord"
+        />
         <n-input
           @input="langToWordChangedACB"
           placeholder="Language to"
