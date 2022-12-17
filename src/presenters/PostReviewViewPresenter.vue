@@ -20,8 +20,7 @@ export default {
       return this.model.getWrongAnswerIndexes().length;
     },
 	getDeckOfWrongWords() {
-	  console.log("€€€€€€€€€€€€€€€")
-	  console.log(this.model.getDeckOfWrongWords())
+		console.log("AS)D(YAS)D(YAUS()DA")
       return this.model.getDeckOfWrongWords();
     },
   },

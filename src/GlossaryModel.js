@@ -107,9 +107,9 @@ class GlossaryModel {
   }
 
   getDeckOfWrongWords() {
-    wrongWords = []
-    for (let index of wrongAnswerIndexes) {
-      wrongWords.push(currentDeck.words[index]);
+    var wrongWords = []
+    for (let index of this.wrongAnswerIndexes) {
+      wrongWords.push(this.currentDeck.words[index]);
     }
     return wrongWords;
   }

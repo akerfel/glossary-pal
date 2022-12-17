@@ -38,14 +38,15 @@ export default {
 <template>
   <div class="postReviewView">
     <div>
-        <p>{{correctAnswersAmount}}  / {{deckSize}} cards cleared</p>
-        <h3><b>Deck: {{currentDeckName}}</b></h3>
+        <h1><b>{{currentDeckName}}</b></h1>
         <h3 class="languages"><b>{{fromLanguage}} to {{toLanguage}}</b></h3>
+        <p id="correctAnswersCount">{{correctAnswersAmount}}  / {{deckSize}} cards cleared</p>
     </div>
    
     <div>
         <n-button 
             type="primary" 
+            class="goHomeButton"
             @click="goToHomeClicked">
             Go back to home
         </n-button>
@@ -53,15 +54,15 @@ export default {
     <div>
       <n-button 
         type="primary" 
-        @click="reviewAgainClicked"
-        class="buttons">
+        class="reviewAgainButton"
+        @click="reviewAgainClicked">
         Review Again
       </n-button>
     </div>
     <div class="deckWords">
-      <h2 id="deckWordsTitle">
+      <h3 id="deckWordsTitle">
         Wrong Answers ({{ getNumberOfWrongAnswers() }})
-      </h2>
+      </h3>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
@@ -72,7 +73,7 @@ export default {
         <div id="scrollbar">
           <div
             id="scrollbarWord"
-            v-for="word in wrongWords"
+            v-for="word in wrongWords()"
             v-bind:key="word"
           >
             <span class="fromLangTextAddWord">{{ word.from }}</span>
@@ -100,8 +101,13 @@ export default {
     margin-bottom: 10px;
 }
 
-.buttons {
+.goHomeButton {
   margin-top: 10px;
+}
+
+.reviewAgainButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .deckWords {
@@ -114,13 +120,6 @@ export default {
 
 
 
-
-.createview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 440px;
-}
 
 .title {
   color: rgb(0, 194, 81);
@@ -149,16 +148,6 @@ export default {
   float: right;
 }
 
-.addword {
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-#addWordTitle {
-  color: rgb(0, 194, 81);
-  text-align: center;
-  margin-bottom: 10px;
-}
 
 .fromLangTextAddWord {
   display: inline-block;
@@ -172,17 +161,22 @@ export default {
 .deckWords {
   width: 100%;
   margin-bottom: 25px;
+  text-align: left;
 }
 
 #deckWordsTitle {
-  color: rgb(0, 194, 81);
+  color: rgb(203, 114, 114);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#correctAnswersCount {
   text-align: center;
   margin-bottom: 10px;
 }
 
 #deckWordsColumns {
   background-color: #181818;
-  color: rgb(0, 194, 81);
   height: 28px;
   margin-bottom: 5px;
   padding-left: 5px;
@@ -203,24 +197,6 @@ export default {
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
-}
-
-#removeWordButton {
-  width: 48px;
-  height: 24px;
-  float: right;
-}
-
-.alert {
-  margin-bottom: 25px;
-}
-
-#createdeck {
-  width: 100%;
-}
-
-#langSwitchBtn {
-  width: 50px;
 }
 
 </style>
