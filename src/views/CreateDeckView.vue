@@ -23,6 +23,7 @@ export default {
     onToLangChange: Function,
     onLangFromWordChange: Function,
     onLangToWordChange: Function,
+    onLangSwitch: Function,
   },
 
   methods: {
@@ -53,6 +54,9 @@ export default {
     langToWordChangedACB(string) {
       this.onLangToWordChange(string);
     },
+    clickedLangSwitchBtn() {
+      this.onLangSwitch()
+    }
   },
 };
 </script>
@@ -78,13 +82,18 @@ export default {
           :on-update:value="fromLanguageChangedACB"
           filterable
           placeholder="Select a language"
+          v-bind:value="deckCreation.fromLang"
           default-value="sv"
           :options="deckCreation.langOptions"
         />
+        <n-button id="langSwitchBtn" type="info" @click="clickedLangSwitchBtn">
+          ⇆
+        </n-button>
         <n-select
           :on-update:value="toLanguageChangedACB"
           filterable
           placeholder="Select a language"
+          v-bind:value="deckCreation.toLang"
           default-value="en"
           :options="deckCreation.langOptions"
         />
@@ -272,4 +281,9 @@ export default {
 #createdeck {
   width: 100%;
 }
+
+#langSwitchBtn {
+  width: 50px;
+}
+
 </style>

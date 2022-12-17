@@ -125,6 +125,11 @@ export default {
     setLangFromWord(word) {
       this.deckCreation.langFromWord = word;
     },
+    switchDeckLanguages() {
+      const tmp = this.deckCreation.fromLang
+      this.deckCreation.fromLang = this.deckCreation.toLang
+      this.deckCreation.toLang = tmp
+    }
   },
   data() {
     return {
@@ -175,6 +180,7 @@ export default {
     :onToLangChange="setToLanguage"
     :onLangToWordChange="setLangToWord"
     :onLangFromWordChange="setLangFromWord"
+    :onLangSwitch="switchDeckLanguages"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
