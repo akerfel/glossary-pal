@@ -28,11 +28,13 @@ export default {
       } else {
         this.$router.push("/postReviewView"); 
       }
+      this.input = "";
     },
 
     tryAgainACB() {
       this.hasAnswered = false;
       this.answerWasCorrect = true;
+      this.input = "";
     },
 
     getInputPlaceHolderTextCB() {
@@ -72,5 +74,6 @@ export default {
     :answerWasCorrect="answerWasCorrect"
     :inputPlaceHolderText="inputPlaceHolderText"
     :onInputChange="setInput"
+    :input="input"
   />
 </template>

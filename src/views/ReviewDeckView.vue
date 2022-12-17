@@ -17,6 +17,7 @@ export default {
     "isOnLastWord",
     "inputPlaceHolderText",
     "onInputChange",
+    "input",
   ],
 
   created() {},
@@ -33,13 +34,11 @@ export default {
 
     clickedNextWord() {
       this.onNextWord();
-      this.answer = "";
       this.focusInput();
     },
 
     clickedTryAgain() {
       this.onTryAgain();
-      this.answer = "";
       this.focusInput();
     },
 
@@ -70,7 +69,6 @@ export default {
 
   data() {
     return {
-      answer: "",
     };
   },
 
@@ -106,11 +104,13 @@ export default {
         class="inputAnswerGroup">
         <td> 
           <n-input
+            id="inputAnswer"
             ref="inputAnswer"
             class="inputField"
             :style="getInputFieldStyle"
             @input="inputChangedACB"
             type="text"
+            v-bind:value="this.input"
             v-bind:placeholder="inputPlaceHolderText"
             v-bind:readonly="hasAnswered"
             @keyup.enter="clickedEnter"
