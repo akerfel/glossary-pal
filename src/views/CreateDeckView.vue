@@ -18,6 +18,11 @@ export default {
     onAddWord: Function,
     onGetTranslate: Function,
     getLangName: Function,
+    onDeckNameChange: Function,
+    onFromLangChange: Function,
+    onToLangChange: Function,
+    onLangFromWordChange: Function,
+    onLangToWordChange: Function,
   },
 
   methods: {
@@ -33,6 +38,21 @@ export default {
     clickedGetTranslationACB() {
       this.onGetTranslate();
     },
+    deckNameChangedACB(deckName) {
+      this.onDeckNameChange(deckName);
+    },
+    fromLanguageChangedACB(langCode) {
+      this.onFromLangChange(langCode);
+    },
+    toLanguageChangedACB(langCode) {
+      this.onToLangChange(langCode);
+    },
+    langFromWordChangedACB(string) {
+      this.onLangFromWordChange(string);
+    },
+    langToWordChangedACB(string) {
+      this.onLangToWordChange(string);
+    },
   },
 };
 </script>
@@ -44,7 +64,8 @@ export default {
     <div class="deckparams">
       <span>Deck name</span>
       <n-input
-        v-model:value="deckCreation.deckTitle"
+        @input="deckNameChangedACB"
+        type="text"
         class="deckname"
         placeholder="Title your deck"
       />
@@ -54,16 +75,17 @@ export default {
       </div>
       <n-input-group>
         <n-select
-          v-model:value="deckCreation.fromLang"
-          v-model:label="deckCreation.fromLangLabel"
+          :on-update:value="fromLanguageChangedACB"
           filterable
           placeholder="Select a language"
+          default-value="sv"
           :options="deckCreation.langOptions"
         />
         <n-select
-          v-model:value="deckCreation.toLang"
+          :on-update:value="toLanguageChangedACB"
           filterable
           placeholder="Select a language"
+          default-value="en"
           :options="deckCreation.langOptions"
         />
       </n-input-group>
@@ -75,13 +97,11 @@ export default {
       }}</span>
       <span>{{ getLangName(deckCreation.toLang) }}</span>
       <n-input-group>
+        <n-input @input="langFromWordChangedACB" placeholder="Language from" />
         <n-input
-          v-model:value="deckCreation.langFromWord"
-          placeholder="Language from"
-        />
-        <n-input
-          v-model:value="deckCreation.langToWord"
+          @input="langToWordChangedACB"
           placeholder="Language to"
+          v-bind:value="deckCreation.langToWord"
           :loading="
             deckCreation.translatedWordPromiseState.promise &&
             !deckCreation.translatedWordPromiseState.data &&

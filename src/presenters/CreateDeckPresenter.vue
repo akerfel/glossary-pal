@@ -47,12 +47,18 @@ export default {
         return { label: langName, value: langCode };
       }
       function sortLangOptionsAlphabeticallyCB(langOption1, langOption2) {
-        return langOption1.label > langOption2.label
+        return langOption1.label > langOption2.label;
       }
       if (this.langCodesPromiseState.data) {
-        const unsortedLangOptions = this.langCodesPromiseState.data.map(createLangOptionCB);
-        this.deckCreation.langOptions = unsortedLangOptions.sort(sortLangOptionsAlphabeticallyCB)
+        const unsortedLangOptions =
+          this.langCodesPromiseState.data.map(createLangOptionCB);
+        this.deckCreation.langOptions = unsortedLangOptions.sort(
+          sortLangOptionsAlphabeticallyCB
+        );
       }
+    },
+    setDeckTitle(deckTitle) {
+      this.deckCreation.deckTitle = deckTitle;
     },
     createdDeckACB() {
       let dc = this.deckCreation;
@@ -107,6 +113,18 @@ export default {
       dc.creationErrorNoName = false;
       dc.creationErrorNoWords = false;
     },
+    setFromLanguage(langCode) {
+      this.deckCreation.fromLang = langCode;
+    },
+    setToLanguage(langCode) {
+      this.deckCreation.toLang = langCode;
+    },
+    setLangToWord(word) {
+      this.deckCreation.langToWord = word;
+    },
+    setLangFromWord(word) {
+      this.deckCreation.langFromWord = word;
+    },
   },
   data() {
     return {
@@ -152,6 +170,11 @@ export default {
     :onAddWord="addWordACB"
     :onGetTranslate="translateFromLangWordACB"
     :getLangName="getLangName"
+    :onDeckNameChange="setDeckTitle"
+    :onFromLangChange="setFromLanguage"
+    :onToLangChange="setToLanguage"
+    :onLangToWordChange="setLangToWord"
+    :onLangFromWordChange="setLangFromWord"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
