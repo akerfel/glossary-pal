@@ -9,6 +9,7 @@ export default {
     onGoToHome: Function,
     onCreateAnotherDeck: Function,
     getLangName: Function,
+    getNumberOfWordsInDeck: Function,
   },
 
   methods: {
@@ -25,11 +26,10 @@ export default {
 <template>
   <div v-if="deckCreation.creationSuccessfull" class="postcreateview">
     <n-alert class="alert" title="Deck created" type="success">
-      Your deck "{{ deckCreation.deckTitle }}" has been successfully
-      created.
+      Your deck "{{ deckCreation.deckTitle }}" has been successfully created.
     </n-alert>
     <div class="deckWords">
-      <h2 id="deckWordsTitle">Words in deck</h2>
+      <h2 id="deckWordsTitle">Words in deck ({{getNumberOfWordsInDeck()}})</h2>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
@@ -96,13 +96,11 @@ export default {
 }
 
 #scrollbarDiv {
-  border: 3px solid rgb(206, 50, 50);
-  background-color: rgb(255, 255, 255);
+  border: 3px solid rgb(82, 80, 80);
 }
 
 #scrollbarWord {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   width: 95.8%;
   margin-left: 5px;
   margin-right: 5px;

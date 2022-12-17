@@ -126,10 +126,13 @@ export default {
       this.deckCreation.langFromWord = word;
     },
     switchDeckLanguages() {
-      const tmp = this.deckCreation.fromLang
-      this.deckCreation.fromLang = this.deckCreation.toLang
-      this.deckCreation.toLang = tmp
-    }
+      const tmp = this.deckCreation.fromLang;
+      this.deckCreation.fromLang = this.deckCreation.toLang;
+      this.deckCreation.toLang = tmp;
+    },
+    getNumberOfWordsInDeck() {
+      return this.deckCreation.deckWords.length;
+    },
   },
   data() {
     return {
@@ -137,20 +140,7 @@ export default {
       deckCreation: {
         translatedWordPromiseState: {},
         langOptions: [],
-        deckWords: [
-          {
-            from: "Bil",
-            to: "Car",
-          },
-          {
-            from: "Motorcykel",
-            to: "Motorcycle",
-          },
-          {
-            from: "Lejon",
-            to: "Lion",
-          },
-        ],
+        deckWords: [],
         deckTitle: "",
         fromLang: "sv",
         toLang: "en",
@@ -181,11 +171,13 @@ export default {
     :onLangToWordChange="setLangToWord"
     :onLangFromWordChange="setLangFromWord"
     :onLangSwitch="switchDeckLanguages"
+    :getNumberOfWordsInDeck="getNumberOfWordsInDeck"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
     :onGoToHome="goToHomeACB"
     :onCreateAnotherDeck="resetDeckCreationVarsACB"
     :getLangName="getLangName"
+    :getNumberOfWordsInDeck="getNumberOfWordsInDeck"
   />
 </template>
