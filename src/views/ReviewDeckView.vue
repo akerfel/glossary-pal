@@ -183,13 +183,6 @@ export default {
   text-align: center;
   color: rgb(0, 194, 81);
   margin-bottom: 15px;
-
-  /* Border for correct answer box. Might add back.
-  padding: 5px;
-  border: 2px solid rgb(7, 77, 58);
-  border-radius: 5px;
-  background-color: rgb(49, 17, 6);
-  */
 }
 
 .hiddenAnswer {
@@ -199,12 +192,5 @@ export default {
   text-align: center;
   color: rgb(0, 194, 81);
   margin-bottom: 15px;
-
-  /*
-  padding: 5px;
-  border: 2px solid rgb(7, 77, 58);
-  border-radius: 5px;
-  background-color: rgb(49, 17, 6);
-  */
 }
 </style>

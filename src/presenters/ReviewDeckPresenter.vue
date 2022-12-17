@@ -36,10 +36,7 @@ export default {
     },
 
     getInputPlaceHolderTextCB() {
-      if (!this.hasAnswered) {
-        return "Translate from " + this.model.currentDeck.lang1 + " to " + this.model.currentDeck.lang2;
-      }
-      return "asd";
+      return "Translate from " + this.model.currentDeck.lang1 + " to " + this.model.currentDeck.lang2;
     },
   },
 
