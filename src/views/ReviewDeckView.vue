@@ -16,6 +16,7 @@ export default {
     "onTryAgain",
     "isOnLastWord",
     "inputPlaceHolderText",
+    "onInputChange",
   ],
 
   created() {},
@@ -26,7 +27,7 @@ export default {
     },
 
     clickedConfirm() {
-      this.onConfirmAnswer(this.answer);
+      this.onConfirmAnswer();
       this.focusInput();
     },
 
@@ -60,6 +61,10 @@ export default {
 
     focusInput() {
       this.$refs.inputAnswer.focus();
+    },
+
+    inputChangedACB(input) {
+      this.onInputChange(input);
     },
   },
 
@@ -104,7 +109,8 @@ export default {
             ref="inputAnswer"
             class="inputField"
             :style="getInputFieldStyle"
-            v-model:value="answer"
+            @input="inputChangedACB"
+            type="text"
             v-bind:placeholder="inputPlaceHolderText"
             v-bind:readonly="hasAnswered"
             @keyup.enter="clickedEnter"
