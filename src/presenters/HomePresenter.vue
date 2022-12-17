@@ -1,8 +1,8 @@
 <script>
 import HomeView from "../views/HomeView.vue";
-import firebase from 'firebase'
+import firebase from "firebase";
 export default {
-  components: { HomeView},
+  components: { HomeView },
   props: {
     model: Object,
   },
@@ -11,15 +11,18 @@ export default {
       this.model.deleteDeck(deck.id);
     },
     goToCreateDeckACB() {
+      this.model.resetCurrentEditDeck();
       this.$router.push("/create");
     },
-    
     goToReviewDeckACB(deckToReview) {
       this.model.resetReviewAttributes();
       this.model.selectDeckToReview(deckToReview);
       this.$router.push("/review");
     },
-
+    goEditDeck(deck) {
+      this.model.setCurrentEditDeck(deck);
+      this.$router.push("/create");
+    },
   },
 };
 </script>
@@ -30,5 +33,6 @@ export default {
     :onDeleteDeck="deleteDeckACB"
     :onGoToCreateDeck="goToCreateDeckACB"
     :onGoToReviewDeck="goToReviewDeckACB"
+    :onEditDeck="goEditDeck"
   />
 </template>

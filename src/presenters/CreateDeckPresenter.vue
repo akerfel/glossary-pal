@@ -13,6 +13,9 @@ export default {
     model: Object,
   },
   created() {
+    if (this.model.getEditDeck()) {
+      this.initEdit();
+    }
     resolvePromise(
       getAvailableLanguages(),
       this.langCodesPromiseState,
@@ -20,8 +23,22 @@ export default {
     );
   },
   methods: {
+    initEdit() {
+      const editDeck = this.model.getEditDeck();
+      this.deckCreation.isEditing = true;
+      this.deckCreation.deckTitle = editDeck.name;
+      this.deckCreation.fromLang = this.getLangCode(editDeck.lang1);
+      this.deckCreation.toLang = this.getLangCode(editDeck.lang2);
+      this.deckCreation.deckWords = editDeck.words;
+    },
     getLangName(code) {
       return langCodeMap.get(code).name;
+    },
+    getLangCode(name) {
+      for (let [code, value] of langCodeMap.entries()) {
+        if (value.name === name) return code;
+      }
+      return "";
     },
     receiveTranslatedWordACB() {
       if (this.deckCreation.translatedWordPromiseState.data) {
@@ -133,11 +150,33 @@ export default {
     getNumberOfWordsInDeck() {
       return this.deckCreation.deckWords.length;
     },
+    finishEditingDeck() {
+      let dc = this.deckCreation;
+      if (dc.deckTitle === "") {
+        dc.creationErrorNoName = true;
+        dc.creationErrorNoWords = false;
+      } else if (dc.deckWords.length === 0) {
+        dc.creationErrorNoWords = true;
+        dc.creationErrorNoName = false;
+      } else {
+        const thisDeck = new Deck(
+          dc.deckTitle,
+          this.getLangName(dc.fromLang),
+          this.getLangName(dc.toLang),
+          dc.deckWords
+        );
+        dc.creationErrorNoName = false;
+        dc.creationErrorNoWords = false;
+        this.model.updateCurrentEditDeck(thisDeck);
+        this.$router.push("/");
+      }
+    },
   },
   data() {
     return {
       langCodesPromiseState: {},
       deckCreation: {
+        isEditing: false,
         translatedWordPromiseState: {},
         langOptions: [],
         deckWords: [],
@@ -172,6 +211,7 @@ export default {
     :onLangFromWordChange="setLangFromWord"
     :onLangSwitch="switchDeckLanguages"
     :getNumberOfWordsInDeck="getNumberOfWordsInDeck"
+    :onFinishEditDeck="finishEditingDeck"
   />
   <PostCreateDeckView
     :deckCreation="deckCreation"
