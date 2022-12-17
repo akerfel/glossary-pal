@@ -22,7 +22,8 @@ export default {
     "onGoToHomeClicked",
     "onReviewAgainClicked",
     "getNumberOfWrongAnswers",
-    "wrongWords"],
+    "wrongWords",
+    "showWrongAnswers",],
 
   methods: {
     goToHomeClicked() {
@@ -32,6 +33,11 @@ export default {
       this.onReviewAgainClicked();
     },
   },
+
+  data() {
+		return {
+			showWrongAnswers: this.showWrongAnswers(),};
+	},
 };
 </script>
 
@@ -39,27 +45,12 @@ export default {
   <div class="postReviewView">
     <div>
         <h1><b>{{currentDeckName}}</b></h1>
-        <h3 class="languages"><b>{{fromLanguage}} to {{toLanguage}}</b></h3>
-        <p id="correctAnswersCount">{{correctAnswersAmount}}  / {{deckSize}} cards cleared</p>
+        <h2 id="correctAnswersCount"><b>{{correctAnswersAmount}}</b> / {{deckSize}}</h2>
     </div>
    
-    <div>
-        <n-button 
-            type="primary" 
-            class="goHomeButton"
-            @click="goToHomeClicked">
-            Go back to home
-        </n-button>
-    </div>
-    <div>
-      <n-button 
-        type="primary" 
-        class="reviewAgainButton"
-        @click="reviewAgainClicked">
-        Review Again
-      </n-button>
-    </div>
-    <div class="deckWords">
+  
+    <div class="deckWords"
+      v-if="showWrongAnswers">
       <h3 id="deckWordsTitle">
         Wrong Answers ({{ getNumberOfWrongAnswers() }})
       </h3>
@@ -82,11 +73,38 @@ export default {
         </div>
       </div>
     </div>
+    <div
+      class="allCardsCleared"
+      v-else>
+      <h2>All cards cleared!</h2>
+      <h1> &#10004;&#65039; </h1>
+    </div>
+    <div>
+      <n-button 
+          type="primary" 
+          class="goHomeButton"
+          @click="goToHomeClicked">
+          Go back to home
+      </n-button>
+  </div>
+  <div>
+    <n-button 
+      type="primary" 
+      class="reviewAgainButton"
+      @click="reviewAgainClicked">
+      Review Again
+    </n-button>
+  </div>
 
   </div>
 </template>
 
 <style scoped>
+
+.allCardsCleared {
+  color: rgb(0, 194, 81);
+}
+
 .postReviewView {
   display: flex;
   flex-direction: column;
@@ -98,7 +116,6 @@ export default {
 }
 
 .languages {
-    margin-bottom: 10px;
 }
 
 .goHomeButton {
@@ -172,7 +189,6 @@ export default {
 
 #correctAnswersCount {
   text-align: center;
-  margin-bottom: 10px;
 }
 
 #deckWordsColumns {

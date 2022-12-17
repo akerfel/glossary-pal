@@ -16,13 +16,14 @@ export default {
         this.$router.push("/review");
     },
 	getNumberOfWrongAnswers() {
-	  console.log("[[[[[]]]]]")
       return this.model.getWrongAnswerIndexes().length;
     },
 	getDeckOfWrongWords() {
-		console.log("AS)D(YAS)D(YAUS()DA")
       return this.model.getDeckOfWrongWords();
     },
+	showWrongAnswers() {
+		return this.model.getWrongAnswerIndexes().length != 0;
+	},
   },
 
 	data() {
@@ -44,5 +45,6 @@ export default {
 	:onReviewAgainClicked="reviewAgainACB"
 	:correctAnswersAmount="correctAnswersAmount"
     :getNumberOfWrongAnswers="getNumberOfWrongAnswers"
-    :wrongWords="getDeckOfWrongWords"/>
+    :wrongWords="getDeckOfWrongWords"
+	:showWrongAnswers="showWrongAnswers"/>
 </template>
