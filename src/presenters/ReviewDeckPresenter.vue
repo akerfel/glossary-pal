@@ -14,7 +14,7 @@ export default {
         this.answerWasCorrect = true;
       } else {
         this.answerWasCorrect = false;
-        this.model.addCurrentWordToWrongAnswers();
+        this.model.addCurrentWordToWrongAnswerIndexes();
       }
     },
 

@@ -15,12 +15,21 @@ export default {
 		this.model.resetReviewAttributes();
         this.$router.push("/review");
     },
+	getNumberOfWrongAnswers() {
+      return this.model.getWrongAnswerIndexes().length;
+    },
+	getDeckOfWrongWords() {
+      return this.model.getDeckOfWrongWords();
+    },
+	showWrongAnswers() {
+		return this.model.getWrongAnswerIndexes().length != 0;
+	},
   },
 
 	data() {
 		return {
 			deckSize: this.model.getCurrentDeckSize(),
-			correctAnswersAmount: this.model.getCurrentDeckSize() - this.model.getWrongAnswers().length,
+			correctAnswersAmount: this.model.getCurrentDeckSize() - this.model.getWrongAnswerIndexes().length,
 		};
 	},
 };
@@ -34,5 +43,8 @@ export default {
   	:toLanguage="model.currentDeck.lang2"
 	:onGoToHomeClicked="goToHomeACB"
 	:onReviewAgainClicked="reviewAgainACB"
-	:correctAnswersAmount="correctAnswersAmount" />
+	:correctAnswersAmount="correctAnswersAmount"
+    :getNumberOfWrongAnswers="getNumberOfWrongAnswers"
+    :wrongWords="getDeckOfWrongWords"
+	:showWrongAnswers="showWrongAnswers"/>
 </template>
