@@ -115,8 +115,11 @@ export default {
 }
 
 .deckName {
+  overflow: auto;
+  scrollbar-width: thin;
   font-weight: bold;
   color: white;
+  margin-bottom: 5px;
 }
 
 .deckLanguages {

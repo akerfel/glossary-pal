@@ -249,7 +249,6 @@ export default {
   scrollbar-width: thin;
 }
 .wordTo {
-
   display: inline-block;
   width: 42%;
   overflow-block: scroll;
