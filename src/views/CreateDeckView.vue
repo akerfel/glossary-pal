@@ -154,8 +154,8 @@ export default {
             v-for="word in deckCreation.deckWords"
             v-bind:key="word"
           >
-            <span class="fromLangTextAddWord">{{ word.from }}</span>
-            <span>{{ word.to }}</span>
+            <span class="wordFrom">{{ word.from }}</span>
+            <span class="wordTo">{{ word.to }}</span>
             <n-button
               id="removeWordButton"
               type="error"
@@ -240,6 +240,21 @@ export default {
 .fromLangTextAddWord {
   display: inline-block;
   width: 42%;
+}
+
+.wordFrom {
+  display: inline-block;
+  width: 42%;
+  overflow-block: scroll;
+  scrollbar-width: thin;
+}
+.wordTo {
+
+  display: inline-block;
+  width: 42%;
+  overflow-block: scroll;
+  scrollbar-width: thin;
+  margin-left: 10px;
 }
 
 #getTranslation {
