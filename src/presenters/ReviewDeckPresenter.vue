@@ -8,9 +8,9 @@ export default {
   },
 
   methods: {
-    confirmedAnswerACB(answer) {
+    confirmedAnswerACB() {
       this.hasAnswered = true;
-      if (this.model.answerIsCorrect(answer)) {
+      if (this.model.answerIsCorrect(this.input)) {
         this.answerWasCorrect = true;
       } else {
         this.answerWasCorrect = false;
@@ -28,16 +28,22 @@ export default {
       } else {
         this.$router.push("/postReviewView"); 
       }
+      this.input = "";
     },
 
     tryAgainACB() {
       this.hasAnswered = false;
       this.answerWasCorrect = true;
+      this.input = "";
     },
 
     getInputPlaceHolderTextCB() {
       return "Translate from " + this.model.currentDeck.lang1 + " to " + this.model.currentDeck.lang2;
     },
+
+    setInput(input) {
+      this.input = input;
+    }
   },
 
   data() {
@@ -49,6 +55,7 @@ export default {
       answerWasCorrect: true,
       hasAnswered: false,
       inputPlaceHolderText: this.getInputPlaceHolderTextCB(),
+      input: "",
     };
   },
 };
@@ -66,5 +73,7 @@ export default {
     :hasAnswered="hasAnswered"
     :answerWasCorrect="answerWasCorrect"
     :inputPlaceHolderText="inputPlaceHolderText"
+    :onInputChange="setInput"
+    :input="input"
   />
 </template>

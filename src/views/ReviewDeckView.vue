@@ -16,6 +16,8 @@ export default {
     "onTryAgain",
     "isOnLastWord",
     "inputPlaceHolderText",
+    "onInputChange",
+    "input",
   ],
 
   created() {},
@@ -26,19 +28,17 @@ export default {
     },
 
     clickedConfirm() {
-      this.onConfirmAnswer(this.answer);
+      this.onConfirmAnswer();
       this.focusInput();
     },
 
     clickedNextWord() {
       this.onNextWord();
-      this.answer = "";
       this.focusInput();
     },
 
     clickedTryAgain() {
       this.onTryAgain();
-      this.answer = "";
       this.focusInput();
     },
 
@@ -61,11 +61,14 @@ export default {
     focusInput() {
       this.$refs.inputAnswer.focus();
     },
+
+    inputChangedACB(input) {
+      this.onInputChange(input);
+    },
   },
 
   data() {
     return {
-      answer: "",
     };
   },
 
@@ -101,10 +104,13 @@ export default {
         class="inputAnswerGroup">
         <td> 
           <n-input
+            id="inputAnswer"
             ref="inputAnswer"
             class="inputField"
             :style="getInputFieldStyle"
-            v-model:value="answer"
+            @input="inputChangedACB"
+            type="text"
+            v-bind:value="this.input"
             v-bind:placeholder="inputPlaceHolderText"
             v-bind:readonly="hasAnswered"
             @keyup.enter="clickedEnter"
