@@ -15,8 +15,7 @@ export default {
     "onNextWord",
     "onTryAgain",
     "isOnLastWord",
-    "fromLanguage",
-    "toLanguage",
+    "inputPlaceHolderText",
   ],
 
   created() {},
@@ -41,13 +40,6 @@ export default {
       this.onTryAgain();
       this.answer = "";
       this.focusInput();
-    },
-
-    getInputPlaceHolderText() {
-      if (!this.hasAnswered) {
-        return "Translate from " + this.fromLanguage + " to " + this.toLanguage;
-      }
-      return "";
     },
 
     clickedEnter() {
@@ -109,7 +101,7 @@ export default {
         ref="inputAnswer"
         :style="getInputFieldStyle"
         v-model:value="answer"
-        v-bind:placeholder="getInputPlaceHolderText()"
+        v-bind:placeholder="inputPlaceHolderText"
         v-bind:readonly="hasAnswered"
         @keyup.enter="clickedEnter"
         :autofocus="true"

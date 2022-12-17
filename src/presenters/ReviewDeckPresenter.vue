@@ -34,6 +34,13 @@ export default {
       this.hasAnswered = false;
       this.answerWasCorrect = true;
     },
+
+    getInputPlaceHolderTextCB() {
+      if (!this.hasAnswered) {
+        return "Translate from " + this.model.currentDeck.lang1 + " to " + this.model.currentDeck.lang2;
+      }
+      return "asd";
+    },
   },
 
   data() {
@@ -44,6 +51,7 @@ export default {
       deckSize: this.model.getCurrentDeckSize(),
       answerWasCorrect: true,
       hasAnswered: false,
+      inputPlaceHolderText: this.getInputPlaceHolderTextCB(),
     };
   },
 };
@@ -59,8 +67,7 @@ export default {
     :currentWordIndex="currentWordIndex"
     :deckSize="deckSize"
     :hasAnswered="hasAnswered"
-    :fromLanguage="this.model.currentDeck.lang1"
-    :toLanguage="this.model.currentDeck.lang2"
     :answerWasCorrect="answerWasCorrect"
+    :inputPlaceHolderText="inputPlaceHolderText"
   />
 </template>
