@@ -33,7 +33,7 @@ class GlossaryModel {
 
   resetReviewAttributes() {
     this.currentWordIndex = 0; // index of the current word being reviewed
-    this.wrongAnswers = []; // the indexes of the words in currentDeck which were answered incorrectly
+    this.wrongAnswerIndexes = []; // the indexes of the words in currentDeck which were answered incorrectly
   }
 
   deleteDeck(deckID) {
@@ -59,7 +59,7 @@ class GlossaryModel {
   selectDeckToReview(deck) {
     this.currentDeck = deck;
     this.currentWordIndex = 0;
-    this.wrongAnswers = [];
+    this.wrongAnswerIndexes = [];
   }
 
   hasNextWord() {
@@ -87,15 +87,15 @@ class GlossaryModel {
     return answer.toLowerCase() === this.getCorrectAnswer().toLowerCase();
   }
 
-  // Adds the index of the current word to this.wrongAnswers
-  addCurrentWordToWrongAnswers() {
-    if (!this.wrongAnswers.includes(this.currentWordIndex)) {
-      this.wrongAnswers.push(this.currentWordIndex);
+  // Adds the index of the current word to this.wrongAnswerIndexes
+  addCurrentWordToWrongAnswerIndexes() {
+    if (!this.wrongAnswerIndexes.includes(this.currentWordIndex)) {
+      this.wrongAnswerIndexes.push(this.currentWordIndex);
     }
   }
 
-  getWrongAnswers() {
-    return this.wrongAnswers;
+  getWrongAnswerIndexes() {
+    return this.wrongAnswerIndexes;
   }
 
   getCurrentWordIndex() {
@@ -104,6 +104,14 @@ class GlossaryModel {
 
   getCurrentDeckSize() {
     return this.currentDeck.words.length;
+  }
+
+  getDeckOfWrongWords() {
+    wrongWords = []
+    for (let index of wrongAnswerIndexes) {
+      wrongWords.push(currentDeck.words[index]);
+    }
+    return wrongWords;
   }
 }
 
