@@ -37,7 +37,7 @@ export default {
           }}</span>
           <span>{{ getLangName(deckCreation.toLang) }}</span>
         </div>
-        <n-scrollbar style="max-height: 500px">
+        <div id="scrollbar">
           <div
             id="scrollbarWord"
             v-for="word in deckCreation.deckWords"
@@ -46,7 +46,7 @@ export default {
             <span class="fromLangTextAddWord">{{ word.from }}</span>
             <span>{{ word.to }}</span>
           </div>
-        </n-scrollbar>
+        </div>
       </div>
     </div>
     <div>
@@ -97,6 +97,11 @@ export default {
 
 #scrollbarDiv {
   border: 3px solid rgb(82, 80, 80);
+}
+
+#scrollbar {
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 #scrollbarWord {

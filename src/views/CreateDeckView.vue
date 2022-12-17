@@ -28,8 +28,13 @@ export default {
   },
 
   methods: {
+    scrollDownToBottom() {
+      const element = document.getElementById("scrollbar");
+      element.scrollTop = element.scrollHeight;
+    },
     clickedAddWordACB() {
       this.onAddWord();
+      setTimeout(() => this.scrollDownToBottom(), 10)
     },
     clickedDeleteWordACB(word) {
       this.onDeleteWord(word);
@@ -132,7 +137,9 @@ export default {
       >
     </div>
     <div class="deckWords">
-      <h2 id="deckWordsTitle">Words in deck ({{getNumberOfWordsInDeck()}})</h2>
+      <h2 id="deckWordsTitle">
+        Words in deck ({{ getNumberOfWordsInDeck() }})
+      </h2>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{
@@ -140,7 +147,7 @@ export default {
           }}</span>
           <span>{{ getLangName(deckCreation.toLang) }}</span>
         </div>
-        <n-scrollbar style="max-height: 250px">
+        <div id="scrollbar">
           <div
             id="scrollbarWord"
             v-for="word in deckCreation.deckWords"
@@ -156,7 +163,7 @@ export default {
               >Delete</n-button
             >
           </div>
-        </n-scrollbar>
+        </div>
       </div>
     </div>
     <n-alert
@@ -257,6 +264,11 @@ export default {
 
 #scrollbarDiv {
   border: 3px solid rgb(82, 80, 80);
+}
+
+#scrollbar {
+  max-height: 250px;
+  overflow-y: scroll;
 }
 
 #scrollbarWord {
