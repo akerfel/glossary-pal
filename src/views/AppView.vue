@@ -55,6 +55,6 @@ export default {
   margin-bottom: 50px;
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 250px;
+  grid-column-gap: 120px;
 }
 </style>
