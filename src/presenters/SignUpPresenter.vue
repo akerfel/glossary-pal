@@ -9,10 +9,10 @@ export default {
     initModel: Function,
   },
   methods: {
-    registerACB(email, password) {
+    registerACB() {
       firebase
         .auth()
-        .createUserWithEmailAndPassword(email, password)
+        .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
           this.initModel();
           this.$router.push("/");
@@ -22,10 +22,30 @@ export default {
           alert(error.message);
         });
     },
+    setEmailACB(email) {
+      this.email = email;
+    },
+    setPasswordACB(password) {
+      this.password = password;
+    },
+    goToLoginACB() {
+      this.$router.push("/login");
+    },
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
   },
 };
 </script>
 
 <template>
-  <SignUpView :onSignUp="registerACB" />
+  <SignUpView
+    :onSignUp="registerACB"
+    :onGoToLogin="goToLoginACB"
+    :onInputEmail="setEmailACB"
+    :onInputPassword="setPasswordACB"
+  />
 </template>

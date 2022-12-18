@@ -6,25 +6,25 @@ import { NButton, NInput } from "naive-ui";
 export default {
   props: {
     onSignUp: Function,
-  },
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
+    onGoToLogin: Function,
+    onInputEmail: Function,
+    onInputPassword: Function,
   },
   methods: {
     onSignUpACB() {
-      this.onSignUp(this.email, this.password);
+      this.onSignUp();
     },
     emailProvidedACB(email) {
-      this.email = email;
+      this.onInputEmail(email);
     },
     passwordProvidedACB(password) {
-      this.password = password;
+      this.onInputPassword(password);
     },
     clickedEnterOnInputFieldACB() {
       this.onSignUpACB();
+    },
+    clickedGoToLoginACB() {
+      this.onGoToLogin();
     },
   },
 };
@@ -59,6 +59,9 @@ export default {
     <n-button type="submit" color="black" v-on:click="onSignUpACB"
       >Sign up</n-button
     ><br /><br />
+    <n-button type="submit" color="black" v-on:click="clickedGoToLoginACB"
+      >Go back to login</n-button
+    >
   </div>
 </template>
 

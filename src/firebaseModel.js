@@ -16,6 +16,12 @@ function getUserID() {
   } else throw "No user found.";
 }
 
+function getUser() {
+  if (firebase.auth().currentUser) {
+    return firebase.auth().currentUser;
+  } else throw "No user found.";
+}
+
 function firebaseModelPromise() {
   function initModelACB(firebaseData) {
     function deckValsIntoDecksCB(vals) {
@@ -71,4 +77,4 @@ function updateFirebaseFromModel(model) {
   model.addObserver(deleteDeckObs);
 }
 
-export { isLoggedIn, firebaseModelPromise, updateFirebaseFromModel };
+export { isLoggedIn, getUser, firebaseModelPromise, updateFirebaseFromModel };

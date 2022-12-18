@@ -2,7 +2,7 @@
 import { NButton } from "naive-ui";
 import { RouterView } from "vue-router";
 import promiseNoData from "../views/promiseNoData.vue";
-import { isLoggedIn } from "../firebaseModel";
+import { isLoggedIn, getUser } from "../firebaseModel";
 </script>
 
 <script>
@@ -40,8 +40,9 @@ export default {
 
 <template>
   <div class="appview">
+    <p id="email" v-if="isLoggedIn()">{{getUser().email}}</p>
     <div class="banner">
-      <n-button
+        <n-button
         v-if="showHomeAndSignOutBtn()"
         class="bannerbuttons"
         @click="clickedHomeACB"
@@ -59,6 +60,7 @@ export default {
         color="#3d3d3d"
         >Log out</n-button
       >
+
     </div>
     <RouterView :model="model" :initModel="initModel" />
     <promiseNoData :promiseState="modelPromiseState" />
@@ -77,6 +79,10 @@ export default {
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: 70px;
+}
+
+#email {
+  margin-bottom: 8px;
 }
 
 .bannerbuttons {
