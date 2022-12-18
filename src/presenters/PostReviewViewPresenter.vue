@@ -14,6 +14,7 @@ export default {
     },
     reviewAgainACB() {
       this.model.resetReviewAttributes();
+      this.model.shuffleCurrentDeck();
       this.$router.push("/review");
     },
     getNumberOfWrongAnswers() {

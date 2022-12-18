@@ -45,10 +45,19 @@ class GlossaryModel {
     return this.decks.find(filterOnIDCB);
   }
 
+  shuffleCurrentDeck() {
+    this.currentDeck.words = this.currentDeck.words
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+  }
+
   selectDeckToReview(deck) {
     this.currentDeck = deck;
     this.currentWordIndex = 0;
     this.wrongAnswerIndexes = [];
+
+    this.shuffleCurrentDeck();
   }
 
   hasNextWord() {
