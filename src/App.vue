@@ -4,7 +4,6 @@ import AppView from "./views/AppView.vue";
 import resolvePromise from "./resolvePromise";
 import firebase from "firebase";
 import {
-  isLoggedIn,
   firebaseModelPromise,
   updateFirebaseFromModel,
 } from "./firebaseModel";
@@ -36,12 +35,16 @@ export default {
     },
     initModel() {
       console.log("initmodel");
-      resolvePromise(
-        firebaseModelPromise(),
-        this.modelPromiseState,
-        this.setModel
-      );
-      updateFirebaseFromModel(this.model);
+      try {
+        resolvePromise(
+          firebaseModelPromise(),
+          this.modelPromiseState,
+          this.setModel
+        );
+        updateFirebaseFromModel(this.model);
+      } catch {
+        console.log("error resolving")
+      }
     },
     setModel() {
       if (this.modelPromiseState.data) {
@@ -57,7 +60,6 @@ export default {
   },
   created() {
     this.model = new GlossaryModel();
-    if (isLoggedIn()) this.initModel();
     window.myModel = this.model;
   },
   components: { AppView },

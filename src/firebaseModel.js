@@ -26,7 +26,7 @@ function firebaseModelPromise() {
   function newUserACB() {
     return new GlossaryModel();
   }
-
+  
   return firebase
     .database()
     .ref("users/" + getUserID() + "/")

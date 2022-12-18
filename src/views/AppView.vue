@@ -44,7 +44,7 @@ export default {
       >
     </div>
     <RouterView :model="model" :initModel="initModel" />
-    <promiseNoData v-if="isLoggedIn()" :promiseState="modelPromiseState" />
+    <promiseNoData :promiseState="modelPromiseState" />
   </div>
 </template>
 

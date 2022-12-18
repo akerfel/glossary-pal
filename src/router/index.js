@@ -63,8 +63,7 @@ const router = createRouter({
   ],
 });
 
-
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   var user = firebase.auth().currentUser;
 
   if (!user && to.meta.requiresAuth) {
