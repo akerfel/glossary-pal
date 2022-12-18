@@ -5,7 +5,7 @@ import { RouterView } from "vue-router";
 
 <script>
 export default {
-  props: ["model", "onGoToHome", "onLogOut", "onGoToInfo"],
+  props: ["model", "onGoToHome", "onLogOut", "onGoToInfo", "initModel"],
   methods: {
     clickedLogoutACB() {
       console.log("Log out user");
@@ -40,7 +40,7 @@ export default {
         >Log out</n-button
       >
     </div>
-    <RouterView :model="model" />
+    <RouterView :model="model" :initModel="initModel" />
   </div>
 </template>
 

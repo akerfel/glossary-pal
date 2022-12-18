@@ -1,15 +1,12 @@
 <script>
 import LoginView from "../views/LoginView.vue";
 import firebase from "firebase";
-import { firebaseModelPromise, updateFirebaseFromModel } from "../firebaseModel";
 
 export default {
   components: { LoginView },
-  data() {
-    return {};
-  },
   props: {
     model: Object,
+    initModel: Function,
   },
   methods: {
     loginACB(email, password) {
@@ -19,9 +16,8 @@ export default {
         .signInWithEmailAndPassword(email, password)
         .then((data) => {
           console.log("Successfully logged in!");
+          this.initModel();
           this.$router.push("/");
-          firebaseModelPromise();
-          updateFirebaseFromModel(this.model);
         })
         .catch((error) => {
           console.log(error.code);
