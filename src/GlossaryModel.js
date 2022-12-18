@@ -3,8 +3,8 @@ class GlossaryModel {
     this.decks = decks;
     this.observers = [];
     this.nextDeckID = nextDeckID;
-    console.log("IN GLOSSARY MODEL")
-    console.log(this.decks)
+    console.log("IN GLOSSARY MODEL");
+    console.log(this.decks);
   }
 
   getNextDeckID() {
@@ -29,11 +29,12 @@ class GlossaryModel {
     }
 
     this.decks = this.decks.filter(filterOnIDCB);
+    this.notifyObservers({ deleteDeckID: deckID });
   }
 
   addDeck(deck) {
     this.decks.push(deck);
-    this.notifyObservers({ addDeck: deck });
+    this.notifyObservers({ addOrEditDeck: deck });
   }
 
   getDeck(deckID) {
@@ -121,6 +122,7 @@ class GlossaryModel {
         return editedDeck;
       } else return deck;
     });
+    this.notifyObservers({ addOrEditDeck: editedDeck });
   }
 
   notifyObservers(payload) {

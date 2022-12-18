@@ -37,11 +37,11 @@ function firebaseModelPromise() {
 
 function updateFirebaseFromModel(model) {
   function addDeckObs(payload) {
-    if (payload && payload.addDeck) {
+    if (payload && payload.addOrEditDeck) {
       firebase
         .database()
-        .ref("users/" + getUserID() + "/decks/" + payload.addDeck.id)
-        .set(payload.addDeck);
+        .ref("users/" + getUserID() + "/decks/" + payload.addOrEditDeck.id)
+        .set(payload.addOrEditDeck);
     }
   }
 
@@ -54,8 +54,18 @@ function updateFirebaseFromModel(model) {
     }
   }
 
+  function deleteDeckObs(payload) {
+    if (payload && (payload.deleteDeckID || payload.deleteDeckID == 0)) {
+      firebase
+      .database()
+      .ref("users/" + getUserID() + "/decks/" + payload.deleteDeckID)
+      .set(null);
+    } 
+  }
+
   model.addObserver(addDeckObs);
   model.addObserver(nextDeckIDObs);
+  model.addObserver(deleteDeckObs);
 }
 
 export { isLoggedIn, firebaseModelPromise, updateFirebaseFromModel };

@@ -26,6 +26,7 @@ export default {
     initEdit() {
       const editDeck = this.model.getEditDeck();
       this.deckCreation.isEditing = true;
+      this.deckCreation.deckID = editDeck.id;
       this.deckCreation.deckTitle = editDeck.name;
       this.deckCreation.fromLang = this.getLangCode(editDeck.lang1);
       this.deckCreation.toLang = this.getLangCode(editDeck.lang2);
@@ -161,6 +162,7 @@ export default {
         dc.creationErrorNoName = false;
       } else {
         const thisDeck = new Deck(
+          dc.deckID,
           dc.deckTitle,
           this.getLangName(dc.fromLang),
           this.getLangName(dc.toLang),
@@ -178,6 +180,7 @@ export default {
       langCodesPromiseState: {},
       deckCreation: {
         isEditing: false,
+        deckID: 0,
         translatedWordPromiseState: {},
         langOptions: [],
         deckWords: [],

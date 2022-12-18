@@ -41,7 +41,6 @@ export default {
           this.modelPromiseState,
           this.setModel
         );
-        updateFirebaseFromModel(this.model);
       } catch {
         console.log("error resolving")
       }
@@ -49,6 +48,7 @@ export default {
     setModel() {
       if (this.modelPromiseState.data) {
         this.model = this.modelPromiseState.data;
+        updateFirebaseFromModel(this.model);
       }
     },
   },
