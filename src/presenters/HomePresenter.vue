@@ -5,6 +5,7 @@ export default {
   components: { HomeView },
   props: {
     model: Object,
+    initModel: Function,
   },
   methods: {
     deleteDeckACB(deck) {

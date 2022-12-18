@@ -1,13 +1,8 @@
 <script>
 import SignUpView from "../views/SignUpView.vue";
-import firebase from 'firebase'
+import firebase from "firebase";
 export default {
   components: { SignUpView },
-  data() {
-    return {
-      
-    };
-  },
   props: {
     model: Object,
     initModel: Function,
@@ -15,24 +10,22 @@ export default {
   methods: {
     registerACB(email, password) {
       firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password) 
-      .then((data) => {
-        console.log('Successfully registered!');
-        this.initModel();
-        this.$router.push("/")
-      })
-      .catch(error => {
-        console.log(error.code)
-        alert(error.message);
-      });
-    }
-  }
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((data) => {
+          console.log("Successfully registered!");
+          this.initModel();
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error.code);
+          alert(error.message);
+        });
+    },
+  },
 };
 </script>
 
 <template>
-  <SignUpView
-   :onSignUp="registerACB"
-   />
+  <SignUpView :onSignUp="registerACB" />
 </template>

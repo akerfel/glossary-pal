@@ -5,46 +5,50 @@ export default {
 
   props: {
     model: Object,
+    initModel: Function,
   },
 
   methods: {
     goToHomeACB() {
-    	this.$router.push("/");
+      this.$router.push("/");
     },
-	reviewAgainACB() {
-		this.model.resetReviewAttributes();
-        this.$router.push("/review");
+    reviewAgainACB() {
+      this.model.resetReviewAttributes();
+      this.$router.push("/review");
     },
-	getNumberOfWrongAnswers() {
+    getNumberOfWrongAnswers() {
       return this.model.getWrongAnswerIndexes().length;
     },
-	getDeckOfWrongWords() {
+    getDeckOfWrongWords() {
       return this.model.getDeckOfWrongWords();
     },
-	showWrongAnswers() {
-		return this.model.getWrongAnswerIndexes().length != 0;
-	},
+    showWrongAnswers() {
+      return this.model.getWrongAnswerIndexes().length != 0;
+    },
   },
 
-	data() {
-		return {
-			deckSize: this.model.getCurrentDeckSize(),
-			correctAnswersAmount: this.model.getCurrentDeckSize() - this.model.getWrongAnswerIndexes().length,
-		};
-	},
+  data() {
+    return {
+      deckSize: this.model.getCurrentDeckSize(),
+      correctAnswersAmount:
+        this.model.getCurrentDeckSize() -
+        this.model.getWrongAnswerIndexes().length,
+    };
+  },
 };
 </script>
 
 <template>
-  <PostReviewView 
-	:currentDeckName="model.currentDeck.name"
-	:deckSize="deckSize"
-	:fromLanguage="model.currentDeck.lang1"
-  	:toLanguage="model.currentDeck.lang2"
-	:onGoToHomeClicked="goToHomeACB"
-	:onReviewAgainClicked="reviewAgainACB"
-	:correctAnswersAmount="correctAnswersAmount"
+  <PostReviewView
+    :currentDeckName="model.currentDeck.name"
+    :deckSize="deckSize"
+    :fromLanguage="model.currentDeck.lang1"
+    :toLanguage="model.currentDeck.lang2"
+    :onGoToHomeClicked="goToHomeACB"
+    :onReviewAgainClicked="reviewAgainACB"
+    :correctAnswersAmount="correctAnswersAmount"
     :getNumberOfWrongAnswers="getNumberOfWrongAnswers"
     :wrongWords="getDeckOfWrongWords"
-	:showWrongAnswers="showWrongAnswers"/>
+    :showWrongAnswers="showWrongAnswers"
+  />
 </template>

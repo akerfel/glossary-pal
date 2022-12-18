@@ -11,6 +11,7 @@ export default {
   components: { CreateDeckView, PostCreateDeckView, promiseNoData },
   props: {
     model: Object,
+    initModel: Function,
   },
   created() {
     if (this.model.getEditDeck()) {

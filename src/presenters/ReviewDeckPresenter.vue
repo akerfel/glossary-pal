@@ -5,6 +5,7 @@ export default {
 
   props: {
     model: Object,
+    initModel: Function,
   },
 
   methods: {
@@ -26,7 +27,7 @@ export default {
         this.hasAnswered = false;
         this.answerWasCorrect = true;
       } else {
-        this.$router.push("/postReviewView"); 
+        this.$router.push("/postReviewView");
       }
       this.input = "";
     },
@@ -38,12 +39,17 @@ export default {
     },
 
     getInputPlaceHolderTextCB() {
-      return "Translate from " + this.model.currentDeck.lang1 + " to " + this.model.currentDeck.lang2;
+      return (
+        "Translate from " +
+        this.model.currentDeck.lang1 +
+        " to " +
+        this.model.currentDeck.lang2
+      );
     },
 
     setInput(input) {
       this.input = input;
-    }
+    },
   },
 
   data() {

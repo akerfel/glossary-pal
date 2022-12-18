@@ -30,8 +30,8 @@ export default {
       this.password = password;
     },
     goToSignUpACB() {
-      this.$router.push("/signup")
-    }
+      this.$router.push("/signup");
+    },
   },
   data() {
     return {

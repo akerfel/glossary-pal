@@ -1,16 +1,15 @@
 <script>
 import InfoView from "../views/InfoView.vue";
 export default {
-  components: {InfoView},
+  components: { InfoView },
   props: {
     model: Object,
+    initModel: Function,
   },
-  methods: {
- 
-  },
+  methods: {},
 };
 </script>
 
 <template>
-  <InfoView/>
+  <InfoView />
 </template>
