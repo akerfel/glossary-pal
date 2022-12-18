@@ -33,11 +33,6 @@ export default {
       this.onReviewAgainClicked();
     },
   },
-
-  data() {
-		return {
-			showWrongAnswers: this.showWrongAnswers(),};
-	},
 };
 </script>
 
@@ -50,7 +45,7 @@ export default {
    
   
     <div class="deckWords"
-      v-if="showWrongAnswers">
+      v-if="showWrongAnswers()">
       <h3 id="deckWordsTitle">
         Wrong Answers ({{ getNumberOfWrongAnswers() }})
       </h3>
