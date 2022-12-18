@@ -1,16 +1,14 @@
-import Deck from "./Deck";
-
 class GlossaryModel {
-  constructor(decks = []) {
+  constructor(decks = [], nextDeckID = 0) {
     this.decks = decks;
     this.observers = [];
+    this.nextDeckID = nextDeckID;
   }
 
-  static nextDeckID = 0;
-
-  static getNextDeckID() {
-    const thisID = GlossaryModel.nextDeckID;
-    GlossaryModel.nextDeckID += 1;
+  getNextDeckID() {
+    const thisID = this.nextDeckID;
+    this.nextDeckID += 1;
+    this.notifyObservers({ nextDeckID: this.nextDeckID });
     return thisID;
   }
 

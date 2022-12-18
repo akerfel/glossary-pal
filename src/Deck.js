@@ -1,8 +1,6 @@
-import GlossaryModel from "./GlossaryModel";
-
 class Deck {
-  constructor(name, lang1, lang2, words = []) {
-    this.id = GlossaryModel.getNextDeckID();
+  constructor(id, name, lang1, lang2, words = []) {
+    this.id = id;
     this.name = name;
     this.lang1 = lang1;
     this.lang2 = lang2;

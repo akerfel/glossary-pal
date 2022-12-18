@@ -1,7 +1,7 @@
 <script>
 import LoginView from "../views/LoginView.vue";
 import firebase from "firebase";
-import { firebaseModelPromise } from "../firebaseModel";
+import { firebaseModelPromise, updateFirebaseFromModel } from "../firebaseModel";
 
 export default {
   components: { LoginView },
@@ -21,6 +21,7 @@ export default {
           console.log("Successfully logged in!");
           this.$router.push("/");
           firebaseModelPromise();
+          updateFirebaseFromModel(this.model);
         })
         .catch((error) => {
           console.log(error.code);

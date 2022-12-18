@@ -87,6 +87,7 @@ export default {
         dc.creationErrorNoName = false;
       } else {
         const thisDeck = new Deck(
+          this.model.getNextDeckID(),
           dc.deckTitle,
           this.getLangName(dc.fromLang),
           this.getLangName(dc.toLang),
