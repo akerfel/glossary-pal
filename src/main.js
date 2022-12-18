@@ -2,7 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import "./assets/main.css";
-import firebase from "firebase";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import firebaseConfig from "/src/firebaseConfig.js";
 
 firebase.initializeApp(firebaseConfig);

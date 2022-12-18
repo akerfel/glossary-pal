@@ -2,7 +2,8 @@
 import GlossaryModel from "./GlossaryModel.js";
 import AppView from "./views/AppView.vue";
 import resolvePromise from "./resolvePromise";
-import firebase from "firebase";
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import {
   firebaseModelPromise,
   updateFirebaseFromModel,
@@ -67,6 +68,7 @@ export default {
 </script>
 
 <template>
+  <!DOCTYPE html>
   <AppView
     :model="model"
     :onGoToHome="goToHomeACB"

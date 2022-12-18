@@ -1,6 +1,5 @@
 <script>
 import HomeView from "../views/HomeView.vue";
-import firebase from "firebase";
 export default {
   components: { HomeView },
   props: {
