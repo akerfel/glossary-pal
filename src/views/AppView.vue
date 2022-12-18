@@ -8,19 +8,33 @@ import { isLoggedIn } from "../firebaseModel";
 <script>
 export default {
   components: { promiseNoData },
-  props: ["model", "initModel", "modelPromiseState", "onGoToHome", "onLogOut", "onGoToInfo"],
+  props: [
+    "model",
+    "initModel",
+    "modelPromiseState",
+    "onGoToHome",
+    "onLogOut",
+    "onGoToInfo",
+  ],
   methods: {
     clickedLogoutACB() {
-      console.log("Log out user");
       this.onLogOut();
     },
     clickedHomeACB() {
-      "Going to home";
       this.onGoToHome();
     },
     clickedInfoACB() {
-      "Going to info";
       this.onGoToInfo();
+    },
+    showHomeAndSignOutBtn() {
+      const path = this.$route.path;
+      if (path === "/login" || path === "/signup") {
+        return false;
+      }
+      else if (path === "/info") { 
+        return isLoggedIn();
+      }
+      else return true;
     },
   },
 };
@@ -29,14 +43,19 @@ export default {
 <template>
   <div class="appview">
     <div class="banner">
-      <n-button id="homebutton" @click="clickedHomeACB" type="primary"
+      <n-button
+        v-if="showHomeAndSignOutBtn()"
+        class="bannerbuttons"
+        @click="clickedHomeACB"
+        type="primary"
         >Home</n-button
       >
-      <n-button id="homebutton" @click="clickedInfoACB" type="info"
+      <n-button class="bannerbuttons" @click="clickedInfoACB" type="info"
         >Info</n-button
       >
       <n-button
-        id="signout"
+        v-if="showHomeAndSignOutBtn()"
+        class="bannerbuttons"
         @click="clickedLogoutACB"
         type="primary"
         color="#3d3d3d"
@@ -60,5 +79,9 @@ export default {
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: 120px;
+}
+
+.bannerbuttons {
+  width: 75px;
 }
 </style>
