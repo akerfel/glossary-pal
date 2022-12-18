@@ -37,15 +37,15 @@ export default {
   <p class="text">
     If you don't know the translation of the word when creating the deck, you
     can press the "Get translation" button to get Google Translate's recommended
-    translation of the word. You may also delete words from your decks by
-    pressing the red "Delete" button.
+    translation of the word. This is possible for all of the listed languages.
+    You may also delete words from your decks by pressing the red "Delete" button.
   </p>
   <p class="text">
     To start cramming, press the "Review" button on the homepage to start a quiz
     on your chosen deck.
   </p>
   <p class="text">Enjoy the app!</p>
-  <p class="text">//Carl, David, Magnus and Shotaro</p>
+  <p class="text">// Carl, David, Magnus, and Shotaro</p>
 </template>
 
 <style scoped>
