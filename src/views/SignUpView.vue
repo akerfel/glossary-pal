@@ -59,7 +59,7 @@ export default {
     <n-button type="submit" color="black" v-on:click="onSignUpACB"
       >Sign up</n-button
     ><br /><br />
-    <n-button type="submit" color="black" v-on:click="clickedGoToLoginACB"
+    <n-button type="submit" color="#727571" v-on:click="clickedGoToLoginACB"
       >Go back to login</n-button
     >
   </div>
