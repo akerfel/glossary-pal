@@ -1,30 +1,17 @@
-import Deck from "./Deck";
-
 class GlossaryModel {
-  constructor(decks = []) {
+  constructor(decks = [], nextDeckID = 0) {
     this.decks = decks;
+    this.observers = [];
+    this.nextDeckID = nextDeckID;
+    console.log("IN GLOSSARY MODEL");
+    console.log(this.decks);
+  }
 
-    this.currentDeck = {}; // the current deck being reviewed
-    this.resetReviewAttributes();
-
-    // Adding some example decks
-    var deck1 = new Deck("Animals", "Swedish", "English", [
-      { from: "katt", to: "cat" },
-      { from: "björn", to: "bear" },
-      { from: "lejon", to: "lion" },
-    ]);
-    var deck2 = new Deck("Colors", "Swedish", "English", [
-      { from: "röd", to: "red" },
-      { from: "grön", to: "green" },
-      { from: "blå", to: "blue" },
-    ]);
-    var deck3 = new Deck("Hard Swedish Words", "Swedish", "Swedish", [
-      { from: "hedendom", to: "religionslöshet" },
-      { from: "hegemoni", to: "maktställning" },
-    ]);
-    this.addDeck(deck1);
-    this.addDeck(deck2);
-    this.addDeck(deck3);
+  getNextDeckID() {
+    const thisID = this.nextDeckID;
+    this.nextDeckID += 1;
+    this.notifyObservers({ nextDeckID: this.nextDeckID });
+    return thisID;
   }
 
   clearCurrentDeck() {
@@ -42,10 +29,12 @@ class GlossaryModel {
     }
 
     this.decks = this.decks.filter(filterOnIDCB);
+    this.notifyObservers({ deleteDeckID: deckID });
   }
 
   addDeck(deck) {
     this.decks.push(deck);
+    this.notifyObservers({ addOrEditDeck: deck });
   }
 
   getDeck(deckID) {
@@ -107,13 +96,13 @@ class GlossaryModel {
   }
 
   getDeckOfWrongWords() {
-    var wrongWords = []
+    var wrongWords = [];
     for (let index of this.wrongAnswerIndexes) {
       wrongWords.push(this.currentDeck.words[index]);
     }
     return wrongWords;
   }
-  
+
   getEditDeck() {
     return this.currentEditDeck;
   }
@@ -132,6 +121,28 @@ class GlossaryModel {
       if (deck.getDeckID() === editDeckID) {
         return editedDeck;
       } else return deck;
+    });
+    this.notifyObservers({ addOrEditDeck: editedDeck });
+  }
+
+  notifyObservers(payload) {
+    function invokeObserverCB(obs) {
+      try {
+        obs(payload);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    this.observers.forEach(invokeObserverCB);
+  }
+
+  addObserver(callback) {
+    this.observers.push(callback);
+  }
+
+  removeObserver(callback) {
+    this.observers = this.observers.filter(function removeCallbackCB(cb) {
+      return cb !== callback;
     });
   }
 }

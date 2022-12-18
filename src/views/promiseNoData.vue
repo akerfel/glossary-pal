@@ -7,7 +7,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="!this.promiseState.promise">No data</div>
+  <div v-if="!this.promiseState.promise"></div>
   <div v-else-if="!this.promiseState.data && !this.promiseState.error">
     <img style="margin-top: 250px" src="../assets/loading.gif" />
   </div>
