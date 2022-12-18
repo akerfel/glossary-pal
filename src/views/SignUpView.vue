@@ -15,8 +15,6 @@ export default {
   },
   methods: {
     onSignUpACB() {
-      console.log("Sign up clicked");
-      console.log(this.email, this.password);
       this.onSignUp(this.email, this.password);
     },
     emailProvidedACB(email) {

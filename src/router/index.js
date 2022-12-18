@@ -68,7 +68,6 @@ router.beforeEach(async (to, from, next) => {
   var user = firebase.auth().currentUser;
 
   if (!user && to.meta.requiresAuth) {
-    console.log("### REDIRECTED");
     next("login");
   } else {
     next();

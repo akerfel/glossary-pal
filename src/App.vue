@@ -17,7 +17,6 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          console.log("Sign-out successful!");
           this.model = new GlossaryModel();
           this.$router.push("/login");
         })
@@ -32,15 +31,14 @@ export default {
       } else this.$router.push("/info");
     },
     initModel() {
-      console.log("initmodel");
       try {
         resolvePromise(
           firebaseModelPromise(),
           this.modelPromiseState,
           this.setModel
         );
-      } catch {
-        console.log("error resolving");
+      } catch (error) {
+        console.log(error);
       }
     },
     setModel() {

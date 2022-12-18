@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     onLoginACB() {
-      console.log("user tried to log in!");
       this.onLogin(this.email, this.password);
     },
     emailProvidedACB(email) {

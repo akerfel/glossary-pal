@@ -14,7 +14,6 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          console.log("Successfully registered!");
           this.initModel();
           this.$router.push("/");
         })
