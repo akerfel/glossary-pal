@@ -19,6 +19,12 @@ export default {
       console.log(this.email, this.password);
       this.onSignUp(this.email, this.password);
     },
+    emailProvidedACB(email) {
+      this.email = email
+    },
+    passwordProvidedACB(password) {
+      this.password = password
+    },
   },
 };
 </script>
@@ -31,8 +37,8 @@ export default {
 
   <div class="signup">
     <p class="title">{{ "Sign up here!" }}</p><br><br>
-    <n-input v-model:value="email" type="text" placeholder="E-mail" v-model="email" /><br><br>
-    <n-input v-model:value="password" type="password" placeholder="Password" v-model="password" /><br><br>
+    <n-input @input=emailProvidedACB type="text" placeholder="E-mail"/><br><br>
+    <n-input @input=passwordProvidedACB type="password" placeholder="Password"/><br><br>
     <n-button type="submit" color="black" v-on:click="onSignUpACB">Sign up</n-button><br><br>
 
   </div>

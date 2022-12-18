@@ -20,6 +20,12 @@ export default {
         console.log("user tried to log in!");
         this.onLogin(this.email, this.password)
     },
+    emailProvidedACB(email) {
+      this.email = email
+    },
+    passwordProvidedACB(password) {
+      this.password = password
+    },
   },
 };
 </script>
@@ -32,10 +38,8 @@ export default {
   
   <div class="login">
     <p class="title">{{ "Please log in to use Glossary Pal." }}</p><br><br>
-    <n-input v-model:value="email" type="text" placeholder="E-mail" v-model="email"/><br><br>
-    
-
-    <n-input v-model:value="password" type="password" placeholder="Password" v-model="password"/><br><br>
+    <n-input @input=emailProvidedACB type="text" placeholder="E-mail"/><br><br>
+    <n-input @input=passwordProvidedACB type="password" placeholder="Password"/><br><br>
     <n-button type="submit" color="black" v-on:click="onLoginACB">Login</n-button><br><br>
     <p>Not a member? <a color ="black" href="/signup">Click here to sign up!</a></p> 
     </div>
