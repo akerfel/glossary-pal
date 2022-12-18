@@ -25,6 +25,9 @@ export default {
     passwordProvidedACB(password) {
       this.password = password;
     },
+    clickedEnterOnInputFieldACB() {
+      this.onSignUpACB();
+    },
   },
 };
 </script>
@@ -45,11 +48,13 @@ export default {
     <br /><br />
     <n-input
       @input="emailProvidedACB"
+      @keyup.enter="clickedEnterOnInputFieldACB"
       type="text"
       placeholder="E-mail"
     /><br /><br />
     <n-input
       @input="passwordProvidedACB"
+      @keyup.enter="clickedEnterOnInputFieldACB"
       type="password"
       placeholder="Password"
     /><br /><br />
