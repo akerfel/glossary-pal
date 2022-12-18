@@ -36,6 +36,7 @@ function firebaseModelPromise() {
 }
 
 function updateFirebaseFromModel(model) {
+  console.log("UPDATE FIREBSE: =)")
   function addDeckObs(payload) {
     if (payload && payload.addOrEditDeck) {
       firebase

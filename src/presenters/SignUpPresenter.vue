@@ -10,6 +10,7 @@ export default {
   },
   props: {
     model: Object,
+    initModel: Function,
   },
   methods: {
     registerACB(email, password) {
@@ -18,6 +19,7 @@ export default {
       .createUserWithEmailAndPassword(email, password) 
       .then((data) => {
         console.log('Successfully registered!');
+        this.initModel();
         this.$router.push("/")
       })
       .catch(error => {
