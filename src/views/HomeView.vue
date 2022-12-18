@@ -62,15 +62,21 @@ export default {
         <div class="deckName">{{ deck.name }}</div>
         <span class="deckLanguages">{{ deck.lang1 }} to {{ deck.lang2 }} </span>
         <span class="deckButtons">
-          <n-button type="info" @click="clickedReviewDeckACB(deck)"
+          <n-button
+            class="deckbtn"
+            color="#5C7EAB"
+            @click="clickedReviewDeckACB(deck)"
             >Review</n-button
           >
-          <n-button type="warning" @click="clickedEditDeckACB(deck)"
+          <n-button
+            class="deckbtn"
+            color="#FFCB70"
+            @click="clickedEditDeckACB(deck)"
             >Edit</n-button
           >
           <n-popconfirm @positive-click="clickedDeleteDeckACB(deck)">
             <template #activator>
-              <n-button type="error">Delete</n-button>
+              <n-button class="deckbtn" color="#FF7D63">Delete</n-button>
             </template>
             Do you really want to delete the deck {{ deck.name }}?
           </n-popconfirm>
@@ -81,6 +87,11 @@ export default {
 </template>
 
 <style scoped>
+
+.deckbtn {
+  color:black;
+}
+
 .homeview {
   display: flex;
   flex-direction: column;
