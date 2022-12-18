@@ -4,7 +4,6 @@ import { NButton, NInput } from "naive-ui";
 
 <script>
 export default {
-  name: "Login",
   props: {
     onLogin: Function,
     onSignUpClick: Function,
@@ -31,7 +30,7 @@ export default {
     },
     clickedSignUpACB() {
       this.onSignUpACB();
-    }
+    },
   },
 };
 </script>
@@ -60,10 +59,16 @@ export default {
       type="password"
       placeholder="Password"
     /><br /><br />
-    <n-button type="submit" color="black" class="buttons" v-on:click="onLoginACB"
+    <n-button
+      type="submit"
+      color="black"
+      class="buttons"
+      v-on:click="onLoginACB"
       >Login</n-button
     ><br /><br />
-    <n-button color="#727571" class="buttons" @click="clickedSignUpACB">Sign up</n-button>
+    <n-button color="#727571" class="buttons" @click="clickedSignUpACB"
+      >Sign up</n-button
+    >
   </div>
 </template>
 

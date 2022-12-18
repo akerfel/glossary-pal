@@ -1,5 +1,5 @@
 <script setup>
-import { NButton, NInput } from 'naive-ui'
+import { NButton, NInput } from "naive-ui";
 </script>
 
 <script>
@@ -9,9 +9,9 @@ export default {
   },
   data() {
     return {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+    };
   },
   methods: {
     onSignUpACB() {
@@ -20,10 +20,10 @@ export default {
       this.onSignUp(this.email, this.password);
     },
     emailProvidedACB(email) {
-      this.email = email
+      this.email = email;
     },
     passwordProvidedACB(password) {
-      this.password = password
+      this.password = password;
     },
   },
 };
@@ -31,18 +31,32 @@ export default {
 
 <template>
   <div>
-    <img alt="Glossary Pal logo" class="logo" src="@/assets/logo.png" width="400" height="125" />
+    <img
+      alt="Glossary Pal logo"
+      class="logo"
+      src="@/assets/logo.png"
+      width="400"
+      height="125"
+    />
   </div>
-
 
   <div class="signup">
-    <p class="title">{{ "Sign up here!" }}</p><br><br>
-    <n-input @input=emailProvidedACB type="text" placeholder="E-mail"/><br><br>
-    <n-input @input=passwordProvidedACB type="password" placeholder="Password"/><br><br>
-    <n-button type="submit" color="black" v-on:click="onSignUpACB">Sign up</n-button><br><br>
-
+    <p class="title">{{ "Sign up here!" }}</p>
+    <br /><br />
+    <n-input
+      @input="emailProvidedACB"
+      type="text"
+      placeholder="E-mail"
+    /><br /><br />
+    <n-input
+      @input="passwordProvidedACB"
+      type="password"
+      placeholder="Password"
+    /><br /><br />
+    <n-button type="submit" color="black" v-on:click="onSignUpACB"
+      >Sign up</n-button
+    ><br /><br />
   </div>
-
 </template>
 
 <style scoped>

@@ -30,11 +30,9 @@ export default {
       const path = this.$route.path;
       if (path === "/login" || path === "/signup") {
         return false;
-      }
-      else if (path === "/info") { 
+      } else if (path === "/info") {
         return isLoggedIn();
-      }
-      else return true;
+      } else return true;
     },
   },
 };

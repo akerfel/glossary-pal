@@ -1,6 +1,4 @@
-<script setup>
-import { NButton, NInput } from "naive-ui";
-</script>
+<script setup></script>
 
 <script>
 export default {

@@ -1,9 +1,9 @@
 import GlossaryModel from "./GlossaryModel";
-import Deck from "./Deck"
+import Deck from "./Deck";
 
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database'
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
 function isLoggedIn() {
   if (firebase.auth().currentUser) return true;
@@ -19,17 +19,17 @@ function getUserID() {
 function firebaseModelPromise() {
   function initModelACB(firebaseData) {
     function deckValsIntoDecksCB(vals) {
-      return new Deck(vals.id, vals.name, vals.lang1, vals.lang2, vals.words)
+      return new Deck(vals.id, vals.name, vals.lang1, vals.lang2, vals.words);
     }
     const deckListVals = Object.values(firebaseData.val().decks);
-    const decks = deckListVals.map(deckValsIntoDecksCB)
+    const decks = deckListVals.map(deckValsIntoDecksCB);
     return new GlossaryModel(decks, firebaseData.val().nextDeckID);
   }
 
   function newUserACB() {
     return new GlossaryModel();
   }
-  
+
   return firebase
     .database()
     .ref("users/" + getUserID() + "/")
@@ -39,7 +39,7 @@ function firebaseModelPromise() {
 }
 
 function updateFirebaseFromModel(model) {
-  console.log("UPDATE FIREBSE: =)")
+  console.log("UPDATE FIREBSE: =)");
   function addDeckObs(payload) {
     if (payload && payload.addOrEditDeck) {
       firebase
@@ -61,10 +61,10 @@ function updateFirebaseFromModel(model) {
   function deleteDeckObs(payload) {
     if (payload && (payload.deleteDeckID || payload.deleteDeckID == 0)) {
       firebase
-      .database()
-      .ref("users/" + getUserID() + "/decks/" + payload.deleteDeckID)
-      .set(null);
-    } 
+        .database()
+        .ref("users/" + getUserID() + "/decks/" + payload.deleteDeckID)
+        .set(null);
+    }
   }
 
   model.addObserver(addDeckObs);

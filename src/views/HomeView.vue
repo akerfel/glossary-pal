@@ -1,6 +1,5 @@
 <script setup>
 import { NButton, NPopconfirm, NTooltip } from "naive-ui";
-import { notificationApiInjectionKey } from "naive-ui/es/notification/src/NotificationProvider";
 </script>
 
 <script>

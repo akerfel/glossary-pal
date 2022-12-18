@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,39 +9,39 @@ const router = createRouter({
       path: "/",
       name: "home",
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
       },
-      component: () => import ("../presenters/HomePresenter.vue"),
+      component: () => import("../presenters/HomePresenter.vue"),
     },
     {
       path: "/create",
       name: "create",
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
       },
-      component: () => import ("../presenters/CreateDeckPresenter.vue"),
+      component: () => import("../presenters/CreateDeckPresenter.vue"),
     },
     {
       path: "/review",
       name: "review",
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
       },
-      component: () => import ("../presenters/ReviewDeckPresenter.vue"),
+      component: () => import("../presenters/ReviewDeckPresenter.vue"),
     },
     {
       path: "/postReviewView",
       name: "postReviewView",
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
       },
-      component: () => import ("../presenters/PostReviewViewPresenter.vue"),
+      component: () => import("../presenters/PostReviewViewPresenter.vue"),
     },
     {
       path: "/login",
       name: "login",
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
       },
       component: () => import("../presenters/LoginPresenter.vue"),
     },
@@ -49,18 +49,18 @@ const router = createRouter({
       path: "/signup",
       name: "signup",
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
       },
       component: () => import("../presenters/SignUpPresenter.vue"),
-    } ,
+    },
     {
       path: "/info",
       name: "info",
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
       },
       component: () => import("../presenters/InfoPresenter.vue"),
-    } 
+    },
   ],
 });
 
@@ -69,10 +69,10 @@ router.beforeEach(async (to, from, next) => {
 
   if (!user && to.meta.requiresAuth) {
     console.log("### REDIRECTED");
-    next('login');
+    next("login");
   } else {
     next();
   }
-})
+});
 
 export default router;

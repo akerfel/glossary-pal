@@ -2,12 +2,9 @@
 import GlossaryModel from "./GlossaryModel.js";
 import AppView from "./views/AppView.vue";
 import resolvePromise from "./resolvePromise";
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import {
-  firebaseModelPromise,
-  updateFirebaseFromModel,
-} from "./firebaseModel";
+import firebase from "firebase/app";
+import "firebase/auth";
+import { firebaseModelPromise, updateFirebaseFromModel } from "./firebaseModel";
 
 export default {
   name: "App",
@@ -43,7 +40,7 @@ export default {
           this.setModel
         );
       } catch {
-        console.log("error resolving")
+        console.log("error resolving");
       }
     },
     setModel() {

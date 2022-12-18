@@ -1,7 +1,7 @@
 <script>
 import SignUpView from "../views/SignUpView.vue";
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/auth";
 export default {
   components: { SignUpView },
   props: {
@@ -13,7 +13,7 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then((data) => {
+        .then(() => {
           console.log("Successfully registered!");
           this.initModel();
           this.$router.push("/");

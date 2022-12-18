@@ -1,15 +1,6 @@
 <script setup>
-import {
-  NInput,
-  NPopconfirm,
-  NInputGroup,
-  NSelect,
-  NButton,
-  NScrollbar,
-  NAlert,
-} from "naive-ui";
+import { NButton } from "naive-ui";
 </script>
-
 
 <script>
 export default {
@@ -23,11 +14,12 @@ export default {
     "onReviewAgainClicked",
     "getNumberOfWrongAnswers",
     "wrongWords",
-    "showWrongAnswers",],
+    "showWrongAnswers",
+  ],
 
   methods: {
     goToHomeClicked() {
-       this.onGoToHomeClicked();
+      this.onGoToHomeClicked();
     },
     reviewAgainClicked() {
       this.onReviewAgainClicked();
@@ -39,21 +31,21 @@ export default {
 <template>
   <div class="postReviewView">
     <div>
-        <h1><b>{{currentDeckName}}</b></h1>
-        <h2 id="correctAnswersCount"><b>{{correctAnswersAmount}}</b> / {{deckSize}}</h2>
+      <h1>
+        <b>{{ currentDeckName }}</b>
+      </h1>
+      <h2 id="correctAnswersCount">
+        <b>{{ correctAnswersAmount }}</b> / {{ deckSize }}
+      </h2>
     </div>
-   
-  
-    <div class="deckWords"
-      v-if="showWrongAnswers()">
+
+    <div class="deckWords" v-if="showWrongAnswers()">
       <h3 id="deckWordsTitle">
         Wrong Answers ({{ getNumberOfWrongAnswers() }})
       </h3>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
-          <span class="fromLangTextAddWord">{{
-            fromLanguage
-          }}</span>
+          <span class="fromLangTextAddWord">{{ fromLanguage }}</span>
           <span>{{ toLanguage }}</span>
         </div>
         <div id="scrollbar">
@@ -68,34 +60,28 @@ export default {
         </div>
       </div>
     </div>
-    <div
-      class="allCardsCleared"
-      v-else>
+    <div class="allCardsCleared" v-else>
       <h2>All cards cleared!</h2>
       <h1>&#10004;&#65039;</h1>
     </div>
     <div>
-      <n-button 
-          type="primary" 
-          class="goHomeButton"
-          @click="goToHomeClicked">
-          Go back to home
+      <n-button type="primary" class="goHomeButton" @click="goToHomeClicked">
+        Go back to home
       </n-button>
-  </div>
-  <div>
-    <n-button 
-      type="primary" 
-      class="reviewAgainButton"
-      @click="reviewAgainClicked">
-      Review Again
-    </n-button>
-  </div>
-
+    </div>
+    <div>
+      <n-button
+        type="primary"
+        class="reviewAgainButton"
+        @click="reviewAgainClicked"
+      >
+        Review Again
+      </n-button>
+    </div>
   </div>
 </template>
 
 <style scoped>
-
 .allCardsCleared {
   color: rgb(0, 194, 81);
 }
@@ -127,12 +113,6 @@ export default {
   margin-bottom: 25px;
 }
 
-
-
-
-
-
-
 .title {
   color: rgb(0, 194, 81);
   margin-bottom: 15px;
@@ -159,7 +139,6 @@ export default {
   width: 40%;
   float: right;
 }
-
 
 .fromLangTextAddWord {
   display: inline-block;
@@ -209,5 +188,4 @@ export default {
   margin-right: 5px;
   margin-bottom: 5px;
 }
-
 </style>

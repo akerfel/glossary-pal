@@ -1,5 +1,5 @@
 <script setup>
-import { NButton, NScrollbar, NAlert } from "naive-ui";
+import { NButton, NAlert } from "naive-ui";
 </script>
 
 <script>
@@ -29,7 +29,9 @@ export default {
       Your deck "{{ deckCreation.deckTitle }}" has been successfully created.
     </n-alert>
     <div class="deckWords">
-      <h2 id="deckWordsTitle">Words in deck ({{getNumberOfWordsInDeck()}})</h2>
+      <h2 id="deckWordsTitle">
+        Words in deck ({{ getNumberOfWordsInDeck() }})
+      </h2>
       <div id="scrollbarDiv">
         <div id="deckWordsColumns">
           <span class="fromLangTextAddWord">{{

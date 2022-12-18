@@ -1,7 +1,7 @@
 <script>
 import LoginView from "../views/LoginView.vue";
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   components: { LoginView },
@@ -14,7 +14,7 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then((data) => {
+        .then(() => {
           console.log("Successfully logged in!");
           this.$router.push("/");
           this.initModel();
