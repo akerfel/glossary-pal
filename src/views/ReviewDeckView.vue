@@ -110,7 +110,7 @@ export default {
             :style="getInputFieldStyle"
             @input="inputChangedACB"
             type="text"
-            v-bind:value="this.input"
+            v-bind:value="input"
             v-bind:placeholder="inputPlaceHolderText"
             v-bind:readonly="hasAnswered"
             @keyup.enter="clickedEnter"

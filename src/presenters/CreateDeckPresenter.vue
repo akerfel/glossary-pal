@@ -195,9 +195,9 @@ export default {
 </script>
 
 <template>
-  <promiseNoData :promiseState="this.langCodesPromiseState" />
+  <promiseNoData :promiseState="langCodesPromiseState" />
   <CreateDeckView
-    v-if="this.langCodesPromiseState.data"
+    v-if="langCodesPromiseState.data"
     :deckCreation="deckCreation"
     :onCreateDeck="createdDeckACB"
     :onDeleteWord="deleteWordACB"

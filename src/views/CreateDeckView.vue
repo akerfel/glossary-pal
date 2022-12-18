@@ -75,7 +75,7 @@ export default {
       <span>Deck name</span>
       <n-input
         @input="deckNameChangedACB"
-        v-bind:value="this.deckCreation.deckTitle"
+        v-bind:value="deckCreation.deckTitle"
         type="text"
         class="deckname"
         placeholder="Title your deck"
