@@ -10,8 +10,10 @@ function getUserID() {
 function firebaseModelPromise() {
   function initModelACB(firebaseData) {
     console.log("user: " + getUserID());
-    console.log(firebaseData.val());
-    return new GlossaryModel();
+    //console.log(firebaseData.val());
+    const deckList = Object.values(firebaseData.val().decks)
+    console.log(deckList)
+    return new GlossaryModel(deckList, firebaseData.val().nextDeckID);
   }
 
   function newUserACB() {

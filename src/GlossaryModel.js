@@ -3,6 +3,8 @@ class GlossaryModel {
     this.decks = decks;
     this.observers = [];
     this.nextDeckID = nextDeckID;
+    console.log("IN GLOSSARY MODEL")
+    console.log(this.decks)
   }
 
   getNextDeckID() {

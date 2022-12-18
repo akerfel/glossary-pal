@@ -35,7 +35,7 @@ export default {
     };
   },
   created() {
-    this.model = new GlossaryModel();
+    this.model = new GlossaryModel()
     window.myModel = this.model;
   },
   components: { AppView },
