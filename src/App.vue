@@ -66,5 +66,6 @@ export default {
     :onLogOut="onLogOutACB"
     :onGoToInfo="onGoToInfo"
     :initModel="initModel"
+    :modelPromiseState="modelPromiseState"
   />
 </template>
