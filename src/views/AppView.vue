@@ -40,9 +40,9 @@ export default {
 
 <template>
   <div class="appview">
-    <p id="email" v-if="isLoggedIn()">{{getUser().email}}</p>
+    <p id="email" v-if="isLoggedIn()">{{ getUser().email }}</p>
     <div class="banner">
-        <n-button
+      <n-button
         v-if="showHomeAndSignOutBtn()"
         class="bannerbuttons"
         @click="clickedHomeACB"
@@ -60,7 +60,6 @@ export default {
         color="#3d3d3d"
         >Log out</n-button
       >
-
     </div>
     <RouterView :model="model" :initModel="initModel" />
     <promiseNoData :promiseState="modelPromiseState" />

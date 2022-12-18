@@ -85,9 +85,8 @@ export default {
 </template>
 
 <style scoped>
-
 .deckbtn {
-  color:black;
+  color: black;
 }
 
 .homeview {
