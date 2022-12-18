@@ -1,14 +1,8 @@
+import GlossaryModel from "./GlossaryModel";
+
 class Deck {
-  static nextID = 0;
-
-  static getID() {
-    const thisID = Deck.nextID;
-    Deck.nextID += 1;
-    return thisID;
-  }
-
   constructor(name, lang1, lang2, words = []) {
-    this.id = Deck.getID();
+    this.id = GlossaryModel.getNextDeckID();
     this.name = name;
     this.lang1 = lang1;
     this.lang2 = lang2;

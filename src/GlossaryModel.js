@@ -1,30 +1,21 @@
 import Deck from "./Deck";
+import firebase from "firebase";
 
 class GlossaryModel {
   constructor(decks = []) {
     this.decks = decks;
+  }
 
-    this.currentDeck = {}; // the current deck being reviewed
-    this.resetReviewAttributes();
+  static nextDeckID = 0;
 
-    // Adding some example decks
-    var deck1 = new Deck("Animals", "Swedish", "English", [
-      { from: "katt", to: "cat" },
-      { from: "björn", to: "bear" },
-      { from: "lejon", to: "lion" },
-    ]);
-    var deck2 = new Deck("Colors", "Swedish", "English", [
-      { from: "röd", to: "red" },
-      { from: "grön", to: "green" },
-      { from: "blå", to: "blue" },
-    ]);
-    var deck3 = new Deck("Hard Swedish Words", "Swedish", "Swedish", [
-      { from: "hedendom", to: "religionslöshet" },
-      { from: "hegemoni", to: "maktställning" },
-    ]);
-    this.addDeck(deck1);
-    this.addDeck(deck2);
-    this.addDeck(deck3);
+  static getNextDeckID() {
+    const thisID = GlossaryModel.nextDeckID;
+    GlossaryModel.nextDeckID += 1;
+    return thisID;
+  }
+
+  static getUserID() {
+    return firebase.auth().currentUser.uid;
   }
 
   clearCurrentDeck() {
@@ -46,6 +37,7 @@ class GlossaryModel {
 
   addDeck(deck) {
     this.decks.push(deck);
+    this.addDeckToFirebase(deck);
   }
 
   getDeck(deckID) {
@@ -107,13 +99,13 @@ class GlossaryModel {
   }
 
   getDeckOfWrongWords() {
-    var wrongWords = []
+    var wrongWords = [];
     for (let index of this.wrongAnswerIndexes) {
       wrongWords.push(this.currentDeck.words[index]);
     }
     return wrongWords;
   }
-  
+
   getEditDeck() {
     return this.currentEditDeck;
   }
@@ -133,6 +125,16 @@ class GlossaryModel {
         return editedDeck;
       } else return deck;
     });
+  }
+
+  addDeckToFirebase(deck) {
+    const userID = GlossaryModel.getUserID();
+    firebase
+      .database()
+      .ref("users/" + userID + "/decks/" + deck.id)
+      .set({
+        deck,
+      });
   }
 }
 
