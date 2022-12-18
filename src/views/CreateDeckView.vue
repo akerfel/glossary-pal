@@ -115,6 +115,7 @@ export default {
       <n-input-group>
         <n-input
           @input="langFromWordChangedACB"
+          @keyup.enter="clickedAddWordACB"
           placeholder="Language from"
           v-bind:value="deckCreation.langFromWord"
         />
@@ -122,6 +123,7 @@ export default {
           @input="langToWordChangedACB"
           placeholder="Language to"
           v-bind:value="deckCreation.langToWord"
+          @keyup.enter="clickedAddWordACB"
           :loading="
             deckCreation.translatedWordPromiseState.promise &&
             !deckCreation.translatedWordPromiseState.data &&
