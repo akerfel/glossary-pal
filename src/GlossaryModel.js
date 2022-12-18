@@ -1,9 +1,9 @@
 import Deck from "./Deck";
-import firebase from "firebase";
 
 class GlossaryModel {
   constructor(decks = []) {
     this.decks = decks;
+    this.observers = [];
   }
 
   static nextDeckID = 0;
@@ -12,10 +12,6 @@ class GlossaryModel {
     const thisID = GlossaryModel.nextDeckID;
     GlossaryModel.nextDeckID += 1;
     return thisID;
-  }
-
-  static getUserID() {
-    return firebase.auth().currentUser.uid;
   }
 
   clearCurrentDeck() {
@@ -37,7 +33,7 @@ class GlossaryModel {
 
   addDeck(deck) {
     this.decks.push(deck);
-    this.addDeckToFirebase(deck);
+    this.notifyObservers({ addDeck: deck });
   }
 
   getDeck(deckID) {
@@ -127,14 +123,25 @@ class GlossaryModel {
     });
   }
 
-  addDeckToFirebase(deck) {
-    const userID = GlossaryModel.getUserID();
-    firebase
-      .database()
-      .ref("users/" + userID + "/decks/" + deck.id)
-      .set({
-        deck,
-      });
+  notifyObservers(payload) {
+    function invokeObserverCB(obs) {
+      try {
+        obs(payload);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    this.observers.forEach(invokeObserverCB);
+  }
+
+  addObserver(callback) {
+    this.observers.push(callback);
+  }
+
+  removeObserver(callback) {
+    this.observers = this.observers.filter(function removeCallbackCB(cb) {
+      return cb !== callback;
+    });
   }
 }
 

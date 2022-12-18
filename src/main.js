@@ -1,9 +1,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import firebaseConfig from "/src/firebaseConfig.js";
-import firebase from "firebase";
 import "./assets/main.css";
+import firebase from "firebase";
+import firebaseConfig from "/src/firebaseConfig.js";
 
 firebase.initializeApp(firebaseConfig);
 

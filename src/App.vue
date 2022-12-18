@@ -1,27 +1,32 @@
 <script>
 import GlossaryModel from "./GlossaryModel.js";
 import AppView from "./views/AppView.vue";
-import firebase from 'firebase'
+import firebase from "firebase";
+
 export default {
   name: "App",
   methods: {
     goToHomeACB() {
-      this.$router.push("/")
+      this.$router.push("/");
     },
     onLogOutACB() {
-      firebase.auth().signOut().then(() => {
-       console.log("Sign-out successful!") 
-        this.$router.push("/login");
-      }).catch((error) => {
-        console.log(error.code)
-        alert(error.message);
-      });
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log("Sign-out successful!");
+          this.model = new GlossaryModel()
+          this.$router.push("/login");
+        })
+        .catch((error) => {
+          console.log(error.code);
+          alert(error.message);
+        });
     },
     onGoToInfo() {
       if (this.$route.name === "info") {
-        this.$router.push("/")
-      }
-      else this.$router.push("/info")
+        this.$router.push("/");
+      } else this.$router.push("/info");
     },
   },
   data() {
@@ -38,7 +43,12 @@ export default {
 </script>
 
 <template>
-  <AppView :model="model" :onGoToHome="goToHomeACB" :onLogOut="onLogOutACB" :onGoToInfo="onGoToInfo"/>
+  <AppView
+    :model="model"
+    :onGoToHome="goToHomeACB"
+    :onLogOut="onLogOutACB"
+    :onGoToInfo="onGoToInfo"
+  />
 </template>
 
 <style scoped>
