@@ -89,7 +89,7 @@ export default {
 }
 
 .logo {
-  margin-bottom: 75px;
+  margin-bottom: 50px;
 }
 .createDeck {
   margin-bottom: 50px;

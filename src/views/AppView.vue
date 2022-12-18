@@ -73,10 +73,10 @@ export default {
   width: 440px;
 }
 .banner {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   display: grid;
   grid-auto-flow: column;
-  grid-column-gap: 120px;
+  grid-column-gap: 70px;
 }
 
 .bannerbuttons {
