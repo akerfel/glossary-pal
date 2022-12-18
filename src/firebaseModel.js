@@ -1,5 +1,11 @@
 import GlossaryModel from "./GlossaryModel";
+import Deck from "./Deck"
 import firebase from "firebase";
+
+function isLoggedIn() {
+  if (firebase.auth().currentUser) return true;
+  else return false;
+}
 
 function getUserID() {
   if (firebase.auth().currentUser) {
@@ -9,11 +15,12 @@ function getUserID() {
 
 function firebaseModelPromise() {
   function initModelACB(firebaseData) {
-    console.log("user: " + getUserID());
-    //console.log(firebaseData.val());
-    const deckList = Object.values(firebaseData.val().decks)
-    console.log(deckList)
-    return new GlossaryModel(deckList, firebaseData.val().nextDeckID);
+    function deckValsIntoDecksCB(vals) {
+      return new Deck(vals.id, vals.name, vals.lang1, vals.lang2, vals.words)
+    }
+    const deckListVals = Object.values(firebaseData.val().decks);
+    const decks = deckListVals.map(deckValsIntoDecksCB)
+    return new GlossaryModel(decks, firebaseData.val().nextDeckID);
   }
 
   function newUserACB() {
@@ -31,10 +38,10 @@ function firebaseModelPromise() {
 function updateFirebaseFromModel(model) {
   function addDeckObs(payload) {
     if (payload && payload.addDeck) {
-    firebase
-      .database()
-      .ref("users/" + getUserID() + "/decks/" + payload.addDeck.id)
-      .set(payload.addDeck);
+      firebase
+        .database()
+        .ref("users/" + getUserID() + "/decks/" + payload.addDeck.id)
+        .set(payload.addDeck);
     }
   }
 
@@ -51,4 +58,4 @@ function updateFirebaseFromModel(model) {
   model.addObserver(nextDeckIDObs);
 }
 
-export { firebaseModelPromise, updateFirebaseFromModel };
+export { isLoggedIn, firebaseModelPromise, updateFirebaseFromModel };

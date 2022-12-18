@@ -16,8 +16,8 @@ export default {
         .signInWithEmailAndPassword(email, password)
         .then((data) => {
           console.log("Successfully logged in!");
-          this.initModel();
           this.$router.push("/");
+          this.initModel();
         })
         .catch((error) => {
           console.log(error.code);

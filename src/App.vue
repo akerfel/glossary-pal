@@ -3,7 +3,11 @@ import GlossaryModel from "./GlossaryModel.js";
 import AppView from "./views/AppView.vue";
 import resolvePromise from "./resolvePromise";
 import firebase from "firebase";
-import { firebaseModelPromise, updateFirebaseFromModel } from "./firebaseModel";
+import {
+  isLoggedIn,
+  firebaseModelPromise,
+  updateFirebaseFromModel,
+} from "./firebaseModel";
 
 export default {
   name: "App",
@@ -31,7 +35,7 @@ export default {
       } else this.$router.push("/info");
     },
     initModel() {
-      console.log("initModel");
+      console.log("initmodel");
       resolvePromise(
         firebaseModelPromise(),
         this.modelPromiseState,
@@ -48,11 +52,12 @@ export default {
   data() {
     return {
       model: {},
+      modelPromiseState: {},
     };
   },
   created() {
-    this.modelPromiseState = {};
     this.model = new GlossaryModel();
+    if (isLoggedIn()) this.initModel();
     window.myModel = this.model;
   },
   components: { AppView },

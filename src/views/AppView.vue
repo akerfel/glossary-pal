@@ -2,20 +2,13 @@
 import { NButton } from "naive-ui";
 import { RouterView } from "vue-router";
 import promiseNoData from "../views/promiseNoData.vue";
-import firebase from "firebase";
+import { isLoggedIn } from "../firebaseModel";
 </script>
 
 <script>
 export default {
   components: { promiseNoData },
-  props: [
-    "model",
-    "modelPromiseState",
-    "onGoToHome",
-    "onLogOut",
-    "onGoToInfo",
-    "initModel",
-  ],
+  props: ["model", "initModel", "modelPromiseState", "onGoToHome", "onLogOut", "onGoToInfo"],
   methods: {
     clickedLogoutACB() {
       console.log("Log out user");
@@ -29,10 +22,6 @@ export default {
       "Going to info";
       this.onGoToInfo();
     },
-    isLoggedIn() {
-      if (firebase.auth().currentUser) return true;
-      else return false;
-    }
   },
 };
 </script>
@@ -54,12 +43,8 @@ export default {
         >Log out</n-button
       >
     </div>
-
+    <RouterView :model="model" :initModel="initModel" />
     <promiseNoData v-if="isLoggedIn()" :promiseState="modelPromiseState" />
-    <RouterView v-if="modelPromiseState.data"
-      :model="model"
-      :initModel="initModel"
-    />
   </div>
 </template>
 
