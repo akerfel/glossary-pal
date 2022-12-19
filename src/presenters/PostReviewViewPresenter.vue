@@ -13,15 +13,19 @@ export default {
       this.$router.push("/");
     },
     reviewEntireDeckACB() {
-      this.model.setCurrentDeckToFullDeck();
-      this.model.resetReviewAttributes();
-      this.model.shuffleCurrentDeck();
+      this.model.setCurrentDeckToOriginal();
+      this.model.resetReviewProgress();
+      this.model.updateCurrentDeckAccordingToSettings();
       this.$router.push("/review");
     },
     reviewWrongAnswersACB() {
       this.model.setCurrentDeckToWrongAnswers();
-      this.model.resetReviewAttributes();
-      this.model.shuffleCurrentDeck();
+      this.model.resetReviewProgress();
+
+      // We don't want to reverse the languages again
+      if (this.model.randomOrder) {
+        this.model.shuffleCurrentDeck();
+      }
       this.$router.push("/review");
     },
     getNumberOfWrongAnswers() {

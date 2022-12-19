@@ -22,6 +22,14 @@ const router = createRouter({
       component: () => import("../presenters/CreateDeckPresenter.vue"),
     },
     {
+      path: "/preReview",
+      name: "preReview",
+      meta: {
+        requiresAuth: true,
+      },
+      component: () => import("../presenters/PreReviewPresenter.vue"),
+    },
+    {
       path: "/review",
       name: "review",
       meta: {

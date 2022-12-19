@@ -177,7 +177,7 @@ export default {
       }
     },
     goToReviewDeckAfterCreationACB() {
-      this.model.resetReviewAttributes();
+      this.model.resetReviewProgress();
       this.model.selectDeckToReview(this.createdDeck);
       this.$router.push("/review");
     },

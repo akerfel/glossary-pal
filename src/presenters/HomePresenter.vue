@@ -15,9 +15,9 @@ export default {
       this.$router.push("/create");
     },
     goToReviewDeckACB(deckToReview) {
-      this.model.resetReviewAttributes();
+      this.model.resetReviewProgress();
       this.model.selectDeckToReview(deckToReview);
-      this.$router.push("/review");
+      this.$router.push("/prereview");
     },
     goEditDeck(deck) {
       this.model.setCurrentEditDeck(deck);

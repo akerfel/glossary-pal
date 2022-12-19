@@ -5,6 +5,8 @@ class GlossaryModel {
     this.decks = decks;
     this.observers = [];
     this.nextDeckID = nextDeckID;
+    this.randomOrder = false;
+    this.reverseReview = false;
   }
 
   getNextDeckID() {
@@ -18,7 +20,7 @@ class GlossaryModel {
     this.currentDeck = {}; // the current deck being reviewed
   }
 
-  resetReviewAttributes() {
+  resetReviewProgress() {
     this.currentWordIndex = 0; // index of the current word being reviewed
     this.wrongAnswerIndexes = []; // the indexes of the words in currentDeck which were answered incorrectly
   }
@@ -60,8 +62,10 @@ class GlossaryModel {
     this.currentDeck = this.getDeepCopyOfDeck(deck);
     this.currentWordIndex = 0;
     this.wrongAnswerIndexes = [];
+    this.randomOrder = false;
+    this.reverseReview = false;
 
-    this.shuffleCurrentDeck();
+    this.updateCurrentDeckAccordingToSettings();
   }
 
   hasNextWord() {
@@ -129,6 +133,18 @@ class GlossaryModel {
     this.currentDeck.words = this.getDeckOfWrongWords();
   }
 
+  reverseCurrentDeck() {
+    var reverseWords = [];
+    for (let word of this.currentDeck.words) {
+      reverseWords.push({from: word.to, to: word.from});
+    }
+
+    var tempLang1 = this.currentDeck.lang1;
+    this.currentDeck.lang1 = this.currentDeck.lang2;
+    this.currentDeck.lang2 = tempLang1;
+    this.currentDeck.words = reverseWords;
+  }
+
   getDeepCopyOfDeck(deckToCopy) {
     var deepCopyDeck = new Deck(
       deckToCopy.id,
@@ -149,7 +165,7 @@ class GlossaryModel {
     this.currentEditDeck = false;
   }
 
-  setCurrentDeckToFullDeck() {
+  setCurrentDeckToOriginal() {
     this.currentDeck = this.getDeck(this.currentDeck.id);
   }
 
@@ -182,6 +198,15 @@ class GlossaryModel {
     this.observers = this.observers.filter(function removeCallbackCB(cb) {
       return cb !== callback;
     });
+  }
+
+  updateCurrentDeckAccordingToSettings() {
+    if (this.randomOrder) {
+      this.shuffleCurrentDeck();
+    }
+    if (this.reverseReview) {
+      this.reverseCurrentDeck();
+    }
   }
 }
 
