@@ -12,6 +12,8 @@ export default {
     "correctAnswersAmount",
     "onGoToHomeClicked",
     "onReviewAgainClicked",
+    "onReviewWrongAnswersClicked",
+    "onReviewEntireDeckClicked",
     "getNumberOfWrongAnswers",
     "wrongWords",
     "showWrongAnswers",
@@ -21,8 +23,11 @@ export default {
     goToHomeClicked() {
       this.onGoToHomeClicked();
     },
-    reviewAgainClicked() {
-      this.onReviewAgainClicked();
+    reviewEntireDeckClicked() {
+      this.onReviewEntireDeckClicked();
+    },
+    reviewWrongAnswersClicked() {
+      this.onReviewWrongAnswersClicked();
     },
   },
 };
@@ -64,18 +69,31 @@ export default {
       <h2>All cards cleared!</h2>
       <h1>&#10004;&#65039;</h1>
     </div>
-    <div>
-      <n-button type="primary" class="goHomeButton" @click="goToHomeClicked">
-        Go back to home
-      </n-button>
-    </div>
+
     <div>
       <n-button
         type="primary"
-        class="reviewAgainButton"
-        @click="reviewAgainClicked"
+        class="buttons"
+        @click="reviewWrongAnswersClicked"
+        v-if="showWrongAnswers()"
       >
-        Review Again
+        Review Wrong Answers
+      </n-button>
+    </div>
+
+    <div>
+      <n-button
+        type="primary"
+        class="buttons"
+        @click="reviewEntireDeckClicked"
+      >
+        Review Entire Deck
+      </n-button>
+    </div>
+    
+    <div>
+      <n-button type="primary" class="buttons" @click="goToHomeClicked">
+        Go back to home
       </n-button>
     </div>
   </div>
@@ -99,13 +117,10 @@ export default {
 .languages {
 }
 
-.goHomeButton {
-  margin-top: 10px;
-}
 
-.reviewAgainButton {
+.buttons {
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .deckWords {
