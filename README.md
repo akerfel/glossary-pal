@@ -10,6 +10,12 @@ The webpage can suggest translations during the creation of glossary lists, whic
 
 ![firefox_Z94ZbTdXNC](https://user-images.githubusercontent.com/45148959/205668260-98f8a0eb-dedf-495d-bb7a-25c8e757e2a3.gif)
 
+## Target groups
+
+We have two target groups.
+- Middle school and high school students who need to learn glossary words for homework.
+- Anyone who wants to learn a new language.
+
 ## Mid-project status
 So far we have a home view, where you can see your current decks; a create a deck view where you can create a new deck; and a review view, where you can review the words in a deck. The functionality for all three views is more or less done, but may need some touching up. The create a deck view contains the API calls: we make calls to the Google Translate API in order to get the languages that the service can translate, and to translate words which the user has inputted.
 
