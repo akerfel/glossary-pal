@@ -43,7 +43,8 @@ export default {
   </p>
   <p class="text">
     To start cramming, press the "Review" button on the homepage to start a quiz
-    on your chosen deck.
+    on your chosen deck. During review you can press [ENTER] to confirm/continue and 
+    [SPACE] to try again if you failed a word.
   </p>
   <p class="text">Enjoy the app!</p>
   <p class="text">// Carl, David, Magnus, and Shotaro</p>
