@@ -1,6 +1,10 @@
 # glossary-pal
 
-Glossary Pal is a website for creating and reviewing glossary lists. The webpage will suggest translations during the creation of glossary lists (see example below).
+Glossary Pal is a website for creating and reviewing glossary lists. Try it out on [https://glossary-pal.web.app](https://glossary-pal.web.app).
+
+## Automatic translation
+
+The webpage can suggest translations during the creation of glossary lists, which is possible through calls to the Google Translate API. See an example below.
 
 ![firefox_Z94ZbTdXNC](https://user-images.githubusercontent.com/45148959/205668260-98f8a0eb-dedf-495d-bb7a-25c8e757e2a3.gif)
 
