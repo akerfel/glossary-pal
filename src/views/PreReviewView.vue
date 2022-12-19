@@ -8,12 +8,13 @@ export default {
     "currentDeckName",
     "fromLanguage",
     "toLanguage",
+    "onStartReview",
+    "onRandomOrder",
+    "onReverseLanguages",
   ],
 
   methods: {
   },
-
-  
 };
 </script>
 
@@ -25,17 +26,21 @@ export default {
   </div>
   <table>
     <tr>
-      <n-checkbox class="checkboxes">
+      <n-checkbox 
+        class="checkboxes"
+        @click="onRandomOrder">
         <p style="color:#DDDDDD">
           Random order
         </p>
       </n-checkbox>
     </tr>
     <tr>
-      <n-checkbox>
-          <p style="color:#DDDDDD">
-            Reverse languages ({{ toLanguage }} to {{ fromLanguage }})
-          </p>
+      <n-checkbox
+        class="checkboxes"
+        @click="onReverseLanguages">
+        <p style="color:#DDDDDD">
+          Reverse languages ({{ toLanguage }} to {{ fromLanguage }})
+        </p>
       </n-checkbox>
     </tr>
   </table>
@@ -44,7 +49,7 @@ export default {
     type="primary"
     size="large"
     class="startReviewButton"
-    @click="clickedCreateDeckACB"
+    @click="onStartReview"
     >Start review
   </n-button>
 </template>
