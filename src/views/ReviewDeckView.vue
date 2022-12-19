@@ -50,6 +50,12 @@ export default {
       }
     },
 
+    clickedSpace() {
+      if (this.hasAnswered) {
+        this.clickedTryAgain();
+      }
+    },
+
     getCorrectAnswerClass() {
       if (!this.answerWasCorrect) {
         return "correctAnswerWhenWrong";
@@ -112,6 +118,7 @@ export default {
             v-bind:placeholder="inputPlaceHolderText"
             v-bind:readonly="hasAnswered"
             @keyup.enter="clickedEnter"
+            @keyup.space="clickedSpace"
             :autofocus="true"
           />
         </td>
