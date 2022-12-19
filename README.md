@@ -10,7 +10,7 @@ This site is just a prototype, and therefore we do not recommend signing up with
 
 The webpage can suggest translations during the creation of glossary lists, which is possible through calls to the Google Translate API. See an example below.
 
-![firefox_Z94ZbTdXNC](https://user-images.githubusercontent.com/45148959/205668260-98f8a0eb-dedf-495d-bb7a-25c8e757e2a3.gif)
+![NVIDIA_Share_p7aW1nT0vF](https://user-images.githubusercontent.com/45148959/208526881-7f7f8e69-7c70-4eb7-a9dc-8a1bd7537fb3.gif)
 
 ## Target groups
 
@@ -52,7 +52,7 @@ npm run build
 
 ### Deploy website through firebase
 
-First setup firebase integration through https://firebase.google.com/. Then compile and minifiy for production (see above). Finally, run the following.
+First setup firebase integration through https://firebase.google.com/ (this includes running `firebase init`). Then compile and minifiy for production (see above). Finally, run the following.
 
 ```sh
 firebase deploy
