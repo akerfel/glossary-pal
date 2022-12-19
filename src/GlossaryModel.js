@@ -64,7 +64,9 @@ class GlossaryModel {
     this.wrongAnswerIndexes = [];
 
     this.shuffleCurrentDeck();
-    this.setCurrentDeckToReverse();
+    if (this.reverseReview) {
+      this.setCurrentDeckToReverse();
+    }
   }
 
   hasNextWord() {
