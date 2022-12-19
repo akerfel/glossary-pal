@@ -19,10 +19,11 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="header">
     <h1>
       <b>Review settings</b>
     </h1>
+    <p>{{ currentDeckName }} ({{ fromLanguage }} -> {{ toLanguage }})</p>
   </div>
   <table>
     <tr>
@@ -39,7 +40,7 @@ export default {
         class="checkboxes"
         @click="onReverseLanguages">
         <p style="color:#DDDDDD">
-          Reverse languages ({{ toLanguage }} to {{ fromLanguage }})
+          Reverse languages ({{ toLanguage }} -> {{ fromLanguage }})
         </p>
       </n-checkbox>
     </tr>
@@ -56,6 +57,10 @@ export default {
 
 <style scoped>
 
+.header {
+  text-align:center; 
+  margin-bottom:10px;
+}
 .checkboxes {
   margin-top: 6px;
   margin-bottom: 6px;
