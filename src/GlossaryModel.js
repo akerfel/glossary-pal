@@ -107,6 +107,7 @@ class GlossaryModel {
     for (let index of this.wrongAnswerIndexes) {
       wrongWords.push(this.currentDeck.words[index]);
     }
+    
     return wrongWords;
   }
 
@@ -116,6 +117,10 @@ class GlossaryModel {
 
   setCurrentEditDeck(deck) {
     this.currentEditDeck = deck;
+  }
+
+  setCurrentDeckToWrongAnswers() {
+    this.currentDeck.words = this.getDeckOfWrongWords();
   }
 
   resetCurrentEditDeck() {

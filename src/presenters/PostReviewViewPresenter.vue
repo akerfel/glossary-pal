@@ -17,6 +17,12 @@ export default {
       this.model.shuffleCurrentDeck();
       this.$router.push("/review");
     },
+    reviewWrongAnswersACB() {
+      this.model.setCurrentDeckToWrongAnswers();
+      this.model.resetReviewAttributes();
+      this.model.shuffleCurrentDeck();
+      this.$router.push("/review");
+    },
     getNumberOfWrongAnswers() {
       return this.model.getWrongAnswerIndexes().length;
     },
@@ -47,6 +53,7 @@ export default {
     :toLanguage="model.currentDeck.lang2"
     :onGoToHomeClicked="goToHomeACB"
     :onReviewAgainClicked="reviewAgainACB"
+    :onReviewWrongAnswersClicked="reviewWrongAnswersACB"
     :correctAnswersAmount="correctAnswersAmount"
     :getNumberOfWrongAnswers="getNumberOfWrongAnswers"
     :wrongWords="getDeckOfWrongWords"
