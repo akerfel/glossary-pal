@@ -35,7 +35,7 @@ export default {
     word in the two languages.
   </p>
   <p class="text">
-    If you don't know the translation of the word when creating the deck, you
+    If you don't know the translation of the word when creating a deck, you
     can press the "Get translation" button to get Google Translate's recommended
     translation of the word. This is possible for all of the listed languages.
   </p>
