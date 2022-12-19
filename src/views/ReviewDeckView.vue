@@ -1,5 +1,5 @@
 <script setup>
-import { NInput, NButton, NTooltip } from "naive-ui";
+import { NInput, NButton } from "naive-ui";
 </script>
 
 <script>
@@ -144,36 +144,36 @@ export default {
       </div>
 
       <!-- Confirm -->
-      <n-tooltip v-if="!hasAnswered" trigger="hover">
-        <template #trigger>
-          <n-button class="buttons" type="primary" @click="clickedConfirm">
-            Confirm
-          </n-button>
-        </template>
-        Press [Enter] to confirm answer.
-      </n-tooltip>
+      <n-button
+        v-if="!hasAnswered"
+        class="buttons"
+        type="primary"
+        @click="clickedConfirm"
+      >
+        Confirm
+      </n-button>
 
       <!-- Next -->
-      <n-tooltip v-if="hasAnswered" trigger="hover">
-        <template #trigger>
-          <div>
-            <n-button class="buttons" type="primary" @click="clickedNextWord">
-              Next
-            </n-button>
-          </div>
-        </template>
-        Press [Enter] to continue.
-      </n-tooltip>
+      <div>
+        <n-button
+          v-if="hasAnswered"
+          class="buttons"
+          type="primary"
+          @click="clickedNextWord"
+        >
+          Next
+        </n-button>
+      </div>
 
       <!-- Try Again -->
-      <n-tooltip v-if="!answerWasCorrect && hasAnswered" trigger="hover">
-        <template #trigger>
-          <n-button class="buttons" type="primary" @click="clickedTryAgain">
-            Try Again
-          </n-button>
-        </template>
-        Press [Space] to try again.
-      </n-tooltip>
+      <n-button
+        v-if="!answerWasCorrect && hasAnswered"
+        class="buttons"
+        type="primary"
+        @click="clickedTryAgain"
+      >
+        Try Again
+      </n-button>
     </span>
   </div>
 </template>
