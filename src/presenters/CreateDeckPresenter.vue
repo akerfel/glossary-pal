@@ -179,7 +179,7 @@ export default {
     goToReviewDeckAfterCreationACB() {
       this.model.resetReviewProgress();
       this.model.selectDeckToReview(this.createdDeck);
-      this.$router.push("/review");
+      this.$router.push("/prereview");
     },
   },
   data() {
