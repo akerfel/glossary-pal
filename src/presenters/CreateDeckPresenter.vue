@@ -98,6 +98,7 @@ export default {
         dc.creationErrorNoName = false;
         dc.creationErrorNoWords = false;
         dc.creationSuccessfull = true;
+        this.createdDeck = thisDeck;
         this.model.addDeck(thisDeck);
       }
     },
@@ -175,10 +176,16 @@ export default {
         this.$router.push("/");
       }
     },
+    goToReviewDeckAfterCreationACB() {
+      this.model.resetReviewAttributes();
+      this.model.selectDeckToReview(this.createdDeck);
+      this.$router.push("/review");
+    },
   },
   data() {
     return {
       langCodesPromiseState: {},
+      createdDeck: null,
       deckCreation: {
         isEditing: false,
         deckID: 0,
@@ -224,5 +231,6 @@ export default {
     :onCreateAnotherDeck="resetDeckCreationVarsACB"
     :getLangName="getLangName"
     :getNumberOfWordsInDeck="getNumberOfWordsInDeck"
+    :onReviewThisDeck="goToReviewDeckAfterCreationACB"
   />
 </template>

@@ -13,7 +13,6 @@ var auth = firebase.auth();
 // Set the persistence to 'local'
 auth
   .setPersistence(firebase.auth.Auth.Persistence.NONE)
-  .then()
   .catch(function (error) {
     console.log(error);
   });

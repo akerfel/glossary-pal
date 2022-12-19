@@ -9,7 +9,7 @@ export default {
 <template>
   <div v-if="!this.promiseState.promise"></div>
   <div v-else-if="!this.promiseState.data && !this.promiseState.error">
-    <img style="margin-top: 250px" src="../assets/loading.gif" />
+    <img style="margin-top: 100px" src="../assets/loading.gif" />
   </div>
   <div v-else-if="!this.promiseState.data && this.promiseState.error">
     {{ this.promiseState.error.toString() }}

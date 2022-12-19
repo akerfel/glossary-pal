@@ -10,6 +10,7 @@ export default {
     onCreateAnotherDeck: Function,
     getLangName: Function,
     getNumberOfWordsInDeck: Function,
+    onReviewThisDeck: Function,
   },
 
   methods: {
@@ -18,6 +19,9 @@ export default {
     },
     clickedCreateAnotherDeckACB() {
       this.onCreateAnotherDeck();
+    },
+    clickedReviewThisDeckACB() {
+      this.onReviewThisDeck();
     },
   },
 };
@@ -52,20 +56,27 @@ export default {
       </div>
     </div>
     <div>
-      <n-button type="primary" @click="clickedGoToHomeACB"
-        >Go back to home</n-button
-      >
-      <n-button
-        style="margin-left: 30px"
-        type="primary"
-        @click="clickedCreateAnotherDeckACB"
-        >Create another deck</n-button
-      >
+      <div class="buttonGroup">
+        <n-button type="primary" @click="clickedGoToHomeACB"
+          >Go back to home</n-button
+        >
+        <n-button type="primary" @click="clickedReviewThisDeckACB"
+          >Review this deck</n-button
+        >
+        <n-button type="primary" @click="clickedCreateAnotherDeckACB"
+          >Create another deck</n-button
+        >
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.buttonGroup {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 12px;
+}
 .postcreateview {
   display: flex;
   flex-direction: column;
