@@ -26,13 +26,30 @@ export default {
     clickedInfoACB() {
       this.onGoToInfo();
     },
-    showHomeAndSignOutBtn() {
+
+    getHomeButtonClass() {
       const path = this.$route.path;
       if (path === "/login" || path === "/signup") {
-        return false;
-      } else if (path === "/info") {
-        return isLoggedIn();
-      } else return true;
+        return "bannerbuttonhidden";
+      } else if (isLoggedIn() &&
+                  (path === "/" || 
+                  path === "/info" ||
+                  path === "/prereview" ||
+                  path === "/review" ||
+                  path === "/postReviewView")) {
+        return "bannerbuttons"
+      } else {
+        return "bannerbuttonhidden"
+      }
+    },
+    getLogoutButtonClass() {
+      const path = this.$route.path;
+      if (path === "/") {
+        return "bannerbuttons";
+      }
+      else {
+        return "bannerbuttonhidden"
+      }
     },
   },
 };
@@ -43,7 +60,7 @@ export default {
     <p id="email" v-if="isLoggedIn()">{{ getUser().email }}</p>
     <div class="banner">
       <n-button
-        v-if="showHomeAndSignOutBtn()"
+        v-bind:class="getHomeButtonClass()"
         class="bannerbuttons"
         @click="clickedHomeACB"
         type="primary"
@@ -53,8 +70,7 @@ export default {
         >Info</n-button
       >
       <n-button
-        v-if="showHomeAndSignOutBtn()"
-        class="bannerbuttons"
+        v-bind:class="getLogoutButtonClass()"
         @click="clickedLogoutACB"
         type="primary"
         color="#3d3d3d"
@@ -86,5 +102,10 @@ export default {
 
 .bannerbuttons {
   width: 75px;
+}
+
+.bannerbuttonhidden {
+  width: 75px;
+  visibility: hidden;
 }
 </style>
