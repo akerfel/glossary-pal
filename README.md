@@ -48,6 +48,16 @@ npm run dev
 npm run build
 ```
 
+### Deploy website through firebase
+
+First setup firebase integration through https://firebase.google.com/. Then compile and minifiy for production (see above). Finally, run the following.
+
+```sh
+firebase deploy
+```
+
+The website will now be live. The URL we have used is [https://glossary-pal.web.app](https://glossary-pal.web.app).
+
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
