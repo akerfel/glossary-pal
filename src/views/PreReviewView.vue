@@ -26,16 +26,16 @@ export default {
   <table>
     <tr>
       <n-checkbox class="checkboxes">
-        <label class="checkboxLabels">
+        <p style="color:#DDDDDD">
           Random order
-        </label>
+        </p>
       </n-checkbox>
     </tr>
     <tr>
-      <n-checkbox class="checkboxes">
-        <label class="checkboxLabels">
-          Reverse direction ({{ toLanguage }} to {{ fromLanguage }})
-        </label>
+      <n-checkbox>
+          <p style="color:#DDDDDD">
+            Reverse languages ({{ toLanguage }} to {{ fromLanguage }})
+          </p>
       </n-checkbox>
     </tr>
   </table>
@@ -53,6 +53,7 @@ export default {
 
 .checkboxes {
   margin-top: 6px;
+  margin-bottom: 6px;
   float: left;
   text-align: left;
 }
