@@ -48,6 +48,16 @@ npm run dev
 npm run build
 ```
 
+### Deploy website through firebase
+
+First compile and minifiy for production, and then run
+
+```sh
+firebase deploy
+```
+
+The website will then be deployed on [https://glossary-pal.web.app](https://glossary-pal.web.app).
+
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
