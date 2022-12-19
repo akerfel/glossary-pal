@@ -5,6 +5,7 @@ class GlossaryModel {
     this.decks = decks;
     this.observers = [];
     this.nextDeckID = nextDeckID;
+    this.reverseReview = false;
   }
 
   getNextDeckID() {
@@ -21,6 +22,7 @@ class GlossaryModel {
   resetReviewAttributes() {
     this.currentWordIndex = 0; // index of the current word being reviewed
     this.wrongAnswerIndexes = []; // the indexes of the words in currentDeck which were answered incorrectly
+    this.reverseReview = false;
   }
 
   deleteDeck(deckID) {
@@ -62,6 +64,7 @@ class GlossaryModel {
     this.wrongAnswerIndexes = [];
 
     this.shuffleCurrentDeck();
+    this.setCurrentDeckToReverse();
   }
 
   hasNextWord() {
@@ -129,6 +132,20 @@ class GlossaryModel {
     this.currentDeck.words = this.getDeckOfWrongWords();
   }
 
+  setCurrentDeckToReverse() {
+    var reverseWords = [];
+    for (let word of this.currentDeck.words) {
+      reverseWords.push({from: word.to, to: word.from});
+    }
+
+    var tempLang1 = this.currentDeck.lang1;
+    this.currentDeck.lang1 = this.currentDeck.lang2;
+    this.currentDeck.lang2 = tempLang1;
+    this.currentDeck.words = reverseWords;
+
+    this.reverseReview = true;
+  }
+
   getDeepCopyOfDeck(deckToCopy) {
     var deepCopyDeck = new Deck(
       deckToCopy.id,
@@ -151,6 +168,9 @@ class GlossaryModel {
 
   setCurrentDeckToFullDeck() {
     this.currentDeck = this.getDeck(this.currentDeck.id);
+    if (this.reverseReview) {
+      this.setCurrentDeckToReverse();
+    }
   }
 
   updateCurrentEditDeck(editedDeck) {
