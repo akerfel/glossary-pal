@@ -50,7 +50,7 @@ npm run build
 
 ### Deploy website through firebase
 
-First compile and minifiy for production, and then run
+First setup firebase integration through https://firebase.google.com/. Then compile and minifiy for production (see above). Finally, run the following.
 
 ```sh
 firebase deploy
