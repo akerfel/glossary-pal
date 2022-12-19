@@ -13,6 +13,7 @@ export default {
     "onGoToHomeClicked",
     "onReviewAgainClicked",
     "onReviewWrongAnswersClicked",
+    "onReviewEntireDeckClicked",
     "getNumberOfWrongAnswers",
     "wrongWords",
     "showWrongAnswers",
@@ -22,12 +23,12 @@ export default {
     goToHomeClicked() {
       this.onGoToHomeClicked();
     },
-    reviewAgainClicked() {
-      this.onReviewAgainClicked();
+    reviewEntireDeckClicked() {
+      this.onReviewEntireDeckClicked();
     },
     reviewWrongAnswersClicked() {
       this.onReviewWrongAnswersClicked();
-    }
+    },
   },
 };
 </script>
@@ -84,9 +85,9 @@ export default {
       <n-button
         type="primary"
         class="buttons"
-        @click="reviewAgainClicked"
+        @click="reviewEntireDeckClicked"
       >
-        Review Again
+        Review Entire Deck
       </n-button>
     </div>
     

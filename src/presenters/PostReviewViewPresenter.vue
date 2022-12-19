@@ -12,7 +12,8 @@ export default {
     goToHomeACB() {
       this.$router.push("/");
     },
-    reviewAgainACB() {
+    reviewEntireDeckACB() {
+      this.model.setCurrentDeckToFullDeck();
       this.model.resetReviewAttributes();
       this.model.shuffleCurrentDeck();
       this.$router.push("/review");
@@ -52,7 +53,7 @@ export default {
     :fromLanguage="model.currentDeck.lang1"
     :toLanguage="model.currentDeck.lang2"
     :onGoToHomeClicked="goToHomeACB"
-    :onReviewAgainClicked="reviewAgainACB"
+    :onReviewEntireDeckClicked="reviewEntireDeckACB"
     :onReviewWrongAnswersClicked="reviewWrongAnswersACB"
     :correctAnswersAmount="correctAnswersAmount"
     :getNumberOfWrongAnswers="getNumberOfWrongAnswers"

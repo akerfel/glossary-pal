@@ -1,3 +1,5 @@
+import Deck from "./Deck";
+
 class GlossaryModel {
   constructor(decks = [], nextDeckID = 0) {
     this.decks = decks;
@@ -35,12 +37,15 @@ class GlossaryModel {
     this.notifyObservers({ addOrEditDeck: deck });
   }
 
+  // Returns a deep copy of the specified deck
   getDeck(deckID) {
     function filterOnIDCB(deck) {
       return deck.id === deckID;
     }
 
-    return this.decks.find(filterOnIDCB);
+    var deck = this.decks.find(filterOnIDCB)
+    var deckDeepCopy = this.getDeepCopyOfDeck(deck);
+    return deckDeepCopy;
   }
 
   shuffleCurrentDeck() {
@@ -50,8 +55,9 @@ class GlossaryModel {
       .map(({ value }) => value);
   }
 
+  // Sets currentDeck to a deep copy of the given deck
   selectDeckToReview(deck) {
-    this.currentDeck = deck;
+    this.currentDeck = this.getDeepCopyOfDeck(deck);
     this.currentWordIndex = 0;
     this.wrongAnswerIndexes = [];
 
@@ -107,7 +113,7 @@ class GlossaryModel {
     for (let index of this.wrongAnswerIndexes) {
       wrongWords.push(this.currentDeck.words[index]);
     }
-    
+
     return wrongWords;
   }
 
@@ -123,8 +129,28 @@ class GlossaryModel {
     this.currentDeck.words = this.getDeckOfWrongWords();
   }
 
+  getDeepCopyOfDeck(deckToCopy) {
+    var deepCopyDeck = new Deck(
+      deckToCopy.id,
+      deckToCopy.deckTitle,
+      deckToCopy.fromLang,
+      deckToCopy.toLang,
+      []
+    );
+
+    for (let word of deckToCopy.words) {
+      deepCopyDeck.words.push({from: word.from, to: word.to});
+    }
+
+    return deepCopyDeck;
+  }
+
   resetCurrentEditDeck() {
     this.currentEditDeck = false;
+  }
+
+  setCurrentDeckToFullDeck() {
+    this.currentDeck = this.getDeck(this.currentDeck.id);
   }
 
   updateCurrentEditDeck(editedDeck) {
