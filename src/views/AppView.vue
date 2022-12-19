@@ -28,17 +28,10 @@ export default {
     },
 
     getHomeButtonClass() {
-      const path = this.$route.path;
-      if (path === "/login" || path === "/signup") {
-        return "bannerbuttonhidden";
-      } else if (isLoggedIn() &&
-                  (path === "/" || 
-                  path === "/info" ||
-                  path === "/prereview" ||
-                  path === "/review" ||
-                  path === "/postReviewView")) {
-        return "bannerbuttons"
-      } else {
+      if (isLoggedIn()) {
+        return "bannerbuttons";
+      }
+      else {
         return "bannerbuttonhidden"
       }
     },
