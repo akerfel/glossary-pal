@@ -56,7 +56,7 @@ First setup firebase integration through https://firebase.google.com/. Then comp
 firebase deploy
 ```
 
-The website will then be deployed on [https://glossary-pal.web.app](https://glossary-pal.web.app).
+The website will now be live. The URL we have used is [https://glossary-pal.web.app](https://glossary-pal.web.app).
 
 ### Lint with [ESLint](https://eslint.org/)
 
