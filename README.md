@@ -12,9 +12,7 @@ The webpage can suggest translations during the creation of glossary lists, whic
 
 ## Target groups
 
-We have two target groups.
-- Middle school and high school students who need to learn glossary words for homework.
-- Anyone who wants to learn a new language.
+Our main target groups are middle school and high school students who need to learn glossary words for homework. Our reasoning behind our design philosophy for these groups is that students probably want to be done with their homework as quickly as possible. Therefore, we have tried to create a minimalistic design, which is easy to understand at once. We have also tried to declutter all pages in order to make everything more intuitive. Because of this, students will quickly understand how to use the website, and thus be able to finish their homework faster. The API-integration with automatic translation also helps speed up the process of finishing your homework.
 
 ## Mid-project status
 So far we have a home view, where you can see your current decks; a create a deck view where you can create a new deck; and a review view, where you can review the words in a deck. The functionality for all three views is more or less done, but may need some touching up. The create a deck view contains the API calls: we make calls to the Google Translate API in order to get the languages that the service can translate, and to translate words which the user has inputted.
