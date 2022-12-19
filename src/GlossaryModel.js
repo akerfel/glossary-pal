@@ -133,8 +133,8 @@ class GlossaryModel {
     var deepCopyDeck = new Deck(
       deckToCopy.id,
       deckToCopy.name,
-      deckToCopy.fromLang,
-      deckToCopy.toLang,
+      deckToCopy.lang1,
+      deckToCopy.lang2,
       []
     );
 

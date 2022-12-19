@@ -61,6 +61,10 @@ const router = createRouter({
       },
       component: () => import("../presenters/InfoPresenter.vue"),
     },
+    { 
+      path: "/:catchAll(.*)", 
+      redirect: '/'
+    },
   ],
 });
 
