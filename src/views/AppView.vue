@@ -37,7 +37,7 @@ export default {
     },
     getLogoutButtonClass() {
       const path = this.$route.path;
-      if (path === "/") {
+      if (isLoggedIn() && path === "/") {
         return "bannerbuttons";
       }
       else {
