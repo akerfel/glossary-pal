@@ -19,7 +19,6 @@ export default {
           this.initModel();
         })
         .catch((error) => {
-          console.log(error.code);
           alert(error.message);
         });
     },
