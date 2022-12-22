@@ -2,9 +2,9 @@
 
 Glossary Pal is a website for creating and reviewing glossary lists. Try it out on [https://glossary-pal.web.app](https://glossary-pal.web.app). 
 
-If the site is somehow not working correctly, try using it in incognito mode.
+This site is just a prototype. Therefore, you should not save any sensitive information on the site, because of security issues. 
 
-This site is just a prototype, and therefore we do not recommend signing up with your real email or any password you might have used elsewhere, because of security issues. Any fake email will work. Also, do not save any sensitive information on the site. 
+If the site is somehow not working correctly, try using it in incognito mode.
 
 ## Automatic translation
 
