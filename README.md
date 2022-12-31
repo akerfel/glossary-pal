@@ -1,10 +1,6 @@
 # glossary-pal
 
-Glossary Pal is a website for creating and reviewing glossary lists. Try it out on [https://glossary-pal.web.app](https://glossary-pal.web.app). 
-
-This site is just a prototype. Therefore, you should not save any sensitive information on the site, because of security issues. 
-
-If the site is somehow not working correctly, try using it in incognito mode.
+Glossary Pal is a website for creating and reviewing glossary lists. Try it out on [https://glossary-pal.web.app](https://glossary-pal.web.app). We recommend that you do not save any sensitive information on this site as it is currently just a prototype and may have security vulnerabilities. 
 
 ## Automatic translation
 
