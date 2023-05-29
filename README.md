@@ -1,6 +1,6 @@
 # glossary-pal
 
-Glossary Pal is a website for creating and reviewing glossary lists, with built-in translation using the Google Translate API. We recommend that you do not save any sensitive information on this site as it is currently in early stages of development. Try it out on [https://glossary-pal.web.app](https://glossary-pal.web.app).
+Glossary Pal is a website for creating and reviewing glossary lists in order for users to learn new languages, with built-in translation using the Google Translate API. We recommend that you do not save any sensitive information on this site as it is currently in early stages of development. Try it out on [https://glossary-pal.web.app](https://glossary-pal.web.app).
 
 ## Automatic translation
 
