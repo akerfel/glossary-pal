@@ -22,7 +22,7 @@ Everything interesting is in the src folder, where we have the folders "assets",
 
 main.js and App.vue are the backbones of the application, serving as the entry and main execution. GlossaryModel.js and Deck.js are the model files, defining the classes that are used throughout the project. apiCalls.js, resolvePromise.js, and langCodesMap.js are general Javascript code which simplifies the logic in the presenters.
 
-index.js in the router folder is just a vue router, defining the paths (currently "/", "/create", and "/review") of the application.
+index.js in the router folder is just a vue router, defining the paths of the application.
 
 For the presenters we have: HomePresenter, CreateDeckPresenter, ReviewDeckPresenter, and PostReviewViewPresenter. Each serve as a presenter either for one view, or in the case of CreateADeck, two (which ones should be obvious). Most application logic is handled here.
 
