@@ -19,7 +19,7 @@ main.js and App.vue are the backbones of the application, serving as the entry a
 
 index.js in the router folder is just a vue router, defining the paths of the application.
 
-For the presenters we have: HomePresenter, CreateDeckPresenter, ReviewDeckPresenter, and PostReviewViewPresenter. Each serve as a presenter either for one view, or in the case of CreateADeck, two (which ones should be obvious). Most application logic is handled here.
+We have the following presenters: HomePresenter, CreateDeckPresenter, ReviewDeckPresenter, and PostReviewViewPresenter. Each serve as a presenter either for one view, or in the case of CreateADeck, two (which ones should be obvious). Most application logic is handled here.
 
 As for the views, most do what you think they do: define the view but not much else. The odd one out is promiseNoData.vue, which is used in createADeckPresenter to render a loading icon while the promise is resolving (and an error if it fails). 
 
