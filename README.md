@@ -9,15 +9,11 @@ The webpage can suggest translations during the creation of glossary lists, whic
 ![NVIDIA_Share_p7aW1nT0vF](https://user-images.githubusercontent.com/45148959/208526881-7f7f8e69-7c70-4eb7-a9dc-8a1bd7537fb3.gif)
 
 ## File structure
-Everything interesting is in the src folder, where we have the folders "assets", "router", "presenters", and "views". Outside of these folders we have general Javascript code and "root" files such as App.vue and main.js.
+The src folder contains the main structure: assets, router, presenters, and views. Core files like App.vue and main.js serve as the application’s entry point and main framework.
 
-main.js and App.vue are the backbones of the application, serving as the entry and main execution. GlossaryModel.js and Deck.js are the model files, defining the classes that are used throughout the project. apiCalls.js, resolvePromise.js, and langCodesMap.js are general Javascript code which simplifies the logic in the presenters.
+GlossaryModel.js and Deck.js define the data models, while utility scripts (apiCalls.js, resolvePromise.js, langCodesMap.js) support presenter logic. The router’s index.js configures application routes.
 
-index.js in the router folder is just a vue router, defining the paths of the application.
-
-We have the following presenters: HomePresenter, CreateDeckPresenter, ReviewDeckPresenter, and PostReviewViewPresenter. Each serve as a presenter either for one view, or in the case of CreateADeck, two (which ones should be obvious). Most application logic is handled here.
-
-As for the views, most do what you think they do: define the view but not much else. The odd one out is promiseNoData.vue, which is used in createADeckPresenter to render a loading icon while the promise is resolving (and an error if it fails). 
+Presenters (HomePresenter, CreateDeckPresenter, ReviewDeckPresenter, PostReviewViewPresenter) handle most business logic, managing one or more views. Views primarily define UI components, except for promiseNoData.vue, which shows loading and error states during async operations.
 
 ## Project Setup
 
